@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:enabled="true"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Trang chủ"/>
+    <item
+        android:id="@+id/menu_challenge"
+        android:enabled="true"
+        android:icon="@drawable/baseline_mark_email_read_24"
+        android:title="Thử thách"/>
+    <item
+        android:id="@+id/menu_health"
+        android:enabled="true"
+        android:icon="@drawable/baseline_mark_email_read_24"
+        android:title="Sức khỏe"/>
+    <item
+        android:id="@+id/menu_profile"
+        android:enabled="true"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Trang c.bạn"/>
+</menu>
