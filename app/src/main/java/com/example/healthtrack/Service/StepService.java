@@ -74,21 +74,17 @@ public class StepService extends Service implements SensorEventListener {
             mSensorManager = null;
         }
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-            addCountStepListener();
-
+        addCountStepListener();
     }
 
     private void addCountStepListener() {
         Sensor countSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 //        Sensor detectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
         if (countSensor != null){
-            Log.v(TAG, "Sensor.TYPE_STEP_COUNTER");
             mSensorManager
                     .registerListener(StepService.this, countSensor, SensorManager.SENSOR_DELAY_FASTEST);
         } else {
             Log.v(TAG, "Count sensor not available!");
-
         }
     }
 
