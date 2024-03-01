@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Views.MainHomeActivity">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -24,7 +23,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
             android:elevation="5dp"
-            app:title="HealTrack"
+            app:title="HealthTrack"
+
             app:titleTextColor="@color/blue" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -36,20 +36,141 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0"/>
+        app:layout_constraintVertical_bias="0" />
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <LinearLayout
         android:id="@+id/bottom_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="15dp"
+        android:weightSum="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1"
-        app:menu="@menu/bottom_navigation_menu"
-        android:elevation="2dp"
-       />
+        app:layout_constraintVertical_bias="1">
+        <LinearLayout
+            android:id="@+id/main_home_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/round_background"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/main_home_img"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/home"/>
+            <TextView
+                android:id="@+id/main_home_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trang chủ"
+                android:textColor="@color/blue"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/main_challenge_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/main_challenge_img"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/baseline_home_24"/>
+            <TextView
+                android:id="@+id/main_challenge_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thử thách"
+                android:visibility="gone"
+                android:textColor="@color/blue"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/main_health_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/main_health_img"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/baseline_home_24"/>
+            <TextView
+                android:id="@+id/main_health_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="Sức khỏe"
+                android:textColor="@color/blue"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/main_profile_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/main_profile_img"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/baseline_home_24"/>
+            <TextView
+                android:id="@+id/main_profile_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="Trang c.bạn"
+                android:textColor="@color/blue"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
