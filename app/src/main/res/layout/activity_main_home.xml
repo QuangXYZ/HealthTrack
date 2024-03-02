@@ -72,7 +72,7 @@
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/home"/>
+                android:src="@drawable/home_select"/>
             <TextView
                 android:id="@+id/main_home_text"
                 android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/baseline_home_24"/>
+                android:src="@drawable/challenge"/>
             <TextView
                 android:id="@+id/main_challenge_text"
                 android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/baseline_home_24"/>
+                android:src="@drawable/health"/>
             <TextView
                 android:id="@+id/main_health_text"
                 android:layout_width="wrap_content"
@@ -155,7 +155,7 @@
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/baseline_home_24"/>
+                android:src="@drawable/profile"/>
             <TextView
                 android:id="@+id/main_profile_text"
                 android:layout_width="wrap_content"

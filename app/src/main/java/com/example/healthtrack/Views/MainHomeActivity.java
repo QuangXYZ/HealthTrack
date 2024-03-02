@@ -81,6 +81,11 @@ public class MainHomeActivity extends AppCompatActivity {
                     healthLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
                     profileLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
 
+
+                    profileImg.setImageDrawable(getResources().getDrawable(R.drawable.profile));
+                    challengeImg.setImageDrawable(getResources().getDrawable(R.drawable.challenge));
+                    healthImg.setImageDrawable(getResources().getDrawable(R.drawable.health));
+
                     homeTxt.setVisibility(View.VISIBLE);
                     homeImg.setImageDrawable(getResources().getDrawable(R.drawable.home_select));
                     homeLayout.setBackgroundResource(R.drawable.round_background);
@@ -110,8 +115,13 @@ public class MainHomeActivity extends AppCompatActivity {
                     healthLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
                     profileLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
 
+                    profileImg.setImageDrawable(getResources().getDrawable(R.drawable.profile));
+                    homeImg.setImageDrawable(getResources().getDrawable(R.drawable.home));
+                    healthImg.setImageDrawable(getResources().getDrawable(R.drawable.health));
+
                     challengeTxt.setVisibility(View.VISIBLE);
                     challengeLayout.setBackgroundResource(R.drawable.round_background);
+                    challengeImg.setImageDrawable(getResources().getDrawable(R.drawable.challenge_select));
 
                     ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
                     scaleAnimation.setDuration(500);
@@ -136,8 +146,14 @@ public class MainHomeActivity extends AppCompatActivity {
                 homeLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
                 profileLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
 
+
+                profileImg.setImageDrawable(getResources().getDrawable(R.drawable.profile));
+                homeImg.setImageDrawable(getResources().getDrawable(R.drawable.home));
+                challengeImg.setImageDrawable(getResources().getDrawable(R.drawable.challenge));
+
                 healthTxt.setVisibility(View.VISIBLE);
                 healthLayout.setBackgroundResource(R.drawable.round_background);
+                healthImg.setImageDrawable(getResources().getDrawable(R.drawable.health_select));
 
                 ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
                 scaleAnimation.setDuration(500);
@@ -163,8 +179,15 @@ public class MainHomeActivity extends AppCompatActivity {
                 healthLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
                 homeLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
 
+
+                healthImg.setImageDrawable(getResources().getDrawable(R.drawable.health));
+                homeImg.setImageDrawable(getResources().getDrawable(R.drawable.home));
+                challengeImg.setImageDrawable(getResources().getDrawable(R.drawable.challenge));
+
                 profileTxt.setVisibility(View.VISIBLE);
                 profileLayout.setBackgroundResource(R.drawable.round_background);
+                profileImg.setImageDrawable(getResources().getDrawable(R.drawable.profile_select));
+
 
                 ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
                 scaleAnimation.setDuration(500);
