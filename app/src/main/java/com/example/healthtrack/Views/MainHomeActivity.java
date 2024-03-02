@@ -61,6 +61,8 @@ public class MainHomeActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.class_main_toolbar);
 
+
+
         HomeFragment homeFragment = new HomeFragment();
         replaceFragment(homeFragment);
     }
@@ -89,6 +91,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     homeTxt.setVisibility(View.VISIBLE);
                     homeImg.setImageDrawable(getResources().getDrawable(R.drawable.home_select));
                     homeLayout.setBackgroundResource(R.drawable.round_background);
+                    toolbar.setTitle("HealthTrack");
 
                     ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
                     scaleAnimation.setDuration(500);
@@ -122,6 +125,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     challengeTxt.setVisibility(View.VISIBLE);
                     challengeLayout.setBackgroundResource(R.drawable.round_background);
                     challengeImg.setImageDrawable(getResources().getDrawable(R.drawable.challenge_select));
+                    toolbar.setTitle("Thử thách");
 
                     ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
                     scaleAnimation.setDuration(500);
@@ -154,6 +158,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 healthTxt.setVisibility(View.VISIBLE);
                 healthLayout.setBackgroundResource(R.drawable.round_background);
                 healthImg.setImageDrawable(getResources().getDrawable(R.drawable.health_select));
+                toolbar.setTitle("Sức khỏe");
 
                 ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
                 scaleAnimation.setDuration(500);
@@ -166,7 +171,6 @@ public class MainHomeActivity extends AppCompatActivity {
                 }
             }
         });
-
         profileLayout.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceType")
             @Override
@@ -187,6 +191,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 profileTxt.setVisibility(View.VISIBLE);
                 profileLayout.setBackgroundResource(R.drawable.round_background);
                 profileImg.setImageDrawable(getResources().getDrawable(R.drawable.profile_select));
+                toolbar.setTitle("Trang của bạn");
 
 
                 ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);

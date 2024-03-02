@@ -1,10 +1,13 @@
 package com.example.healthtrack.Views.Fragment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,7 +16,9 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.healthtrack.R;
 
@@ -21,7 +26,10 @@ import com.example.healthtrack.R;
 public class ChallengeFragment extends Fragment {
 
     Button createBtn;
-
+    TextView tab1, tab2;
+    private static final int FRAGMENT_PRIVATE = 1;
+    private static final int FRAGMENT_PUBLIC = 2;
+    private static int currentFragment ;
 
 
     @Override
@@ -31,10 +39,20 @@ public class ChallengeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_challenge, container, false);
         init(view);
         settingUpListeners();
+
         return view;
     }
     void init(View view){
         createBtn = view.findViewById(R.id.fragment_challenge_create_button);
+        tab1 = view.findViewById(R.id.fragment_challenge_tab1);
+        tab2 = view.findViewById(R.id.fragment_challenge_tab2);
+
+
+        currentFragment = FRAGMENT_PRIVATE;
+
+
+        PrivateChallengeFragment challengeFragment = new PrivateChallengeFragment();
+        replaceFragment(challengeFragment);
 
 
     }
@@ -62,10 +80,104 @@ public class ChallengeFragment extends Fragment {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Animation myAnim = AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
-                createBtn.setAnimation(myAnim);
+
             }
         });
+
+        tab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (currentFragment != FRAGMENT_PRIVATE) {
+
+                    selectTab(FRAGMENT_PRIVATE);
+
+
+                }
+
+            }
+        });
+        tab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentFragment != FRAGMENT_PUBLIC) {
+
+                    selectTab(FRAGMENT_PUBLIC);
+
+                }
+            }
+        });
+    }
+
+    private void selectTab(int tabNumber) {
+        TextView selectedTab, noneSelectedTab;
+        if (tabNumber == FRAGMENT_PRIVATE) {
+            selectedTab = tab1;
+            noneSelectedTab = tab2;
+
+            PrivateChallengeFragment challengeFragment = new PrivateChallengeFragment();
+            replaceFragment(challengeFragment);
+
+
+
+
+        }
+        else {
+            selectedTab = tab2;
+            noneSelectedTab = tab1;
+
+            PublicChallengeFragment challengeFragment = new PublicChallengeFragment();
+            replaceFragment(challengeFragment);
+
+
+        }
+
+        float slideTo = (tabNumber - currentFragment) * selectedTab.getWidth();
+        TranslateAnimation translateAnimation = new TranslateAnimation(-slideTo, 0,0,0);
+
+        translateAnimation.setDuration(100);
+
+        if (currentFragment == FRAGMENT_PRIVATE) {
+            tab2.startAnimation(translateAnimation);
+        }
+        if (currentFragment == FRAGMENT_PUBLIC) {
+            tab1.startAnimation(translateAnimation);
+        }
+
+        translateAnimation.setAnimationListener(
+                new Animation.AnimationListener() {
+                    @SuppressLint("ResourceType")
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        selectedTab.setBackgroundResource(R.drawable.tab_background_select);
+
+                        selectedTab.setTextColor(Color.WHITE);
+
+                        noneSelectedTab.setBackgroundResource(getResources().getColor(android.R.color.transparent));
+
+                        noneSelectedTab.setTextColor(getResources().getColor(R.color.blue));
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                }
+        );
+
+        currentFragment =  tabNumber;
+
+    }
+    private void replaceFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().setReorderingAllowed(true);
+        fragmentTransaction.replace(R.id.fragment_challenge_frame, fragment);
+        fragmentTransaction.commit();
     }
 
 }
