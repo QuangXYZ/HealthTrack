@@ -135,7 +135,7 @@ public class ChallengeFragment extends Fragment {
         float slideTo = (tabNumber - currentFragment) * selectedTab.getWidth();
         TranslateAnimation translateAnimation = new TranslateAnimation(-slideTo, 0,0,0);
 
-        translateAnimation.setDuration(100);
+        translateAnimation.setDuration(400);
 
         if (currentFragment == FRAGMENT_PRIVATE) {
             tab2.startAnimation(translateAnimation);

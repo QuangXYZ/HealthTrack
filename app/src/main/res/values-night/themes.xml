@@ -14,9 +14,5 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="TextAppearance.App.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
-        <item name="fontFamily">@font/cabin</item>
-        <item name="android:fontFamily">@font/cabin</item>
-    </style>
 
 </resources>
