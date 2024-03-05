@@ -3,12 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Views.Fragment.PublicChallengeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="start">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Đã tham gia"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            app:backgroundTint="@color/orange"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/public_join_challenge_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            tools:listitem="@layout/single_private_challenge"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Đang diễn ra"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            app:backgroundTint="@color/orange"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/public_not_join_challenge_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            tools:listitem="@layout/single_private_challenge"/>
+    </LinearLayout>
 
 </FrameLayout>

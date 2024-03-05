@@ -70,8 +70,7 @@
                             android:textStyle="bold" />
 
                         <ProgressBar
-                            android:layout_centerHorizontal="true"
-                            android:layout_below="@+id/textView"
+
                             android:id="@+id/progressBar"
                             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                             android:layout_width="match_parent"
