@@ -49,7 +49,7 @@ dependencies {
     implementation ("com.google.android.material:material:1.9.0")
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
-
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation ("junit:junit:4.+")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
