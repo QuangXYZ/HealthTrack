@@ -18,7 +18,9 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
             android:elevation="5dp"
-            app:navigationIcon="@drawable/back_icon"/>
+            app:navigationIcon="@drawable/back_icon"
+            app:title="Chi tiết thử thách"
+            app:titleTextColor="@color/blue" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
@@ -29,7 +31,100 @@
         android:textColor="@color/blue"
         android:layout_gravity="center_vertical"
         android:textStyle="bold"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:layout_marginStart="20dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:backgroundTint="#F4F1FA"
+        app:cardCornerRadius="20dp"
+        app:strokeWidth="0dp"
+        android:elevation="3dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#B7553CAF"
+                android:text="Thu thach ve dich dau tien"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#B7553CAF"
+                android:text="Thu thach ve dich dau tien"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#B7553CAF"
+                android:text="Thu thach ve dich dau tien"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#B7553CAF"
+                android:text="Thu thach ve dich dau tien"/>
+
+            <Button
+                android:id="@+id/fragment_challenge_create_button"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:textSize="16sp"
+                android:text="Mời bạn bè tham gia"
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:background="@drawable/button_background"
+                android:textColor="@color/blue"
+                app:backgroundTint="@color/orange"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
+        app:cardCornerRadius="20dp"
+        app:strokeWidth="0dp"
+        android:elevation="3dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:text="Bảng xếp hạng"/>
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/challenge_detail_recylerview"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               tools:listitem="@layout/single_user_ranking"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:text="Thành tích của bạn"
+                />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>
