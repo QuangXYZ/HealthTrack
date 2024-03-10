@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- res/values/styles.xml -->
+    <style name="CustomDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:background">@drawable/custom_date_picker</item>
+<!--        <item name="android:textColorPrimary">@color/your_primary_text_color</item>-->
+<!--        <item name="android:textColorSecondary">@color/your_secondary_text_color</item>-->
+    </style>
+
+</resources>
