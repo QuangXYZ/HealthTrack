@@ -57,6 +57,7 @@ dependencies {
     implementation ("com.journeyapps:zxing-android-embedded:4.1.0")
     implementation ("com.google.zxing:core:3.3.3")
     implementation ("com.github.ybq:Android-SpinKit:1.4.0")
+    implementation ("com.squareup:android-times-square:1.6.5@aar")
 
 
 

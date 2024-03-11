@@ -34,7 +34,13 @@
             android:name=".Views.PrivateChallengeDetail"
             android:exported="false" />
         <activity
-            android:name=".Views.MainHomeActivity"
+            android:name=".Views.Activity.SetGoalsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Views.Activity.HistoryStepActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Views.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Views.LoginActivity"
+            android:name=".Views.MainHomeActivity"
             android:exported="false" />
         <activity
             android:name=".Views.TestWalkingStep"
