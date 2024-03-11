@@ -34,9 +34,8 @@
             android:name=".Views.PrivateChallengeDetail"
             android:exported="false" />
         <activity
-            android:name=".Views.LoginActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:name=".Views.MainHomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Views.MainHomeActivity"
+            android:name=".Views.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".Views.TestWalkingStep"
