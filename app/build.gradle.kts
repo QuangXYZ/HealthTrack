@@ -2,6 +2,12 @@ plugins {
     id("com.android.application")
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
 android {
     namespace = "com.example.healthtrack"
     compileSdk = 34
@@ -54,7 +60,7 @@ dependencies {
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("com.squareup:android-times-square:1.6.5@aar")
-
+    implementation ("io.github.ShawnLin013:number-picker:2.4.13")
 
 
 }
