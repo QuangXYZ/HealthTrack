@@ -5,12 +5,18 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.healthtrack.R;
@@ -22,6 +28,7 @@ import java.util.Date;
 
 public class HistoryStepActivity extends AppCompatActivity {
     ImageView settingImg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,28 +51,6 @@ public class HistoryStepActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.option_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case R.id.item1:
-                Toast.makeText(getBaseContext(),"Item 1",Toast.LENGTH_LONG).show();
-                break;
-            case R.id.item2:
-                Toast.makeText(getBaseContext(),"Item 2",Toast.LENGTH_LONG).show();
-                break;
-            default:
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void calendar(){
         Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
@@ -86,9 +71,10 @@ public class HistoryStepActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String formattedDate = sdf.format(date);
 
-//                System.out.println(formattedDate);
                 Toast.makeText(getApplicationContext(), "Ngày được chọn: " + formattedDate, Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "Selected time in millis: " + formattedDate);
+
+                openHistoryStepDialog(Gravity.BOTTOM);
             }
 
             @Override
@@ -96,6 +82,40 @@ public class HistoryStepActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void openHistoryStepDialog(int gravity){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.layout_dialog_history_step);
+
+        Window window = dialog.getWindow();
+        if (window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        //xử lý khi click ra ngoài dialog
+        if (Gravity.BOTTOM == gravity) {
+            dialog.setCancelable(true);
+        } else {
+            dialog.setCancelable(false);
+        }
+
+        ImageView canCelDialog = dialog.findViewById(R.id.cancel_dialog);
+        canCelDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
 //    Date today = new Date("");
