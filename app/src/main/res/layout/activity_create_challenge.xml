@@ -1,9 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Views.CreateChallengeActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/challenge_detail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:elevation="5dp"
+                app:navigationIcon="@drawable/back_icon"
+                app:titleTextColor="@color/blue" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:text="Tạo thử thách"
+            android:textColor="@color/blue"
+            android:textSize="24sp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:hint="Tiêu đề cuộc thi"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="@color/blue" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            android:elevation="3dp">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/create_challenge_calender_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Bắt đầu"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/create_challenge_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="end"
+                        android:padding="10dp"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/create_challenge_expandable_calendar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:el_duration="500"
+                    app:el_expanded="true"
+
+                    app:el_parallax="0.5">
+
+                    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                        android:id="@+id/create_challenge_calender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:mcv_selectionColor="#00F" />
+
+                </net.cachapa.expandablelayout.ExpandableLayout>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp" />
+
+                <LinearLayout
+                    android:id="@+id/create_challenge_step_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Mục tiêu"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/create_challenge_step"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="end"
+                        android:padding="10dp"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/create_challenge_expandable_step"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:el_duration="500"
+                    app:el_expanded="true"
+
+                    app:el_parallax="0.5">
+
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/create_challenge_number_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:np_dividerColor="@color/blue"
+                        app:np_height="180dp"
+                        app:np_max="0"
+                        app:np_min="30"
+                        app:np_selectedTextColor="#2196F3"
+                        app:np_selectedTextSize="20sp"
+                        app:np_textColor="#CB6A6A6A"
+                        app:np_textSize="16dp"
+                        app:np_value="3"
+                        app:np_width="64dp" />
+
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_challenge_btn"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_background"
+                android:text="Tạo thử thách"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                app:rippleColor="#4DFEDE82"
+                app:backgroundTint="@color/blue" />
+
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

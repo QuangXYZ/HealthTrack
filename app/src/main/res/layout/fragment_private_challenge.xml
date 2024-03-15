@@ -21,8 +21,21 @@
             android:background="@drawable/button_background"
             android:textColor="@color/blue"
             app:backgroundTint="@color/orange"/>
+        <Button
+            android:id="@+id/fragment_challenge_qr_scan"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:textSize="16sp"
+            android:text="Scan QR"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:background="@drawable/button_background"
+            android:textColor="@color/blue"
+            app:backgroundTint="@color/orange"/>
 
         <TextView
+            android:id="@+id/test_qr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"

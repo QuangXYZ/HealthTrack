@@ -24,12 +24,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         init();
         settingUpListeners();
+
     }
 
     void init() {
         loginBtn = findViewById(R.id.loginButton);
         loginProgressBar = findViewById(R.id.loginProgressBar);
         signupText = findViewById(R.id.signupText);
+
         Sprite doubleBounce = new ThreeBounce();
         loginProgressBar.setIndeterminateDrawable(doubleBounce);
     }
