@@ -4,15 +4,46 @@ import java.util.Date;
 import java.util.List;
 
 public class User {
+    String _id;
     String name;
 
     String password;
     String email;
     String gender;
+    String token;
     List<String> badges;
     List<String> friends;
-    Date dateOfBirth;
+    String dateOfBirth;
     List<String> idChallenges;
+
+    public User(String _id, String name, String password, String email, String gender, String token, List<String> badges, List<String> friends, String dateOfBirth, List<String> idChallenges) {
+        this._id = _id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
+        this.token = token;
+        this.badges = badges;
+        this.friends = friends;
+        this.dateOfBirth = dateOfBirth;
+        this.idChallenges = idChallenges;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getName() {
         return name;
@@ -62,11 +93,11 @@ public class User {
         this.friends = friends;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

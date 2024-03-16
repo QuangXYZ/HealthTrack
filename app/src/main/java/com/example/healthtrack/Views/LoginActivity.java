@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.healthtrack.Controller.LoginController;
 import com.example.healthtrack.R;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.ThreeBounce;
@@ -17,6 +18,8 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     ProgressBar loginProgressBar;
     TextView signupText;
+
+    private LoginController loginController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Sprite doubleBounce = new ThreeBounce();
         loginProgressBar.setIndeterminateDrawable(doubleBounce);
+        loginController = new LoginController(this);
     }
 
     void settingUpListeners() {
@@ -42,10 +46,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loginBtn.setVisibility(View.GONE);
                 loginProgressBar.setVisibility(View.VISIBLE);
-                Intent intent = new Intent(LoginActivity.this, MainHomeActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(LoginActivity.this, MainHomeActivity.class);
+//                startActivity(intent);
+                loginController.loginController(LoginActivity.this, "nhuy3@gmail.com", "123456");
                 overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-                finish();
+//                finish();
             }
         });
         signupText.setOnClickListener(new View.OnClickListener() {
