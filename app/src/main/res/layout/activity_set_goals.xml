@@ -89,12 +89,27 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Số bước, 6.000"
-                        android:textColor="@color/blue"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số bước ,"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_number_step_goals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6.000"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -127,12 +142,26 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Calo từ hoạt động, 500 kcal"
-                        android:textColor="@color/blue"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calo từ hoạt động, "
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_calo_goals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="500 kcal"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -165,12 +194,26 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Thời gian hoạt động, 90 phút"
-                        android:textColor="@color/blue"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thời gian hoạt động, "
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/time_goals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="90 phút"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -203,12 +246,25 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Quãng đường hoạt động, 5,06 km"
-                        android:textColor="@color/blue"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Quãng đường hoạt động, "
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_distance_goals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5,06 km"
+                            android:textColor="@color/blue"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
