@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/challenge_detail_toolbar"
+                android:id="@+id/create_challenge_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
@@ -36,12 +36,19 @@
             android:textColor="@color/blue"
             android:textSize="24sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Thử thách về đích đầu tiên"
+            android:textColor="@color/blue"
+            android:textSize="16sp" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
-            >
+            android:backgroundTint="@color/white">
 
             <EditText
                 android:layout_width="match_parent"
@@ -93,7 +100,7 @@
                         android:layout_weight="3"
                         android:gravity="end"
                         android:padding="10dp"
-                        android:textColor="@color/blue"
+                        android:textColor="#F44336"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -145,7 +152,8 @@
                         android:layout_weight="3"
                         android:gravity="end"
                         android:padding="10dp"
-                        android:textColor="@color/blue"
+                        android:text="50.000 bước"
+                        android:textColor="#F44336"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -168,7 +176,7 @@
                         app:np_height="180dp"
                         app:np_max="0"
                         app:np_min="30"
-                        app:np_selectedTextColor="#2196F3"
+                        app:np_selectedTextColor="#F44336"
                         app:np_selectedTextSize="20sp"
                         app:np_textColor="#CB6A6A6A"
                         app:np_textSize="16dp"
@@ -182,21 +190,30 @@
         </com.google.android.material.card.MaterialCardView>
 
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/create_challenge_btn"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:text="Tạo thử thách"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/blue"
+            app:rippleColor="#4DFEDE82" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/create_challenge_btn"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_background"
-                android:text="Tạo thử thách"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textStyle="bold"
-                app:rippleColor="#4DFEDE82"
-                app:backgroundTint="@color/blue" />
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/create_challenge_progress"
+            style="@style/SpinKitView.Small"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/blue" />
 
 
     </LinearLayout>

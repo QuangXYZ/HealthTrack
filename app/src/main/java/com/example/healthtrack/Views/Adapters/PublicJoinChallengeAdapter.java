@@ -1,6 +1,7 @@
 package com.example.healthtrack.Views.Adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtrack.R;
+import com.example.healthtrack.Views.PrivateChallengeDetail;
+import com.example.healthtrack.Views.PublicChallengeDetailActivity;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
@@ -32,6 +36,14 @@ public class PublicJoinChallengeAdapter extends RecyclerView.Adapter<PublicJoinC
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        holder.challengeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PublicChallengeDetailActivity.class);
+                context.startActivity(intent);
+                context.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+            }
+        });
     }
 
     @Override
@@ -40,8 +52,10 @@ public class PublicJoinChallengeAdapter extends RecyclerView.Adapter<PublicJoinC
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        MaterialCardView challengeLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            challengeLayout = itemView.findViewById(R.id.single_public_challenge_layout);
         }
     }
 }

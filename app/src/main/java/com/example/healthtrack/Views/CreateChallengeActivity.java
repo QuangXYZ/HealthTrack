@@ -9,7 +9,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.healthtrack.R;
+import com.github.ybq.android.spinkit.SpinKitView;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -24,6 +30,9 @@ public class CreateChallengeActivity extends AppCompatActivity {
     NumberPicker numberPicker;
     LinearLayout calenderLayout,stepLayout;
     TextView calenderTextView,stepTextView;
+    MaterialToolbar toolbar;
+    MaterialButton createButton;
+    SpinKitView progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +59,11 @@ public class CreateChallengeActivity extends AppCompatActivity {
         numberPicker.setDisplayedValues(data);
         numberPicker.setValue(5);
 
+        toolbar = findViewById(R.id.create_challenge_toolbar);
+        createButton = findViewById(R.id.create_challenge_btn);
+        progress = findViewById(R.id.create_challenge_progress);
+        Sprite doubleBounce = new ThreeBounce();
+        progress.setIndeterminateDrawable(doubleBounce);
     }
     void settingUpListeners(){
         calenderLayout.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +89,25 @@ public class CreateChallengeActivity extends AppCompatActivity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 stepTextView.setText(newVal+"0.000 bước");
+            }
+        });
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progress.setVisibility(View.VISIBLE);
+                createButton.setVisibility(View.GONE);
+                new MaterialAlertDialogBuilder(CreateChallengeActivity.this)
+                        .setTitle("Thành công")
+                        .setMessage("Thử thách đã được tạo")
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            finish();
+                        } ).show();
             }
         });
     }
