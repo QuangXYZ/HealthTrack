@@ -7,7 +7,7 @@
     android:layout_margin="10dp"
     android:backgroundTint="#F4F1FA"
     app:cardCornerRadius="20dp"
-
+    style="?attr/materialCardViewElevatedStyle"
     app:strokeWidth="0dp"
     android:elevation="3dp">
     <LinearLayout

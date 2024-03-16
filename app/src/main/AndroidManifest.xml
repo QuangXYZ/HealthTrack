@@ -55,6 +55,13 @@
         <activity
             android:name=".Views.TestWalkingStep"
             android:exported="false" />
+        <activity android:name=".Views.Fragment.PrivateChallengeFragment"/>
+        <activity
+            android:name=".Utils.CaptureArt"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <service
             android:name=".Service.StepService"
