@@ -13,6 +13,7 @@ import android.widget.Toolbar;
 
 import com.example.healthtrack.R;
 import com.example.healthtrack.Views.Adapters.RankingAdapter;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -30,6 +31,7 @@ public class PrivateChallengeDetail extends AppCompatActivity {
     Button inviteBtn;
     ImageView imageCode;
     MaterialToolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
