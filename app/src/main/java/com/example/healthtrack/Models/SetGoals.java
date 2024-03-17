@@ -70,4 +70,16 @@ public class SetGoals implements Serializable {
     public void setTimeGoals(int timeGoals) {
         this.timeGoals = timeGoals;
     }
+
+    @Override
+    public String toString() {
+        return "SetGoals{" +
+                "_id='" + _id + '\'' +
+                ", idUser='" + idUser + '\'' +
+                ", numberStepGoals=" + numberStepGoals +
+                ", caloGoals=" + caloGoals +
+                ", distanceGoals=" + distanceGoals +
+                ", timeGoals=" + timeGoals +
+                '}';
+    }
 }
