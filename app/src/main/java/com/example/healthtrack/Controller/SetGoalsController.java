@@ -13,6 +13,7 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SetGoalsController {
@@ -73,6 +74,22 @@ public class SetGoalsController {
                 );
     }
 
+    public void insertSetGoals(SetGoals setGoals){
+        String token = SharedPreferencesUtil.getToken(context);
+        apiService = ApiUtils.getApiService(token);
+        apiService.insertSetGoals(setGoals).enqueue(new retrofit2.Callback<SetGoals>() {
+            @Override
+            public void onResponse(Call<SetGoals> call, Response<SetGoals> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<SetGoals> call, Throwable t) {
+
+            }
+        });
+    }
+
     public interface Callback {
         void onSetGoals(SetGoalsResponse<SetGoals> setGoals);
 
@@ -81,6 +98,12 @@ public class SetGoalsController {
 
     public interface UpdateCallback {
         void onSuccess(ResponseBody setGoals);
+
+        void onError();
+    }
+
+    public interface insertCallback {
+        void onSuccess(SetGoals setGoals);
 
         void onError();
     }
