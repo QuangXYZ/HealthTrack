@@ -9,12 +9,12 @@ public class SetGoals implements Serializable {
     private int numberStepGoals;
     private int caloGoals;
     private int distanceGoals;
-    private int timeGoals;
+    private String timeGoals;
 
     public SetGoals() {
     }
 
-    public SetGoals(String _id, String idUser, int numberStepGoals, int caloGoals, int distanceGoals, int timeGoals) {
+    public SetGoals(String _id, String idUser, int numberStepGoals, int caloGoals, int distanceGoals, String timeGoals) {
         this._id = _id;
         this.idUser = idUser;
         this.numberStepGoals = numberStepGoals;
@@ -63,11 +63,11 @@ public class SetGoals implements Serializable {
         this.distanceGoals = distanceGoals;
     }
 
-    public int getTimeGoals() {
+    public String getTimeGoals() {
         return timeGoals;
     }
 
-    public void setTimeGoals(int timeGoals) {
+    public void setTimeGoals(String timeGoals) {
         this.timeGoals = timeGoals;
     }
 
