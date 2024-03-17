@@ -7,7 +7,11 @@ import com.example.healthtrack.Api.ApiUtils;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Respone.SetGoalsResponse;
 import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
+import com.google.gson.JsonObject;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -30,7 +34,7 @@ public class SetGoalsController {
                     public void onResponse(Call<SetGoalsResponse<SetGoals>> call, Response<SetGoalsResponse<SetGoals>> response) {
                         if (response.isSuccessful()) {
                             setGoalsResponse = response.body();
-                          callback.onSetGoals(response.body());
+                            callback.onSetGoals(response.body());
                         } else {
                             callback.onFailure();
                         }
@@ -43,8 +47,41 @@ public class SetGoalsController {
                 });
     }
 
+    public void updateGoals(Context context, String idUser, JsonObject requestBody, final UpdateCallback updateCallback) {
+        String token = SharedPreferencesUtil.getToken(context);
+        apiService = ApiUtils.getApiService(token);
+        apiService.updateGoals(idUser, RequestBody.create(MediaType.parse("application/json"), requestBody.toString()))
+                .enqueue(new retrofit2.Callback<ResponseBody>() {
+                             @Override
+                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                 if (response.isSuccessful()) {
+                                     if (response.isSuccessful()) {
+                                         updateCallback.onSuccess(response.body());
+                                     } else {
+                                         updateCallback.onError();
+//                                         Log.d("ERRORUpdate", response.errorBody().toString());
+                                         response.body();
+                                     }
+                                 }
+                             }
+
+                             @Override
+                             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                             }
+                         }
+                );
+    }
+
     public interface Callback {
         void onSetGoals(SetGoalsResponse<SetGoals> setGoals);
+
         void onFailure();
+    }
+
+    public interface UpdateCallback {
+        void onSuccess(ResponseBody setGoals);
+
+        void onError();
     }
 }
