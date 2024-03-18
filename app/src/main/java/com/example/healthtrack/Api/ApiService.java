@@ -21,6 +21,9 @@ public interface ApiService {
     @POST("users/login")
     Call<BaseResponse<User>> login(@Body LoginBodyResponse loginBody);
 
+    @POST("users/register")
+    Call<BaseResponse<User>> signup(@Body User user);
+
     @GET("goals/{idUser}")
     Call<SetGoalsResponse<SetGoals>> getSetGoals(
             @Path("idUser") String idUser

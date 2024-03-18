@@ -28,7 +28,7 @@ public class LoginController {
     }
 
     Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("https://healthtrack.cyclic.app/")
+            .baseUrl("https://healthtrack2.cyclic.app/")
             .addConverterFactory(GsonConverterFactory.create());
     Retrofit retrofit = builder.build();
     ApiService iLoginService = retrofit.create(ApiService.class);
