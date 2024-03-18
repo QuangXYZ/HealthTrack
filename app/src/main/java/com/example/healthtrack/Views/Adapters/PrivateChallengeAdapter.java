@@ -14,7 +14,6 @@ import com.example.healthtrack.Views.PrivateChallengeDetail;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
-
 public class PrivateChallengeAdapter extends RecyclerView.Adapter<PrivateChallengeAdapter.MyViewHolder> {
     Activity context;
     List<Integer> challenges;
