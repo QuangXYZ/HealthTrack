@@ -18,16 +18,26 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.healthtrack.Controller.StepController;
+import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.R;
+import com.example.healthtrack.Respone.StepResponse;
+import com.example.healthtrack.SharedPreferences.SharedPrefUser;
+import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
 import com.squareup.timessquare.CalendarPickerView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class HistoryStepActivity extends AppCompatActivity {
     ImageView settingImg;
+    private StepController stepController;
+    private ArrayList<Step> mListStep;
 
 
     @Override
@@ -36,11 +46,14 @@ public class HistoryStepActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history_step);
 
         calendar();
-        innit();
+        init();
         settingUpListeners();
     }
-    private void innit() {
+    private void init() {
         settingImg = findViewById(R.id.setting);
+
+        stepController = new StepController(this);
+        mListStep = new ArrayList<>();
     }
     private void settingUpListeners() {
         settingImg.setOnClickListener(new View.OnClickListener() {
@@ -68,13 +81,13 @@ public class HistoryStepActivity extends AppCompatActivity {
             @Override
             public void onDateSelected(Date date) {
                 // Hiển thị ngày được chọn
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String formattedDate = sdf.format(date);
 
                 Toast.makeText(getApplicationContext(), "Ngày được chọn: " + formattedDate, Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "Selected time in millis: " + formattedDate);
 
-                openHistoryStepDialog(Gravity.BOTTOM);
+                openHistoryStepDialog(Gravity.BOTTOM, formattedDate);
             }
 
             @Override
@@ -84,10 +97,29 @@ public class HistoryStepActivity extends AppCompatActivity {
         });
     }
 
-    private void openHistoryStepDialog(int gravity){
+    private void openHistoryStepDialog(int gravity, String date){
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_history_step);
+
+        TextView tvStep;
+        tvStep = dialog.findViewById(R.id.step_dialog_history);
+
+        String idUser = SharedPrefUser.getId(HistoryStepActivity.this);
+        stepController.getStepHistory(HistoryStepActivity.this, idUser, date, new StepController.GetHistoryCallback() {
+            @Override
+            public void onSuccess(StepResponse<Step> step) {
+                mListStep = (ArrayList<Step>) step.getData();
+                for (int i = 0; i < mListStep.size(); i++) {
+                    tvStep.setText(String.valueOf(mListStep.get(0).getNumberStep()));
+                }
+            }
+
+            @Override
+            public void onFailure() {
+                Toast.makeText(HistoryStepActivity.this, "Lỗi kết nô api", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Window window = dialog.getWindow();
         if (window == null){

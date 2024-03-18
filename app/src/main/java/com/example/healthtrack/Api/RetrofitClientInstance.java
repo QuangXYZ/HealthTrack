@@ -32,7 +32,7 @@ public class RetrofitClientInstance {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .client(client)
-                    .baseUrl("https://healthtrack.cyclic.app/")
+                    .baseUrl("https://healthtrack2.cyclic.app/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
