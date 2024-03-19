@@ -6,6 +6,7 @@ import com.example.healthtrack.Api.ApiService;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Respone.BaseResponse;
 import com.example.healthtrack.Respone.LoginBodyResponse;
+import com.example.healthtrack.Utils.Constants;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -16,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserController {
     Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("https://healthtrack2.cyclic.app/")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create());
     Retrofit retrofit = builder.build();
     ApiService apiService = retrofit.create(ApiService.class);

@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 
 
+import com.example.healthtrack.Controller.ChallengeController;
+import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.CaptureArt;
 import com.example.healthtrack.Views.Adapters.PrivateChallengeAdapter;
@@ -34,14 +37,16 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PrivateChallengeFragment extends Fragment {
     private static final int PERMISSION_REQUEST_CAMERA = 1;
     RecyclerView challengeRecyclerview;
     PrivateChallengeAdapter adapter;
-    ArrayList<Integer> challenges;
     Button createChallengeBtn,qrScanBtn;
     TextView textview;
+    ChallengeController challengeController;
+    List<Challenge> challengeList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,15 +64,30 @@ public class PrivateChallengeFragment extends Fragment {
         challengeRecyclerview = view.findViewById(R.id.private_challenge_recyclerview);
         createChallengeBtn = view.findViewById(R.id.fragment_challenge_create_button);
         qrScanBtn = view.findViewById(R.id.fragment_challenge_qr_scan);
-        challenges = new ArrayList<>();
-        challenges.add(1);
-        challenges.add(2);
-        challenges.add(3);
-        challenges.add(4);
-        adapter = new PrivateChallengeAdapter((Activity) getContext(), challenges);
+
+        challengeController = new ChallengeController();
+        challengeList = new ArrayList<>();
+
+
+
+        adapter = new PrivateChallengeAdapter((Activity) getContext(), challengeList);
         challengeRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         challengeRecyclerview.setAdapter(adapter);
         challengeRecyclerview.setNestedScrollingEnabled(true);
+
+
+        challengeController.getChallengeUser(new ChallengeController.GetChallengeCallback() {
+            @Override
+            public void onSuccess(List<Challenge> challenges) {
+                challengeList.addAll(challenges);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
 
     }
     void settingUpListener() {
@@ -127,10 +147,34 @@ public class PrivateChallengeFragment extends Fragment {
                 scanFormat = scanningResult.getFormatName().toString();
             }
             Toast.makeText(getActivity(), scanContent + "   type:" + scanFormat, Toast.LENGTH_SHORT).show();
-            textview.setText(scanContent + "    type:" + scanFormat);
+            joinChallenge(scanContent);
         } else {
             Toast.makeText(getActivity(), "Nothing scanned", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void joinChallenge(String idChallenge){
+        challengeController.joinChallenge(idChallenge, new ChallengeController.ChallengeControllerCallback() {
+            @Override
+            public void onSuccess(String message) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Thành công")
+                        .setMessage("Đã tham gia thử thách")
+                        .setPositiveButton("OK", (dialog, which) -> {
+
+                        } ).show();
+            }
+
+            @Override
+            public void onError(String error) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Lỗi")
+                        .setMessage(error)
+                        .setPositiveButton("OK", (dialog, which) -> {
+
+                        } ).show();
+            }
+        });
     }
 
 

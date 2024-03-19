@@ -121,9 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
                                                     finish();
                                                 }
                                             }).show();
-
                                 }
-
                                 @Override
                                 public void onError(String error) {
                                     progressBar.setVisibility(View.GONE);

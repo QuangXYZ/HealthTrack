@@ -1,8 +1,11 @@
 package com.example.healthtrack.Api;
 
+import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.User;
+import com.example.healthtrack.Request.JoinChallengeRequest;
 import com.example.healthtrack.Request.UpdateSetGoalsRequest;
+import com.example.healthtrack.Respone.BaseListResponse;
 import com.example.healthtrack.Respone.BaseResponse;
 import com.example.healthtrack.Respone.LoginBodyResponse;
 import com.example.healthtrack.Respone.SetGoalsResponse;
@@ -34,4 +37,28 @@ public interface ApiService {
 
     @PATCH("goals/update/{idUser}")
     Call<ResponseBody> updateGoals(@Path("idUser") String idUser, @Body RequestBody body);
+
+
+
+    @POST("challenges/create")
+    Call<BaseResponse<Challenge>> createChallenge(@Body Challenge challenge);
+
+    @GET("challenges/user/{idUser}")
+    Call<BaseListResponse<Challenge>> getChallengeUser(
+            @Path("idUser") String idUser
+    );
+
+    @POST("users/challenge")
+    Call<BaseResponse<Challenge>> joinChallenge(
+            @Body JoinChallengeRequest joinChallengeRequest
+    );
+
+
+    @GET("challenges/{idChallenge}")
+    Call<Challenge> getChallenge(
+            @Path("idChallenge") String idChallenge
+    );
+
+    @PATCH("challenges/")
+    Call<Challenge> updateChallenge(@Body Challenge challenge);
 }

@@ -4,18 +4,18 @@ import java.util.Date;
 import java.util.List;
 
 public class User {
-    String _id;
-    String name;
-    String password;
-    String email;
-    String gender;
-    String token;
-    List<String> badges;
-    List<String> friends;
-    String dateOfBirth;
-    List<String> idChallenges;
-    int level;
-    int exp;
+    private String _id;
+    private String name;
+    private String password;
+    private String email;
+    private String gender;
+    private String token;
+    private List<String> badges;
+    private List<String> friends;
+    private String dateOfBirth;
+    private List<String> idChallenges;
+    private int level;
+    private int exp;
     public User(String email,String name, String password) {
         this.name = name;
         this.password = password;
