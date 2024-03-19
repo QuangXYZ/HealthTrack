@@ -3,15 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Views.Fragment.PrivateChallengeFragment">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/fragment_challenge_create_button"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:textSize="16sp"
+            android:text="Tạo thử thách"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:background="@drawable/button_background"
+            android:textColor="@color/blue"
+            app:backgroundTint="@color/orange"/>
+        <Button
+            android:id="@+id/fragment_challenge_qr_scan"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:textSize="16sp"
+            android:text="Scan QR"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:background="@drawable/button_background"
+            android:textColor="@color/blue"
+            app:backgroundTint="@color/orange"/>
+
+        <TextView
+            android:id="@+id/test_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Đã tham gia"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            app:backgroundTint="@color/orange"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/private_challenge_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:overScrollMode="never"
             tools:listitem="@layout/single_private_challenge"/>
     </LinearLayout>
 

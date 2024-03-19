@@ -4,28 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Views.MainHomeActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <!--    <com.google.android.material.appbar.AppBarLayout-->
+    <!--        android:id="@+id/appBarLayout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0">-->
+
+    <!--        <com.google.android.material.appbar.MaterialToolbar-->
+    <!--            android:id="@+id/class_main_toolbar"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="?attr/actionBarSize"-->
+    <!--            android:background="@color/white"-->
+    <!--            android:elevation="5dp"-->
+    <!--            app:title="HealthTrack"-->
+    <!--            app:titleTextColor="@color/blue" />-->
+    <!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <LinearLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/class_main_toolbar"
+        app:layout_constraintVertical_bias="0"
+        android:orientation="horizontal">
+        >
+        <TextView
+            android:id="@+id/main_title"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            android:elevation="5dp"
-            app:title="HealthTrack"
-            app:titleTextColor="@color/blue" />
-    </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="wrap_content"
+            android:text="HealthTrack"
+            android:textColor="@color/blue"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_marginStart="10dp"/>
+
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/content_frame"
@@ -35,8 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0"
-        />
+        app:layout_constraintVertical_bias="0" />
 
 
     <LinearLayout
@@ -57,115 +82,127 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1">
+
         <LinearLayout
             android:id="@+id/main_home_layout"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:gravity="center"
             android:layout_weight="1"
             android:background="@drawable/round_background"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp">
+
             <ImageView
                 android:id="@+id/main_home_img"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/home_select"/>
+                android:src="@drawable/home_select" />
+
             <TextView
                 android:id="@+id/main_home_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:text="Trang chủ"
                 android:textColor="@color/blue"
-                android:layout_marginStart="10dp"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/main_challenge_layout"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp">
+
             <ImageView
                 android:id="@+id/main_challenge_img"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/challenge"/>
+                android:src="@drawable/challenge" />
+
             <TextView
                 android:id="@+id/main_challenge_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thử thách"
-                android:visibility="gone"
-                android:textColor="@color/blue"
                 android:layout_marginStart="10dp"
+                android:text="Thử thách"
+                android:textColor="@color/blue"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:visibility="gone" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/main_health_layout"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp">
+
             <ImageView
                 android:id="@+id/main_health_img"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/health"/>
+                android:src="@drawable/health" />
+
             <TextView
                 android:id="@+id/main_health_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:layout_marginStart="10dp"
                 android:text="Sức khỏe"
                 android:textColor="@color/blue"
-                android:layout_marginStart="10dp"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:visibility="gone" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/main_profile_layout"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp">
+
             <ImageView
                 android:id="@+id/main_profile_img"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/profile"/>
+                android:src="@drawable/profile" />
+
             <TextView
                 android:id="@+id/main_profile_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:layout_marginStart="10dp"
                 android:text="Trang c.bạn"
                 android:textColor="@color/blue"
-                android:layout_marginStart="10dp"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:visibility="gone" />
 
         </LinearLayout>
 

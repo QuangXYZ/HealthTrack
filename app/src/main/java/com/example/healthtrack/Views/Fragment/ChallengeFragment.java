@@ -25,7 +25,6 @@ import com.example.healthtrack.R;
 
 public class ChallengeFragment extends Fragment {
 
-    Button createBtn;
     TextView tab1, tab2;
     private static final int FRAGMENT_PRIVATE = 1;
     private static final int FRAGMENT_PUBLIC = 2;
@@ -43,7 +42,6 @@ public class ChallengeFragment extends Fragment {
         return view;
     }
     void init(View view){
-        createBtn = view.findViewById(R.id.fragment_challenge_create_button);
         tab1 = view.findViewById(R.id.fragment_challenge_tab1);
         tab2 = view.findViewById(R.id.fragment_challenge_tab2);
 
@@ -77,12 +75,7 @@ public class ChallengeFragment extends Fragment {
 //                }
 //            });
 
-        createBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
         tab1.setOnClickListener(new View.OnClickListener() {
             @Override

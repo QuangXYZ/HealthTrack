@@ -2,6 +2,11 @@ plugins {
     id("com.android.application")
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
 
 android {
     namespace = "com.example.healthtrack"
@@ -49,7 +54,19 @@ dependencies {
     implementation ("com.google.android.material:material:1.9.0")
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
-
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
+    testImplementation ("junit:junit:4.+")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    implementation ("com.journeyapps:zxing-android-embedded:4.1.0")
+    implementation ("com.google.zxing:core:3.3.3")
+    implementation ("com.github.ybq:Android-SpinKit:1.4.0")
+    implementation ("com.squareup:android-times-square:1.6.5@aar")
+    implementation ("io.github.ShawnLin013:number-picker:2.4.13")
+    implementation ("com.github.cachapa:ExpandableLayout:2.9.2")
+    implementation ("com.github.prolificinteractive:material-calendarview:2.0.0")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 
 
 }
