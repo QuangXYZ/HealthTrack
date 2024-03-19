@@ -1,13 +1,16 @@
 package com.example.healthtrack.Views;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.healthtrack.Controller.ChallengeController;
 import com.example.healthtrack.R;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.github.ybq.android.spinkit.sprite.Sprite;
@@ -23,6 +26,11 @@ import com.shawnlin.numberpicker.NumberPicker;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
+
+import java.util.Calendar;
+
 public class CreateChallengeActivity extends AppCompatActivity {
 
     ExpandableLayout calenderExpandedLayout,stepExpandedLayout;
@@ -33,6 +41,8 @@ public class CreateChallengeActivity extends AppCompatActivity {
     MaterialToolbar toolbar;
     MaterialButton createButton;
     SpinKitView progress;
+    ChallengeController challengeController;
+    EditText challengeNameEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +56,8 @@ public class CreateChallengeActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.create_challenge_calender);
         calenderTextView = findViewById(R.id.create_challenge_date);
         calenderExpandedLayout.collapse();
+        calendarView.setSelectedDate(LocalDate.now().plusDays(1));
+        calenderTextView.setText(LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
         stepLayout = findViewById(R.id.create_challenge_step_layout);
         stepExpandedLayout = findViewById(R.id.create_challenge_expandable_step);
@@ -64,6 +76,9 @@ public class CreateChallengeActivity extends AppCompatActivity {
         progress = findViewById(R.id.create_challenge_progress);
         Sprite doubleBounce = new ThreeBounce();
         progress.setIndeterminateDrawable(doubleBounce);
+
+        challengeNameEditText = findViewById(R.id.create_challenge_name);
+        challengeController = new ChallengeController();
     }
     void settingUpListeners(){
         calenderLayout.setOnClickListener(new View.OnClickListener() {
@@ -102,13 +117,41 @@ public class CreateChallengeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 progress.setVisibility(View.VISIBLE);
                 createButton.setVisibility(View.GONE);
-                new MaterialAlertDialogBuilder(CreateChallengeActivity.this)
-                        .setTitle("Thành công")
-                        .setMessage("Thử thách đã được tạo")
-                        .setPositiveButton("OK", (dialog, which) -> {
-                            finish();
-                        } ).show();
+
+                ;
+
+                String challengeName = challengeNameEditText.getText().toString();
+
+                String localDate = calendarView.getSelectedDate().getYear()+"-"
+                            +calendarView.getSelectedDate().getMonth()+"-"
+                            +calendarView.getSelectedDate().getDay();
+
+                int target = numberPicker.getValue()* 10000;
+
+                challengeController.createChallenge(challengeName, localDate, target, new ChallengeController.ChallengeControllerCallback() {
+                    @Override
+                    public void onSuccess(String message) {
+                        new AlertDialog.Builder(CreateChallengeActivity.this)
+                                .setTitle("Thành công")
+                                .setMessage("Thử thách đã được tạo")
+                                .setPositiveButton("OK", (dialog, which) -> {
+                                    finish();
+                                } ).show();
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        new AlertDialog.Builder(CreateChallengeActivity.this)
+                                .setTitle("Lỗi")
+                                .setMessage(error)
+                                .setPositiveButton("OK", (dialog, which) -> {
+                                    finish();
+                                } ).show();
+                    }
+                });
+
             }
         });
     }
+
 }

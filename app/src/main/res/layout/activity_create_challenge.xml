@@ -51,6 +51,7 @@
             android:backgroundTint="@color/white">
 
             <EditText
+                android:id="@+id/create_challenge_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@null"

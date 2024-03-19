@@ -4,19 +4,25 @@ import java.util.Date;
 import java.util.List;
 
 public class User {
-    String _id;
-    String name;
+    private String _id;
+    private String name;
+    private String password;
+    private String email;
+    private String gender;
+    private String token;
+    private List<String> badges;
+    private List<String> friends;
+    private String dateOfBirth;
+    private List<String> idChallenges;
+    private int level;
+    private int exp;
+    public User(String email,String name, String password) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+    }
 
-    String password;
-    String email;
-    String gender;
-    String token;
-    List<String> badges;
-    List<String> friends;
-    String dateOfBirth;
-    List<String> idChallenges;
-
-    public User(String _id, String name, String password, String email, String gender, String token, List<String> badges, List<String> friends, String dateOfBirth, List<String> idChallenges) {
+    public User(String _id, String name, String password, String email, String gender, String token, List<String> badges, List<String> friends, String dateOfBirth, List<String> idChallenges, int level, int exp) {
         this._id = _id;
         this.name = name;
         this.password = password;
@@ -27,6 +33,8 @@ public class User {
         this.friends = friends;
         this.dateOfBirth = dateOfBirth;
         this.idChallenges = idChallenges;
+        this.level = level;
+        this.exp = exp;
     }
 
     public String get_id() {
@@ -109,17 +117,37 @@ public class User {
         this.idChallenges = idChallenges;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
     @Override
     public String toString() {
         return "User{" +
+                "_id='" + _id + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +
+                ", token='" + token + '\'' +
                 ", badges=" + badges +
                 ", friends=" + friends +
-                ", dateOfBirth=" + dateOfBirth +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", idChallenges=" + idChallenges +
+                ", level=" + level +
+                ", exp=" + exp +
                 '}';
     }
 }

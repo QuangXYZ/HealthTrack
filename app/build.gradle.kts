@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.healthtrack"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -68,7 +68,7 @@ dependencies {
     implementation ("com.github.cachapa:ExpandableLayout:2.9.2")
     implementation ("com.github.prolificinteractive:material-calendarview:2.0.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
-
+    implementation ("com.jakewharton.threetenabp:threetenabp:1.2.0")
 
 
 }
