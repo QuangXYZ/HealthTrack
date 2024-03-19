@@ -3,12 +3,14 @@ package com.example.healthtrack.Views.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.healthtrack.R;
+import com.example.healthtrack.Views.Adapters.PrivateHealthAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +18,8 @@ import com.example.healthtrack.R;
  * create an instance of this fragment.
  */
 public class HealthFragment extends Fragment {
+
+    public int i = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +33,6 @@ public class HealthFragment extends Fragment {
     public HealthFragment() {
         // Required empty public constructor
     }
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -61,6 +64,23 @@ public class HealthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_health, container, false);
+        View view = inflater.inflate(R.layout.fragment_health, container, false);
+        init(view);
+
+        return view;
     }
+
+    void init(View view){
+        PrivateHealthFragment healthFragment = new PrivateHealthFragment();
+        replaceFragment(healthFragment);
+    }
+
+    public void replaceFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().setReorderingAllowed(true);
+        fragmentTransaction.replace(R.id.fragment_health_frame, fragment);
+        fragmentTransaction.commit();
+    }
+
+
+
 }
