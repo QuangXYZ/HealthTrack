@@ -182,6 +182,16 @@ public class SetGoalsActivity extends AppCompatActivity {
                 // Khởi tạo và thực thi AsyncTask
                 MyAsyncTask task = new MyAsyncTask();
                 task.execute();
+                //------------------------//
+                //test insert set goals
+//                SetGoals setGoals = new SetGoals();
+//                setGoals.setIdUser(idUser);
+//                setGoals.setDistanceGoals(5);
+//                setGoals.setCaloGoals(78);
+//                setGoals.setTimeGoals("57");
+//                setGoals.setNumberStepGoals(1000);
+//                setGoalsController.insertSetGoals(setGoals);
+                //------------------------//
 
                 dialog.dismiss();
             }

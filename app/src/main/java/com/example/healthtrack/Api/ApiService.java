@@ -38,7 +38,8 @@ public interface ApiService {
     @PATCH("goals/update/{idUser}")
     Call<ResponseBody> updateGoals(@Path("idUser") String idUser, @Body RequestBody body);
 
-
+    @POST("goals")
+    Call<SetGoals> insertSetGoals(@Body SetGoals setGoals);
 
     @POST("challenges/create")
     Call<BaseResponse<Challenge>> createChallenge(@Body Challenge challenge);
