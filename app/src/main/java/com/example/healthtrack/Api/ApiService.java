@@ -2,6 +2,7 @@ package com.example.healthtrack.Api;
 
 import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.SetGoals;
+import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Request.JoinChallengeRequest;
 import com.example.healthtrack.Request.UpdateSetGoalsRequest;
@@ -9,6 +10,7 @@ import com.example.healthtrack.Respone.BaseListResponse;
 import com.example.healthtrack.Respone.BaseResponse;
 import com.example.healthtrack.Respone.LoginBodyResponse;
 import com.example.healthtrack.Respone.SetGoalsResponse;
+import com.example.healthtrack.Respone.StepResponse;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -40,7 +42,13 @@ public interface ApiService {
 
     @POST("goals")
     Call<SetGoals> insertSetGoals(@Body SetGoals setGoals);
-
+  
+    @GET("step/{idUser}/{date}")
+    Call<StepResponse<Step>> getStepHistory(
+            @Path("idUser") String idUser,
+            @Path("date") String date
+    );
+  
     @POST("challenges/create")
     Call<BaseResponse<Challenge>> createChallenge(@Body Challenge challenge);
 
