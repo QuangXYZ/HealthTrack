@@ -1,21 +1,35 @@
 package com.example.healthtrack.Views;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.healthtrack.Controller.ChallengeController;
 import com.example.healthtrack.R;
+import com.github.ybq.android.spinkit.SpinKitView;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.shawnlin.numberpicker.NumberPicker;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
+
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
+
+import java.util.Calendar;
 
 public class CreateChallengeActivity extends AppCompatActivity {
 
@@ -24,6 +38,11 @@ public class CreateChallengeActivity extends AppCompatActivity {
     NumberPicker numberPicker;
     LinearLayout calenderLayout,stepLayout;
     TextView calenderTextView,stepTextView;
+    MaterialToolbar toolbar;
+    MaterialButton createButton;
+    SpinKitView progress;
+    ChallengeController challengeController;
+    EditText challengeNameEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +56,8 @@ public class CreateChallengeActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.create_challenge_calender);
         calenderTextView = findViewById(R.id.create_challenge_date);
         calenderExpandedLayout.collapse();
+        calendarView.setSelectedDate(LocalDate.now().plusDays(1));
+        calenderTextView.setText(LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
         stepLayout = findViewById(R.id.create_challenge_step_layout);
         stepExpandedLayout = findViewById(R.id.create_challenge_expandable_step);
@@ -50,6 +71,14 @@ public class CreateChallengeActivity extends AppCompatActivity {
         numberPicker.setDisplayedValues(data);
         numberPicker.setValue(5);
 
+        toolbar = findViewById(R.id.create_challenge_toolbar);
+        createButton = findViewById(R.id.create_challenge_btn);
+        progress = findViewById(R.id.create_challenge_progress);
+        Sprite doubleBounce = new ThreeBounce();
+        progress.setIndeterminateDrawable(doubleBounce);
+
+        challengeNameEditText = findViewById(R.id.create_challenge_name);
+        challengeController = new ChallengeController();
     }
     void settingUpListeners(){
         calenderLayout.setOnClickListener(new View.OnClickListener() {
@@ -77,5 +106,52 @@ public class CreateChallengeActivity extends AppCompatActivity {
                 stepTextView.setText(newVal+"0.000 bước");
             }
         });
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progress.setVisibility(View.VISIBLE);
+                createButton.setVisibility(View.GONE);
+
+                ;
+
+                String challengeName = challengeNameEditText.getText().toString();
+
+                String localDate = calendarView.getSelectedDate().getYear()+"-"
+                            +calendarView.getSelectedDate().getMonth()+"-"
+                            +calendarView.getSelectedDate().getDay();
+
+                int target = numberPicker.getValue()* 10000;
+
+                challengeController.createChallenge(challengeName, localDate, target, new ChallengeController.ChallengeControllerCallback() {
+                    @Override
+                    public void onSuccess(String message) {
+                        new AlertDialog.Builder(CreateChallengeActivity.this)
+                                .setTitle("Thành công")
+                                .setMessage("Thử thách đã được tạo")
+                                .setPositiveButton("OK", (dialog, which) -> {
+                                    finish();
+                                } ).show();
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        new AlertDialog.Builder(CreateChallengeActivity.this)
+                                .setTitle("Lỗi")
+                                .setMessage(error)
+                                .setPositiveButton("OK", (dialog, which) -> {
+                                    finish();
+                                } ).show();
+                    }
+                });
+
+            }
+        });
     }
+
 }

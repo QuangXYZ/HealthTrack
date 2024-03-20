@@ -14,9 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingTop="100dp"
-
-        >
+        android:paddingTop="100dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -43,59 +41,100 @@
                     android:textSize="36sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/signup_email"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
                     android:layout_marginTop="40dp"
-                    android:background="@drawable/edittext_bkg"
-                    android:drawableLeft="@drawable/email"
-                    android:drawablePadding="8dp"
-                    android:hint="Email"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:textColorHighlight="@color/cardview_dark_background" />
-                <EditText
-                    android:id="@+id/signup_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/edittext_bkg"
-                    android:drawableLeft="@drawable/email"
-                    android:drawablePadding="8dp"
-                    android:hint="Username"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:textColorHighlight="@color/cardview_dark_background" />
+                    app:hintEnabled="false">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signup_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/edittext_bkg"
+                        android:drawableStart="@drawable/email"
+                        android:drawablePadding="8dp"
+                        android:hint="Email"
+                        android:inputType="text"
+                        android:padding="8dp"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background" />
 
-                <EditText
-                    android:id="@+id/signup_password"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="none"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/edittext_bkg"
-                    android:drawableLeft="@drawable/email"
-                    android:drawablePadding="8dp"
-                    android:maxLines="1"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHighlight="@color/cardview_dark_background" />
-                <Spinner
-                    android:id="@+id/signupSpinner"
+                    app:hintEnabled="false">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signup_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/edittext_bkg"
+                        android:drawableStart="@drawable/user"
+                        android:drawablePadding="8dp"
+                        android:hint="Tên người dùng"
+                        android:inputType="text"
+                        android:padding="8dp"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/edittext_bkg"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:spinnerMode="dialog"
-                    />
+
+                    app:boxBackgroundMode="none"
+                    app:endIconMode="password_toggle"
+                    app:hintEnabled="false">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signup_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/edittext_bkg"
+                        android:drawableStart="@drawable/email"
+                        android:drawablePadding="8dp"
+                        android:maxLines="1"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+
+                    app:boxBackgroundMode="none"
+                    app:endIconMode="password_toggle"
+                    app:hintEnabled="false">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signup_repassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/edittext_bkg"
+                        android:drawableStart="@drawable/email"
+                        android:drawablePadding="8dp"
+                        android:maxLines="1"
+                        android:hint="Nhập lại password"
+                        android:inputType="textPassword"
+                        android:padding="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background" />
+
+                </com.google.android.material.textfield.TextInputLayout>
                 <com.github.ybq.android.spinkit.SpinKitView
                     android:id="@+id/signupProgressBar"
                     android:layout_marginTop="30dp"
