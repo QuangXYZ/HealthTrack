@@ -16,6 +16,7 @@
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/date_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_dialog_top"
@@ -52,7 +53,7 @@
                 android:padding="16dp">
 
                 <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/circularProgressIndicator"
+                    android:id="@+id/circularProgressIndicator_history_step"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:progress="25"
@@ -66,22 +67,22 @@
                     app:trackThickness="18dp" />
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/linearProgressIndicator"
+                    android:id="@+id/circularProgressIndicator_history_calo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:progress="15"
                     app:indicatorColor="@color/teal_a200"
-                    app:layout_constraintEnd_toStartOf="@+id/linearProgressIndicator2"
+                    app:layout_constraintEnd_toStartOf="@+id/circularProgressIndicator_history_time"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator"
+                    app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator_history_step"
                     app:trackColor="@color/cyan_50"
                     app:trackCornerRadius="8dp"
                     app:trackThickness="8dp" />
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/linearProgressIndicator2"
+                    android:id="@+id/circularProgressIndicator_history_time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -89,16 +90,16 @@
                     android:layout_marginEnd="16dp"
                     android:progress="15"
                     app:indicatorColor="@color/pink_300"
-                    app:layout_constraintEnd_toStartOf="@+id/linearProgressIndicator3"
+                    app:layout_constraintEnd_toStartOf="@+id/circularProgressIndicator_history_km"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/linearProgressIndicator"
-                    app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator"
+                    app:layout_constraintStart_toEndOf="@+id/circularProgressIndicator_history_calo"
+                    app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator_history_step"
                     app:trackColor="@color/pink_50"
                     app:trackCornerRadius="8dp"
                     app:trackThickness="8dp" />
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/linearProgressIndicator3"
+                    android:id="@+id/circularProgressIndicator_history_km"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
@@ -106,8 +107,8 @@
                     app:indicatorColor="@color/light_blue_a400"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/linearProgressIndicator2"
-                    app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator"
+                    app:layout_constraintStart_toEndOf="@+id/circularProgressIndicator_history_time"
+                    app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator_history_step"
                     app:trackColor="@color/light_blue_100"
                     app:trackCornerRadius="8dp"
                     app:trackThickness="8dp" />
@@ -151,15 +152,16 @@
                             android:id="@+id/step_dialog_history"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="2000"
+                            android:text="0"
                             android:textColor="@color/blue"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/step_goals_dialog_history"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="/6.000 bước"
+                            android:text="/0"
                             android:textColor="@color/blue"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -186,17 +188,19 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/calo_dialog_history"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="5"
+                            android:text="0"
                             android:textColor="@color/blue"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/calo_goals_dialog_history"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="/500 kcal"
+                            android:text="/0"
                             android:textColor="@color/blue"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -223,17 +227,19 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/time_dialog_history"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="20"
+                            android:text="0"
                             android:textColor="@color/blue"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time_goals_dialog_history"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="/90 phút"
+                            android:text="/0"
                             android:textColor="@color/blue"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -260,17 +266,19 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/km_dialog_history"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="5"
+                            android:text="0"
                             android:textColor="@color/blue"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/km_goals_dialog_history"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="/5000 km"
+                            android:text="/0"
                             android:textColor="@color/blue"
                             android:textSize="14sp" />
                     </LinearLayout>

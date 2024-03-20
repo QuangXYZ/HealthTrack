@@ -5,14 +5,14 @@ public class Step {
     private String idUser;
     private int numberStep;
     private int calo;
-    private int distance;
+    private double distance;
     private String time;
     private String date;
 
     public Step() {
     }
 
-    public Step(String _id, String idUser, int numberStep, int calo, int distance, String time, String date) {
+    public Step(String _id, String idUser, int numberStep, int calo, float distance, String time, String date) {
         this._id = _id;
         this.idUser = idUser;
         this.numberStep = numberStep;
@@ -54,11 +54,11 @@ public class Step {
         this.calo = calo;
     }
 
-    public int getDistance() {
-        return distance;
+    public float getDistance() {
+        return (float) distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(float distance) {
         this.distance = distance;
     }
 
