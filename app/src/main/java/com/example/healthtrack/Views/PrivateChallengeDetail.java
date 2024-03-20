@@ -65,7 +65,7 @@ public class PrivateChallengeDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imageCode.setVisibility(View.VISIBLE);
-                String myText = "Quang12345";
+                String myText = "65f91fe96fe33c942977cc12";
                 //initializing MultiFormatWriter for QR code
                 MultiFormatWriter mWriter = new MultiFormatWriter();
                 try {
