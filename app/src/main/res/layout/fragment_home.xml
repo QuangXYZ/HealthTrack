@@ -50,10 +50,10 @@
                             android:padding="16dp">
 
                             <com.google.android.material.progressindicator.CircularProgressIndicator
-                                android:id="@+id/circularProgressIndicator"
+                                android:id="@+id/circularProgressIndicator_home_step"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:progress="25"
+                                android:progress="0"
                                 app:indicatorColor="@color/green"
                                 app:indicatorSize="160dp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,32 +64,32 @@
                                 app:trackThickness="18dp" />
 
                             <TextView
-                                android:id="@+id/textView"
+                                android:id="@+id/step_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="200"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold"
-                                app:layout_constraintBottom_toTopOf="@+id/textView2"
-                                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
+                                app:layout_constraintBottom_toTopOf="@+id/step_goals_home"
+                                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator_home_step"
                                 app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
+                                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator_home_step"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_chainStyle="packed" />
 
                             <TextView
-                                android:id="@+id/textView2"
+                                android:id="@+id/step_goals_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mục tiêu: 6000"
                                 android:textColor="@color/green2"
                                 android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="@+id/circularProgressIndicator"
-                                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
+                                app:layout_constraintBottom_toBottomOf="@+id/circularProgressIndicator_home_step"
+                                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator_home_step"
                                 app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
-                                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator_home_step"
+                                app:layout_constraintTop_toBottomOf="@+id/step_home" />
 
                             <TextView
                                 android:id="@+id/textView3"
@@ -99,45 +99,45 @@
                                 android:text="Calo"
                                 android:textColor="@color/black"
                                 android:textStyle="bold"
-                                app:layout_constraintBottom_toTopOf="@+id/linearProgressIndicator"
-                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator"
-                                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator" />
+                                app:layout_constraintBottom_toTopOf="@+id/linearProgressIndicator_calo_home"
+                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator_calo_home"
+                                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator_home_step" />
 
                             <com.google.android.material.progressindicator.LinearProgressIndicator
-                                android:id="@+id/linearProgressIndicator"
+                                android:id="@+id/linearProgressIndicator_calo_home"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="32dp"
-                                android:progress="15"
+                                android:progress="0"
                                 app:indicatorColor="@color/teal_a200"
-                                app:layout_constraintEnd_toStartOf="@+id/linearProgressIndicator2"
+                                app:layout_constraintEnd_toStartOf="@+id/linearProgressIndicator_time_home"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator"
+                                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator_home_step"
                                 app:trackColor="@color/cyan_50"
                                 app:trackCornerRadius="8dp"
                                 app:trackThickness="8dp" />
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/calo_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="1"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator"
-                                app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator" />
+                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator_calo_home"
+                                app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator_calo_home" />
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/calo_golas_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:text="/500"
                                 android:textStyle="bold"
-                                app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
-                                app:layout_constraintStart_toEndOf="@+id/textView4" />
+                                app:layout_constraintBaseline_toBaselineOf="@+id/calo_home"
+                                app:layout_constraintStart_toEndOf="@+id/calo_home" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -145,46 +145,46 @@
                                 android:text="Thời gian"
                                 android:textColor="@color/black"
                                 android:textStyle="bold"
-                                app:layout_constraintBottom_toTopOf="@+id/linearProgressIndicator2"
-                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator2" />
+                                app:layout_constraintBottom_toTopOf="@+id/linearProgressIndicator_time_home"
+                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator_time_home" />
 
                             <com.google.android.material.progressindicator.LinearProgressIndicator
-                                android:id="@+id/linearProgressIndicator2"
+                                android:id="@+id/linearProgressIndicator_time_home"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="32dp"
                                 android:layout_marginEnd="16dp"
-                                android:progress="15"
+                                android:progress="0"
                                 app:indicatorColor="@color/pink_300"
-                                app:layout_constraintEnd_toStartOf="@+id/linearProgressIndicator3"
+                                app:layout_constraintEnd_toStartOf="@+id/linearProgressIndicator_km_home"
                                 app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/linearProgressIndicator"
-                                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator"
+                                app:layout_constraintStart_toEndOf="@+id/linearProgressIndicator_calo_home"
+                                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator_home_step"
                                 app:trackColor="@color/pink_50"
                                 app:trackCornerRadius="8dp"
                                 app:trackThickness="8dp" />
 
                             <TextView
-                                android:id="@+id/textView6"
+                                android:id="@+id/time_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="7h"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator2"
-                                app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator2" />
+                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator_time_home"
+                                app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator_time_home" />
 
                             <TextView
-                                android:id="@+id/textView7"
+                                android:id="@+id/time_goals_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:text="/8h"
                                 android:textStyle="bold"
-                                app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
-                                app:layout_constraintStart_toEndOf="@+id/textView6" />
+                                app:layout_constraintBaseline_toBaselineOf="@+id/time_home"
+                                app:layout_constraintStart_toEndOf="@+id/time_home" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -192,43 +192,44 @@
                                 android:text="Km"
                                 android:textColor="@color/black"
                                 android:textStyle="bold"
-                                app:layout_constraintBottom_toTopOf="@+id/linearProgressIndicator3"
-                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator3" />
+                                app:layout_constraintBottom_toTopOf="@+id/linearProgressIndicator_km_home"
+                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator_km_home" />
 
                             <com.google.android.material.progressindicator.LinearProgressIndicator
-                                android:id="@+id/linearProgressIndicator3"
+                                android:id="@+id/linearProgressIndicator_km_home"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="32dp"
-                                android:progress="15"
+                                android:progress="0"
                                 app:indicatorColor="@color/light_blue_a400"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/linearProgressIndicator2"
-                                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator"
+                                app:layout_constraintStart_toEndOf="@+id/linearProgressIndicator_time_home"
+                                app:layout_constraintTop_toBottomOf="@+id/circularProgressIndicator_home_step"
                                 app:trackColor="@color/light_blue_100"
                                 app:trackCornerRadius="8dp"
                                 app:trackThickness="8dp" />
 
                             <TextView
-                                android:id="@+id/textView8"
+                                android:id="@+id/km_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="2"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator3"
-                                app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator3" />
+                                app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator_km_home"
+                                app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator_km_home" />
 
                             <TextView
+                                android:id="@+id/km_goals_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:text="/10"
                                 android:textStyle="bold"
-                                app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
-                                app:layout_constraintStart_toEndOf="@+id/textView8" />
+                                app:layout_constraintBaseline_toBaselineOf="@+id/km_home"
+                                app:layout_constraintStart_toEndOf="@+id/km_home" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>

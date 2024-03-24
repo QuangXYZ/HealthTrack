@@ -1,11 +1,14 @@
 package com.example.healthtrack.Views.Fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.IBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,17 +25,26 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.healthtrack.Controller.SetGoalsController;
 import com.example.healthtrack.Controller.StepController;
+import com.example.healthtrack.Models.SetGoals;
+import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Request.StepRequest;
+import com.example.healthtrack.Respone.SetGoalsResponse;
+import com.example.healthtrack.Respone.StepResponse;
 import com.example.healthtrack.Service.StepService;
 import com.example.healthtrack.Service.UpdateUiCallBack;
+import com.example.healthtrack.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Views.Activity.HistoryStepActivity;
+import com.example.healthtrack.Views.Activity.SetGoalsActivity;
 import com.example.healthtrack.Views.Adapters.ExerciseAdapter;
 import com.example.healthtrack.Views.Adapters.PrivateChallengeAdapter;
 import com.example.healthtrack.Worker.CreateStepWorker;
 import com.example.healthtrack.Worker.UpdateStepWorker;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -45,9 +58,17 @@ public class HomeFragment extends Fragment {
     private LinearLayout layout;
     private ArrayList<Integer> exercise;
     private boolean mIsBind;
-    private TextView walkingStep;
+    private TextView walkingStep, tvStep, tvStepGoals, tvTime, tvTimeGoals, tvCalo, tvCaloGoals, tvKm, tvKmGoals;
     private SwipeRefreshLayout swipeRefreshLayout;
     private StepController stepController;
+    private SetGoalsController setGoalsController;
+    private ArrayList<Step> mListStep;
+    private ArrayList<SetGoals> mListSetGoals;
+
+    private CircularProgressIndicator progressStep;
+    private LinearProgressIndicator progressCalo, progressTime, progressKm;
+    private int step1, calo, stepGoals, caloGoals, kmGoals, km;
+    private int time, timeGoals;
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
@@ -102,7 +123,22 @@ public class HomeFragment extends Fragment {
         showStepCount(CommonUtils.getStepNumber(), 0);
         setupService();
         stepController = new StepController(getContext());
+        setGoalsController = new SetGoalsController(getContext());
         swipeRefreshLayout = view.findViewById(R.id.course_stored_swipe);
+        progressStep = (CircularProgressIndicator) view.findViewById(R.id.circularProgressIndicator_home_step);
+        progressCalo = (LinearProgressIndicator) view.findViewById(R.id.linearProgressIndicator_calo_home);
+        progressTime = (LinearProgressIndicator) view.findViewById(R.id.linearProgressIndicator_time_home);
+        progressKm = (LinearProgressIndicator) view.findViewById(R.id.linearProgressIndicator_km_home);
+        tvStep = view.findViewById(R.id.step_home);
+        tvStepGoals = view.findViewById(R.id.step_goals_home);
+        tvTime = view.findViewById(R.id.time_home);
+        tvTimeGoals = view.findViewById(R.id.time_goals_home);
+        tvCalo = view.findViewById(R.id.calo_home);
+        tvCaloGoals = view.findViewById(R.id.calo_golas_home);
+        tvKm = view.findViewById(R.id.km_home);
+        tvKmGoals = view.findViewById(R.id.km_goals_home);
+        mListStep = new ArrayList<>();
+        mListSetGoals = new ArrayList<>();
 
         UpdateStepWorker.updateStepWorker(getContext());
         CreateStepWorker.createStepWorker(getContext());
@@ -117,9 +153,58 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        class MyAsyncTask extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                // Thực hiện tác vụ cần đợi
+                String step = String.valueOf(CommonUtils.getStepNumber());
+                JsonObject newData = new JsonObject();
+                newData.addProperty("numberStep", step);
+                newData.addProperty("weight", 50);
+                JsonObject requestBody = new JsonObject();
+                requestBody.add("newData", newData);
+                updateStep(requestBody);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                // Thực hiện các hành động sau khi tác vụ hoàn thành
+                getStepCurrent();
+                getSetGoals();
+            }
+        }
+
+        // Khởi tạo và thực thi AsyncTask
+        MyAsyncTask task = new MyAsyncTask();
+        task.execute();
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                class MyAsyncTask extends AsyncTask<Void, Void, Void> {
+
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        // Thực hiện tác vụ cần đợi
+                        String step = String.valueOf(CommonUtils.getStepNumber());
+                        JsonObject newData = new JsonObject();
+                        newData.addProperty("numberStep", step);
+                        newData.addProperty("weight", 50);
+                        JsonObject requestBody = new JsonObject();
+                        requestBody.add("newData", newData);
+                        updateStep(requestBody);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        // Thực hiện các hành động sau khi tác vụ hoàn thành
+                        getStepCurrent();
+                        getSetGoals();
+                    }
+                }
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -150,5 +235,100 @@ public class HomeFragment extends Fragment {
         });
         valueAnimator.start();
 
+    }
+
+    private void getStepCurrent() {
+        stepController.getStepCurrent(getContext(), new StepController.GetCurrentCallback() {
+            @Override
+            public void onSuccess(StepResponse<Step> step) {
+                mListStep = (ArrayList<Step>) step.getData();
+                for (int i = 0; i < mListStep.size(); i++) {
+                    tvStep.setText(String.valueOf(mListStep.get(0).getNumberStep()));
+                    tvCalo.setText(String.valueOf(mListStep.get(0).getCalo()));
+                    tvTime.setText(String.valueOf(mListStep.get(0).getTime()));
+                    tvKm.setText(String.valueOf(mListStep.get(0).getDistance()));
+                    step1 = mListStep.get(0).getNumberStep();
+                    calo = mListStep.get(0).getCalo();
+                    time = Integer.valueOf(mListStep.get(0).getTime());
+                    km = Integer.valueOf((int) mListStep.get(0).getDistance());
+                }
+                calculateProgressStep(progressStep);
+                calculateProgressCalo(progressCalo);
+                calculateProgressTime(progressTime);
+                calculateProgressDistance(progressKm);
+            }
+
+            @Override
+            public void onFailure() {
+                Toast.makeText(getContext(), "Lỗi kết nô api", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getSetGoals() {
+        String idUser = SharedPrefUser.getId(getContext());
+        setGoalsController.getSetGoals(getContext(), idUser, new SetGoalsController.Callback() {
+            @Override
+            public void onSetGoals(SetGoalsResponse<SetGoals> setGoals) {
+                mListSetGoals = (ArrayList<SetGoals>) setGoals.getData();
+                for (int i = 0; i < mListSetGoals.size(); i++) {
+                    tvStepGoals.setText(String.valueOf("Mục tiêu: " + mListSetGoals.get(0).getNumberStepGoals()));
+                    tvKmGoals.setText(String.valueOf("/" + mListSetGoals.get(0).getDistanceGoals()));
+                    tvCaloGoals.setText(String.valueOf("/" + mListSetGoals.get(0).getCaloGoals()));
+                    tvTimeGoals.setText(String.valueOf("/" + mListSetGoals.get(0).getTimeGoals()));
+                    stepGoals = mListSetGoals.get(0).getNumberStepGoals();
+                    kmGoals = mListSetGoals.get(0).getDistanceGoals();
+                    caloGoals = mListSetGoals.get(0).getCaloGoals();
+                    timeGoals = Integer.valueOf(mListSetGoals.get(0).getCaloGoals());
+                }
+                calculateProgressStep(progressStep);
+                calculateProgressDistance(progressKm);
+                calculateProgressCalo(progressCalo);
+                calculateProgressTime(progressTime);
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+    }
+
+    private void updateStep(JsonObject requestBody) {
+        stepController.updateStep(getContext(), requestBody, new StepController.UpdateCallback() {
+            @Override
+            public void onSuccess(ResponseBody setGoals) {
+
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
+    }
+
+    private void calculateProgressStep(CircularProgressIndicator progressStep) {
+        if (step1 != 0 && stepGoals != 0) {
+            progressStep.setProgress(Math.round(step1 * 100 / stepGoals));
+        }
+    }
+
+    private void calculateProgressCalo(LinearProgressIndicator progressCalo) {
+        if (calo != 0 && caloGoals != 0) {
+            progressCalo.setProgress(Math.round(calo * 100 / caloGoals));
+        }
+    }
+
+    private void calculateProgressTime(LinearProgressIndicator progressTime) {
+        if (time != 0 && timeGoals != 0) {
+            progressTime.setProgress(Integer.valueOf(Math.round(time * 100 / timeGoals)));
+        }
+    }
+
+    private void calculateProgressDistance(LinearProgressIndicator progressDistance) {
+        if (km != 0 && kmGoals != 0) {
+            progressDistance.setProgress(Integer.valueOf((int) Math.round(km * 100 / kmGoals)));
+        }
     }
 }
