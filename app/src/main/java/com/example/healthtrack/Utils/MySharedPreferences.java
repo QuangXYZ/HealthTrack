@@ -35,6 +35,13 @@ public class MySharedPreferences {
 
     }
 
+    public void clearValue(String key) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(key);
+        editor.apply();
+    }
+
 
     public boolean getBooleanValue(String key) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);

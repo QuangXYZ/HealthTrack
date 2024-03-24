@@ -25,6 +25,7 @@ import androidx.core.app.NotificationCompat;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Utils.DataLocalManager;
+import com.example.healthtrack.Views.MainHomeActivity;
 import com.example.healthtrack.Views.TestWalkingStep;
 
 
@@ -181,7 +182,7 @@ public class StepService extends Service implements SensorEventListener {
     }
 
     private void updateNotification() {
-        Intent hangIntent = new Intent(this, TestWalkingStep.class);
+        Intent hangIntent = new Intent(this, MainHomeActivity.class);
         PendingIntent hangPendingIntent =
                 PendingIntent.getActivity(this, 0, hangIntent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         Notification notification =
@@ -217,7 +218,7 @@ public class StepService extends Service implements SensorEventListener {
     }
 
     public void saveData() {
-        DataLocalManager.getInstance().setWalkingStep(CommonUtils.getKeyToday(), mCurrentStep);
+        DataLocalManager.getInstance().setWalkingStep(CommonUtils.STEP_NUMBER_KEY, mCurrentStep);
     }
 
 
