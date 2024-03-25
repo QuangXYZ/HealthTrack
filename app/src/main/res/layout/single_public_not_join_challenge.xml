@@ -1,72 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     android:backgroundTint="#F4F1FA"
-    app:cardCornerRadius="20dp"
+    android:elevation="3dp"
 
-    app:strokeWidth="0dp"
-    android:elevation="3dp">
+    app:cardCornerRadius="20dp"
+    app:strokeWidth="0dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
+
         <TextView
+            android:id="@+id/public_not_join_challenge_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Thử thách tháng 3"
             android:textColor="@color/blue"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:text="Thử thách tháng 3" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="10">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="6"
                 android:orientation="vertical"
-                android:layout_weight="6">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    android:text="Bat dau sau 1 ngay" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="So nguoi tham gia"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Mô tả cho chử thách"/>
+                android:paddingTop="8dp">
 
-                <Button
+                <TextView
+                    android:id="@+id/public_not_join_challenge_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bat dau sau 1 ngay"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/public_not_join_challenge_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="So nguoi tham gia" />
+
+                <TextView
+                    android:id="@+id/public_not_join_challenge_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mô tả cho chử thách"
+                    android:textSize="14sp" />
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/public_not_join_challenge_button"-->
+                <!--                    android:layout_width="120dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+
+                <!--                    android:layout_marginTop="5dp"-->
+                <!--                    android:backgroundTint="@color/orange"-->
+                <!--                    android:text="Tham gia"-->
+                <!--                    android:textColor="@color/blue"-->
+                <!--                    android:textSize="16sp"-->
+                <!--                    android:textStyle="bold" />-->
+                <com.dd.CircularProgressButton
+                    android:id="@+id/public_not_join_challenge_button"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-
-                    android:backgroundTint="@color/orange"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@color/blue"
                     android:layout_marginTop="5dp"
-                    android:text="Tham gia"/>
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:cpb_cornerRadius="48dp"
+                    app:cpb_textComplete="Hoàn thành"
+                    app:cpb_textError="Lỗi"
+                    app:cpb_textIdle="Tham gia" />
 
 
-                
             </LinearLayout>
+
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:src="@drawable/hiking"
-                android:layout_weight="4"/>
+                android:layout_weight="4"
+                android:src="@drawable/hiking" />
         </LinearLayout>
 
     </LinearLayout>

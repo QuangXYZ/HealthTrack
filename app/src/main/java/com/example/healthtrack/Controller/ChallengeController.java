@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.healthtrack.Api.ApiService;
 import com.example.healthtrack.Api.ApiUtils;
 import com.example.healthtrack.Models.Challenge;
+import com.example.healthtrack.Models.ChallengeMember;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Request.JoinChallengeRequest;
 import com.example.healthtrack.Respone.BaseListResponse;
@@ -13,7 +14,9 @@ import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
 import com.example.healthtrack.Utils.DataLocalManager;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -57,13 +60,18 @@ public class ChallengeController {
         apiService.joinChallenge(joinChallengeRequest).enqueue(new Callback<BaseResponse<Challenge>>() {
             @Override
             public void onResponse(Call<BaseResponse<Challenge>> call, Response<BaseResponse<Challenge>> response) {
-                if (response.isSuccessful()) {
-                    Log.d("Challenge", response.body().getData().toString());
-                    challengeControllerCallback.onSuccess(response.body().getMessage());
-                } else {
-                    Log.d("Challenge", response.body().getData().toString());
-                    challengeControllerCallback.onError(response.body().getMessage());
+                try {
+                    if (response.isSuccessful()) {
+                        Log.d("Challenge", response.body().getData().toString());
+                        challengeControllerCallback.onSuccess(response.body().getMessage());
+                    } else {
+                        Log.d("Challenge", response.body().getData().toString());
+                        challengeControllerCallback.onError(response.body().getMessage());
 
+                    }
+                }catch (Exception e) {
+                    challengeControllerCallback.onError(e.getMessage());
+                    
                 }
             }
 
@@ -76,16 +84,22 @@ public class ChallengeController {
 
     }
 
-    public void getChallengeUser(final GetChallengeCallback getChallengeCallback) {
+    public void getPrivateChallengeUser(final GetChallengeCallback getChallengeCallback) {
         String idUser = DataLocalManager.getUser().get_id();
         apiService.getChallengeUser(idUser).enqueue(new Callback<BaseListResponse<Challenge>>() {
             @Override
             public void onResponse(Call<BaseListResponse<Challenge>> call, Response<BaseListResponse<Challenge>> response) {
                 if (response.isSuccessful()) {
-                    Log.d("Challenge", response.body().getData().toString());
-                    getChallengeCallback.onSuccess(response.body().getData());
+                    List<Challenge> challenges = new ArrayList<>();
+
+                    for (Challenge challenge : response.body().getData()) {
+                        if (Objects.equals(challenge.getAccess(), "Private")) {
+                            challenges.add(challenge);
+                        }
+                    }
+                    getChallengeCallback.onSuccess(challenges);
                 } else {
-                    Log.d("Challenge", response.body().getData().toString());
+                    assert response.body() != null;
                     getChallengeCallback.onError(response.body().getMessage());
                 }
             }
@@ -97,6 +111,50 @@ public class ChallengeController {
         });
     }
 
+    public void getPublicChallenge(final PublicChallengeCallback getChallengeCallback) {
+        apiService.getPublicChallenge().enqueue(new Callback<BaseListResponse<Challenge>>() {
+            @Override
+            public void onResponse(Call<BaseListResponse<Challenge>> call, Response<BaseListResponse<Challenge>> response) {
+                String userId = DataLocalManager.getUser().get_id();
+                if (response.isSuccessful()) {
+                    List<Challenge> joinChallenges = new ArrayList<>();
+                    List<Challenge> notJoinChallenges = new ArrayList<>();
+
+
+                    for (Challenge challenge : response.body().getData()) {
+                        boolean join = false;
+                        for (ChallengeMember member: challenge.getListMember()){
+                            if (member.getUserId().equals(userId)){
+                                join = true;
+                                joinChallenges.add(challenge);
+                                break;
+                            }
+
+                        }
+                        if (!join){notJoinChallenges.add(challenge);}
+
+                    }
+
+                    getChallengeCallback.onJoinChallenge(joinChallenges);
+                    getChallengeCallback.onNotJoinChallenge(notJoinChallenges);
+                } else {
+                    assert response.body() != null;
+                    getChallengeCallback.onError(response.body().getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseListResponse<Challenge>> call, Throwable t) {
+                getChallengeCallback.onError(t.getMessage());
+            }
+        });
+    }
+
+
+    public void deleteChallenge(String idChallenge) {
+        // TODO Auto-generated method stub
+    }
+
     public interface ChallengeControllerCallback {
         void onSuccess(String message);
 
@@ -104,6 +162,12 @@ public class ChallengeController {
     }
     public interface GetChallengeCallback {
         void onSuccess(List<Challenge> challenges);
+
+        void onError(String error);
+    }
+    public interface PublicChallengeCallback {
+        void onJoinChallenge(List<Challenge> challenges);
+        void onNotJoinChallenge(List<Challenge> challenges);
 
         void onError(String error);
     }

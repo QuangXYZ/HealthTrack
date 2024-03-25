@@ -1,6 +1,8 @@
 package com.example.healthtrack.Models;
 
-public class ChallengeMember {
+import java.io.Serializable;
+
+public class ChallengeMember implements Serializable {
     private String userId;
     private String userName;
     private boolean accept;
