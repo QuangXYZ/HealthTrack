@@ -68,6 +68,15 @@ public interface ApiService {
             @Path("idChallenge") String idChallenge
     );
 
+    @POST("user/challenge/leave")
+    Call<BaseResponse<Challenge>> leaveChallenge(
+            @Body JoinChallengeRequest joinChallengeRequest
+    );
+
     @PATCH("challenges/")
     Call<Challenge> updateChallenge(@Body Challenge challenge);
+    @GET("challenges/")
+    Call<BaseListResponse<Challenge>> getPublicChallenge(
+
+    );
 }

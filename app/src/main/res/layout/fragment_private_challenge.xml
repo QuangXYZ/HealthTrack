@@ -52,6 +52,15 @@
             android:layout_height="wrap_content"
             android:overScrollMode="never"
             tools:listitem="@layout/single_private_challenge"/>
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/private_challenge_progress"
+            android:layout_marginTop="30dp"
+            style="@style/SpinKitView.Small"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/blue"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </FrameLayout>

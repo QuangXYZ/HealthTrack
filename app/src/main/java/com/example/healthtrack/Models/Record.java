@@ -1,6 +1,8 @@
 package com.example.healthtrack.Models;
 
-public class Record {
+import java.io.Serializable;
+
+public class Record implements Serializable {
     private String userId;
     private String userName;
     private int stepTotal;
