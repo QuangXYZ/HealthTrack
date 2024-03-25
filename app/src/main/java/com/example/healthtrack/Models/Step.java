@@ -5,7 +5,7 @@ public class Step {
     private String idUser;
     private int numberStep;
     private int calo;
-    private double distance;
+    private float distance;
     private String time;
     private String date;
 

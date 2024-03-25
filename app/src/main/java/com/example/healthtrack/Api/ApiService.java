@@ -5,7 +5,6 @@ import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Request.JoinChallengeRequest;
-import com.example.healthtrack.Request.UpdateSetGoalsRequest;
 import com.example.healthtrack.Respone.BaseListResponse;
 import com.example.healthtrack.Respone.BaseResponse;
 import com.example.healthtrack.Respone.LoginBodyResponse;
@@ -33,9 +32,6 @@ public interface ApiService {
     Call<SetGoalsResponse<SetGoals>> getSetGoals(
             @Path("idUser") String idUser
     );
-
-    @PATCH("goals/update/{idUser}")
-    Call<SetGoals> updateSetGoals(@Path("idUser") String idUser, @Body UpdateSetGoalsRequest newData);
 
     @PATCH("goals/update/{idUser}")
     Call<ResponseBody> updateGoals(@Path("idUser") String idUser, @Body RequestBody body);
