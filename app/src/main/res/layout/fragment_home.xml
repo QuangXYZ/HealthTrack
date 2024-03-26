@@ -67,7 +67,7 @@
                                 android:id="@+id/step_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="200"
+                                android:text="0"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold"
@@ -82,7 +82,7 @@
                                 android:id="@+id/step_goals_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Mục tiêu: 6000"
+                                android:text="Mục tiêu: 0"
                                 android:textColor="@color/green2"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/circularProgressIndicator_home_step"
@@ -122,7 +122,7 @@
                                 android:id="@+id/calo_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1"
+                                android:text="0"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
@@ -134,7 +134,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="/500"
+                                android:text="/0"
                                 android:textStyle="bold"
                                 app:layout_constraintBaseline_toBaselineOf="@+id/calo_home"
                                 app:layout_constraintStart_toEndOf="@+id/calo_home" />
@@ -169,7 +169,7 @@
                                 android:id="@+id/time_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="7h"
+                                android:text="0"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
@@ -181,7 +181,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="/8h"
+                                android:text="/0"
                                 android:textStyle="bold"
                                 app:layout_constraintBaseline_toBaselineOf="@+id/time_home"
                                 app:layout_constraintStart_toEndOf="@+id/time_home" />
@@ -214,7 +214,7 @@
                                 android:id="@+id/km_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2"
+                                android:text="0"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
@@ -226,7 +226,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="/10"
+                                android:text="/0"
                                 android:textStyle="bold"
                                 app:layout_constraintBaseline_toBaselineOf="@+id/km_home"
                                 app:layout_constraintStart_toEndOf="@+id/km_home" />
@@ -237,6 +237,16 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/text_step2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:text="0"
+                android:textColor="@color/purple_700"
+                android:textSize="50sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -276,16 +286,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/text_step"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_horizontal"
-                android:text="0"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="50sp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

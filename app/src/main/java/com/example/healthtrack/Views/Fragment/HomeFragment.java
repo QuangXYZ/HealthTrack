@@ -69,6 +69,7 @@ public class HomeFragment extends Fragment {
     private LinearProgressIndicator progressCalo, progressTime, progressKm;
     private int step1, calo, stepGoals, caloGoals, kmGoals, km;
     private int time, timeGoals;
+    private StepService mStepService;
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
@@ -97,6 +98,8 @@ public class HomeFragment extends Fragment {
         walkingStep.setText(String.valueOf(currentCounts));
     }
 
+    // Phương thức để thiết lập đối tượng StepService từ MainActivity hoặc từ bất kỳ nơi nào cần truy cập
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -119,7 +122,7 @@ public class HomeFragment extends Fragment {
         exerciseRecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         exerciseRecyclerview.setAdapter(adapter);
         exerciseRecyclerview.setNestedScrollingEnabled(true);
-        walkingStep = view.findViewById(R.id.text_step);
+        walkingStep = view.findViewById(R.id.text_step2);
         showStepCount(CommonUtils.getStepNumber(), 0);
         setupService();
         stepController = new StepController(getContext());
@@ -140,8 +143,8 @@ public class HomeFragment extends Fragment {
         mListStep = new ArrayList<>();
         mListSetGoals = new ArrayList<>();
 
-        UpdateStepWorker.updateStepWorker(getContext());
-        CreateStepWorker.createStepWorker(getContext());
+//        UpdateStepWorker.updateStepWorker(getContext());
+//        CreateStepWorker.createStepWorker(getContext());
     }
 
     void settingUpListeners(){
@@ -152,6 +155,16 @@ public class HomeFragment extends Fragment {
                 getContext().startActivity(intent);
             }
         });
+
+//        walkingStep.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                CommonUtils.clearStepNumber();
+//                mStepService.resetStepCount();
+//                Toast.makeText(getContext(), "click", Toast.LENGTH_SHORT).show();
+//                Log.d(TAG, "NumberStep: " + CommonUtils.getStepNumber());
+//            }
+//        });
 
         class MyAsyncTask extends AsyncTask<Void, Void, Void> {
 

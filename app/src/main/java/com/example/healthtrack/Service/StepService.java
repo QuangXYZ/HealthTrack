@@ -70,6 +70,27 @@ public class StepService extends Service implements SensorEventListener {
         mCallback = paramICallback;
     }
 
+    public void resetStepCount() {
+        resetStepSensor();
+        saveData(); // Lưu dữ liệu mới (số bước chân đã đặt lại)
+        updateNotification(); // Cập nhật thông báo với số bước chân mới
+    }
+
+
+    private void resetStepSensor() {
+        if (mSensorManager != null) {
+            mSensorManager.unregisterListener(this);
+            mSensorManager = null;
+        }
+        mHasRecord = false;
+        mHasStepCount = 0;
+        mPreviousStepCount = 0;
+        mCurrentStep = 0;
+        initTodayData(); // Cập nhật lại dữ liệu ngày hiện tại
+        startStepDetector(); // Khởi động lại lắng nghe cảm biến
+    }
+
+
     private void startStepDetector() {
         if (mSensorManager != null) {
             mSensorManager = null;
