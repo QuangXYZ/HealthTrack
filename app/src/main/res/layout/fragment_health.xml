@@ -13,71 +13,133 @@
         android:background="@color/white"
         android:gravity="center">
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F4F1FA"
+            app:cardCornerRadius="20dp"
+            app:strokeWidth="0dp"
+            android:elevation="3dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:orientation="horizontal"
-            android:weightSum="4">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/faker"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"
-                android:layout_weight="1"
-                />
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="3"
-                android:weightSum="3"
-                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                >
-
-                <TextView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lee Sang-hyeok"
-                    android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_weight="1"/>
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Level: 2"
-                    android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bạn bè: 3"
-                    android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_weight="1"/>
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/circularProgressIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:progress="85"
+                        app:indicatorColor="#D81506"
+                        app:indicatorSize="180dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:trackColor="@color/grey"
+                        app:trackCornerRadius="8dp"
+                        app:trackThickness="12dp" />
 
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/circularProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:progress="70"
+                        android:layout_marginTop="12dp"
+                        app:indicatorColor="#F3673B"
+                        app:indicatorSize="155.5dp"
+                        app:trackColor="@color/grey"
+                        app:trackCornerRadius="8dp"
+                        app:trackThickness="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/circular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:progress="80"
+                        android:layout_marginTop="24dp"
+                        app:indicatorColor="#F4CC57"
+                        app:indicatorSize="131dp"
+                        app:trackColor="@color/grey"
+                        app:trackCornerRadius="8dp"
+                        app:trackThickness="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/cir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:progress="90"
+                        android:layout_marginTop="36dp"
+                        app:indicatorColor="#6FCEFA"
+                        app:indicatorSize="106dp"
+                        app:trackColor="@color/grey"
+                        app:trackCornerRadius="8dp"
+                        app:trackThickness="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+                        android:textColor="@color/blue"
+                        android:layout_marginTop="60dp"
+                        app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
+                        app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator"
+                        app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
+                        android:textSize="45sp"
+                        android:textStyle="bold" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\n\nTình Trạng"
+                        android:textColor="@color/blue"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:src="@drawable/happyface"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tốt"
+                        android:textColor="@color/blue"
+                        android:layout_gravity="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
-
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp"
-            android:background="@drawable/tab_background"
-            android:weightSum="2">
-            
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <FrameLayout
             android:id="@+id/fragment_health_frame"

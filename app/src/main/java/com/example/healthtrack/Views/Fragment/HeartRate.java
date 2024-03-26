@@ -12,55 +12,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.example.healthtrack.R;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 public class HeartRate extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    Button bt;
-    public HeartRate() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HeartRate newInstance(String param1, String param2) {
-        HeartRate heartRate = new HeartRate();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        heartRate.setArguments(args);
-        return heartRate;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,34 +37,41 @@ public class HeartRate extends Fragment {
             }
         });
 
-        BarChart barChart = view.findViewById(R.id.bar_chart);
+        LineChart lineChart = view.findViewById(R.id.line);
 
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(1, 100f));
-        entries.add(new BarEntry(2, 150f));
-        entries.add(new BarEntry(3, 250f));
-        entries.add(new BarEntry(4, 300f));
-        entries.add(new BarEntry(5, 100f));
+        // Tạo dữ liệu mẫu
+        ArrayList<Entry> entries = new ArrayList<>();
+        entries.add(new Entry(1, 60));
+        entries.add(new Entry(2, 78));
+        entries.add(new Entry(3, 69));
+        entries.add(new Entry(4, 82));
+        entries.add(new Entry(5, 74));
+        entries.add(new Entry(6, 64));
+        entries.add(new Entry(7, 85));
 
-        BarDataSet barDataSet = new BarDataSet(entries, "Lượng nước uống trong ngày");
-        barDataSet.setColor(Color.rgb(0, 155, 0)); // Set color of bars
-        barDataSet.setValueTextColor(Color.rgb(0, 155, 0)); // Set color of value text
+        // Tạo dataset và thiết lập màu và các thuộc tính khác
+        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        dataSet.setColor(Color.RED);
+        dataSet.setValueTextColor(Color.BLUE);
 
-        BarData barData = new BarData(barDataSet);
-        barChart.setData(barData);
-        barChart.setFitBars(true); // Make the bars fit to the full width of the x-axis
-        barChart.setMinimumHeight(500);
-        barChart.invalidate(); // Refresh the chart
+        // Tạo dữ liệu biểu đồ và thiết lập nó vào biểu đồ
+        LineData lineData = new LineData(dataSet);
+        lineChart.setData(lineData);
+
+        // Tạo mô tả cho biểu đồ
         Description description = new Description();
-        description.setText("");
-        barChart.setDescription(description);
+        description.setText("Biểu đồ đường mẫu");
+        lineChart.setDescription(description);
+
+        // Cập nhật biểu đồ
+        lineChart.invalidate();
 
         return view;
     }
 
     public void replaceFragment() {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_health_frame, new HealthFragment());
+        transaction.replace(R.id.content_frame, new HealthFragment());
         transaction.addToBackStack(null);
         transaction.commit();
     }
