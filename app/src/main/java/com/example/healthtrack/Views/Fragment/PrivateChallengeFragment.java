@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,29 +20,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.Manifest;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
 
+import com.example.healthtrack.Controller.ChallengeController;
+import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.CaptureArt;
 import com.example.healthtrack.Views.Adapters.PrivateChallengeAdapter;
 import com.example.healthtrack.Views.CreateChallengeActivity;
 import com.example.healthtrack.Views.PrivateChallengeDetail;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PrivateChallengeFragment extends Fragment {
     private static final int PERMISSION_REQUEST_CAMERA = 1;
     RecyclerView challengeRecyclerview;
     PrivateChallengeAdapter adapter;
-    ArrayList<Integer> challenges;
     Button createChallengeBtn,qrScanBtn;
-    TextView textview;
+    TextView textview, noChallenge;
+    ChallengeController challengeController;
+    List<Challenge> challengeList;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,15 +68,41 @@ public class PrivateChallengeFragment extends Fragment {
         challengeRecyclerview = view.findViewById(R.id.private_challenge_recyclerview);
         createChallengeBtn = view.findViewById(R.id.fragment_challenge_create_button);
         qrScanBtn = view.findViewById(R.id.fragment_challenge_qr_scan);
-        challenges = new ArrayList<>();
-        challenges.add(1);
-        challenges.add(2);
-        challenges.add(3);
-        challenges.add(4);
-        adapter = new PrivateChallengeAdapter((Activity) getContext(), challenges);
+        progressBar = view.findViewById(R.id.private_challenge_progress);
+        noChallenge = view.findViewById(R.id.private_join_challenge_no_challenge);
+        Sprite doubleBounce = new ThreeBounce();
+        progressBar.setIndeterminateDrawable(doubleBounce);
+
+        challengeController = new ChallengeController();
+        challengeList = new ArrayList<>();
+
+
+
+        adapter = new PrivateChallengeAdapter((Activity) getContext(), challengeList);
         challengeRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         challengeRecyclerview.setAdapter(adapter);
         challengeRecyclerview.setNestedScrollingEnabled(true);
+
+
+        progressBar.setVisibility(View.VISIBLE);
+        challengeController.getPrivateChallengeUser(new ChallengeController.GetChallengeCallback() {
+            @Override
+            public void onSuccess(List<Challenge> challenges) {
+                challengeList.addAll(challenges);
+                adapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+                if (challengeList.size() == 0) {
+                    noChallenge.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                noChallenge.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+
 
     }
     void settingUpListener() {
@@ -127,10 +162,34 @@ public class PrivateChallengeFragment extends Fragment {
                 scanFormat = scanningResult.getFormatName().toString();
             }
             Toast.makeText(getActivity(), scanContent + "   type:" + scanFormat, Toast.LENGTH_SHORT).show();
-            textview.setText(scanContent + "    type:" + scanFormat);
+            joinChallenge(scanContent);
         } else {
             Toast.makeText(getActivity(), "Nothing scanned", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void joinChallenge(String idChallenge){
+        challengeController.joinChallenge(idChallenge, new ChallengeController.ChallengeControllerCallback() {
+            @Override
+            public void onSuccess(String message) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Thành công")
+                        .setMessage("Đã tham gia thử thách")
+                        .setPositiveButton("OK", (dialog, which) -> {
+
+                        } ).show();
+            }
+
+            @Override
+            public void onError(String error) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Lỗi")
+                        .setMessage(error)
+                        .setPositiveButton("OK", (dialog, which) -> {
+
+                        } ).show();
+            }
+        });
     }
 
 

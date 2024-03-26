@@ -84,7 +84,6 @@
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="8dp"
-
                         android:textColor="@color/black"
                         android:textColorHighlight="@color/cardview_dark_background" />
                 </com.google.android.material.textfield.TextInputLayout>
