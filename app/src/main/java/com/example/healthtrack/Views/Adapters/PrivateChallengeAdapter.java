@@ -56,6 +56,7 @@ public class PrivateChallengeAdapter extends RecyclerView.Adapter<PrivateChallen
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PrivateChallengeDetail.class);
+                intent.putExtra("Challenge", challenge);
                 context.startActivity(intent);
                 context.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
             }

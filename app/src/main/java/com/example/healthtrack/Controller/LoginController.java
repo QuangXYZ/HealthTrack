@@ -13,6 +13,7 @@ import com.example.healthtrack.Respone.LoginBodyResponse;
 import com.example.healthtrack.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
 import com.example.healthtrack.Utils.CommonUtils;
+import com.example.healthtrack.Utils.Constants;
 import com.example.healthtrack.Utils.DataLocalManager;
 import com.example.healthtrack.Views.MainHomeActivity;
 
@@ -30,7 +31,7 @@ public class LoginController {
     }
 
     Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("https://healthtrack.cyclic.app/")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create());
     Retrofit retrofit = builder.build();
     ApiService iLoginService = retrofit.create(ApiService.class);

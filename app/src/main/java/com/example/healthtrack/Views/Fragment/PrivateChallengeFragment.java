@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.Manifest;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ import com.example.healthtrack.Utils.CaptureArt;
 import com.example.healthtrack.Views.Adapters.PrivateChallengeAdapter;
 import com.example.healthtrack.Views.CreateChallengeActivity;
 import com.example.healthtrack.Views.PrivateChallengeDetail;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -44,9 +47,10 @@ public class PrivateChallengeFragment extends Fragment {
     RecyclerView challengeRecyclerview;
     PrivateChallengeAdapter adapter;
     Button createChallengeBtn,qrScanBtn;
-    TextView textview;
+    TextView textview, noChallenge;
     ChallengeController challengeController;
     List<Challenge> challengeList;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,6 +68,10 @@ public class PrivateChallengeFragment extends Fragment {
         challengeRecyclerview = view.findViewById(R.id.private_challenge_recyclerview);
         createChallengeBtn = view.findViewById(R.id.fragment_challenge_create_button);
         qrScanBtn = view.findViewById(R.id.fragment_challenge_qr_scan);
+        progressBar = view.findViewById(R.id.private_challenge_progress);
+        noChallenge = view.findViewById(R.id.private_join_challenge_no_challenge);
+        Sprite doubleBounce = new ThreeBounce();
+        progressBar.setIndeterminateDrawable(doubleBounce);
 
         challengeController = new ChallengeController();
         challengeList = new ArrayList<>();
@@ -76,18 +84,25 @@ public class PrivateChallengeFragment extends Fragment {
         challengeRecyclerview.setNestedScrollingEnabled(true);
 
 
-        challengeController.getChallengeUser(new ChallengeController.GetChallengeCallback() {
+        progressBar.setVisibility(View.VISIBLE);
+        challengeController.getPrivateChallengeUser(new ChallengeController.GetChallengeCallback() {
             @Override
             public void onSuccess(List<Challenge> challenges) {
                 challengeList.addAll(challenges);
                 adapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+                if (challengeList.size() == 0) {
+                    noChallenge.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onError(String error) {
-
+                noChallenge.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         });
+
 
     }
     void settingUpListener() {

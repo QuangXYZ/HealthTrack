@@ -70,5 +70,12 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.jakewharton.threetenabp:threetenabp:1.2.0")
     implementation ("androidx.work:work-runtime:2.7.1")
+    implementation ("com.github.dmytrodanylyk:circular-progress-button:1.4")
+
+
+
+
+
+
 
 }

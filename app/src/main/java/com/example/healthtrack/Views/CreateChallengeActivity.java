@@ -79,6 +79,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
 
         challengeNameEditText = findViewById(R.id.create_challenge_name);
         challengeController = new ChallengeController();
+
     }
     void settingUpListeners(){
         calenderLayout.setOnClickListener(new View.OnClickListener() {

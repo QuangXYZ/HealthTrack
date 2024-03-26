@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -29,6 +30,7 @@ public class ChallengeFragment extends Fragment {
     private static final int FRAGMENT_PRIVATE = 1;
     private static final int FRAGMENT_PUBLIC = 2;
     private static int currentFragment ;
+    SwipeRefreshLayout swipeRefreshLayout ;
 
 
     @Override
@@ -44,6 +46,7 @@ public class ChallengeFragment extends Fragment {
     void init(View view){
         tab1 = view.findViewById(R.id.fragment_challenge_tab1);
         tab2 = view.findViewById(R.id.fragment_challenge_tab2);
+        swipeRefreshLayout = view.findViewById(R.id.fragment_challenge_refresh);
 
 
         currentFragment = FRAGMENT_PRIVATE;
@@ -97,6 +100,21 @@ public class ChallengeFragment extends Fragment {
 
                     selectTab(FRAGMENT_PUBLIC);
 
+                }
+            }
+        });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (currentFragment == FRAGMENT_PRIVATE) {
+                    PrivateChallengeFragment challengeFragment = new PrivateChallengeFragment();
+                    replaceFragment(challengeFragment);
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                if (currentFragment == FRAGMENT_PUBLIC) {
+                    PublicChallengeFragment challengeFragment = new PublicChallengeFragment();
+                    replaceFragment(challengeFragment);
+                    swipeRefreshLayout.setRefreshing(false);
                 }
             }
         });

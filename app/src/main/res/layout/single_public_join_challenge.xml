@@ -16,6 +16,7 @@
         android:padding="20dp"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/public_join_challenge_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/blue"
@@ -34,12 +35,14 @@
                 android:orientation="vertical"
                 android:layout_weight="6">
                 <TextView
+                    android:id="@+id/public_join_challenge_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blue"
                     android:textSize="14sp"
                     android:text="Bat dau sau 1 ngay" />
                 <TextView
+                    android:id="@+id/public_join_challenge_member"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="So nguoi tham gia"/>
@@ -48,6 +51,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tong so buoc"/>
                 <TextView
+                    android:id="@+id/public_join_challenge_step"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/pink"
@@ -55,10 +59,7 @@
                     android:textSize="24sp"
                     android:text="1.236"/>
                 <ProgressBar
-
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/textView"
-                    android:id="@+id/progressBar"
+                    android:id="@+id/public_join_challenge_progress"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
