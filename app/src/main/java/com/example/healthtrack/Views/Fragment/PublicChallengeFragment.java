@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.healthtrack.Controller.ChallengeController;
 import com.example.healthtrack.Models.Challenge;
@@ -17,6 +19,8 @@ import com.example.healthtrack.R;
 import com.example.healthtrack.Views.Adapters.PrivateChallengeAdapter;
 import com.example.healthtrack.Views.Adapters.PublicJoinChallengeAdapter;
 import com.example.healthtrack.Views.Adapters.PublicNotJoinChallengeAdapter;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +33,8 @@ public class PublicChallengeFragment extends Fragment {
     ArrayList<Challenge> joinChallenges;
     ArrayList<Challenge> notJoinChallenges;
 
-
+    TextView noChallenge,noChallengeNotJoin;
+    ProgressBar progressBar, progressBarNotJoin;
     ChallengeController challengeController;
 
 
@@ -60,22 +65,43 @@ public class PublicChallengeFragment extends Fragment {
         challengeNotJoinRecyclerview.setAdapter(publicNotJoinChallengeAdapter);
         challengeNotJoinRecyclerview.setNestedScrollingEnabled(true);
         challengeController = new ChallengeController();
+        noChallenge = view.findViewById(R.id.public_join_challenge_no_challenge);
+        progressBar = view.findViewById(R.id.public_challenge_progress);
+        noChallengeNotJoin = view.findViewById(R.id.public_not_join_challenge_no_challenge);
+        progressBarNotJoin = view.findViewById(R.id.public_not_challenge_progress);
+        Sprite doubleBounce = new ThreeBounce();
+        progressBar.setIndeterminateDrawable(doubleBounce);
+        progressBarNotJoin.setIndeterminateDrawable(doubleBounce);
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBarNotJoin.setVisibility(View.VISIBLE);
         challengeController.getPublicChallenge(new ChallengeController.PublicChallengeCallback() {
             @Override
             public void onJoinChallenge(List<Challenge> challenges) {
                 joinChallenges.addAll(challenges);
                 publicJoinChallengeAdapter.notifyDataSetChanged();
+                if (joinChallenges.size() == 0) {
+                    noChallenge.setVisibility(View.VISIBLE);
+                }
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onNotJoinChallenge(List<Challenge> challenges) {
                 notJoinChallenges.addAll(challenges);
                 publicNotJoinChallengeAdapter.notifyDataSetChanged();
+                if (notJoinChallenges.size() == 0) {
+                    noChallengeNotJoin.setVisibility(View.VISIBLE);
+                }
+                progressBarNotJoin.setVisibility(View.GONE);
             }
 
             @Override
             public void onError(String error) {
-
+                noChallenge.setVisibility(View.VISIBLE);
+                noChallengeNotJoin.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                progressBarNotJoin.setVisibility(View.GONE);
             }
         });
 

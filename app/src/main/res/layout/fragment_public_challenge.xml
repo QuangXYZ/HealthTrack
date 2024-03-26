@@ -19,6 +19,26 @@
             android:textStyle="bold"
             android:textColor="@color/blue"
             app:backgroundTint="@color/orange"/>
+        <TextView
+            android:id="@+id/public_join_challenge_no_challenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:text="Chưa có thử thách"
+            android:visibility="gone"
+            android:layout_margin="30dp"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/orange"/>
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/public_challenge_progress"
+            android:layout_marginTop="30dp"
+            style="@style/SpinKitView.Small"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/blue"
+            android:visibility="gone"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -26,7 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:overScrollMode="never"
-            tools:listitem="@layout/single_private_challenge"/>
+            tools:listitem="@layout/single_private_challenge" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,6 +58,26 @@
             android:textStyle="bold"
             android:textColor="@color/blue"
             app:backgroundTint="@color/orange"/>
+        <TextView
+            android:id="@+id/public_not_join_challenge_no_challenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:text="Chưa có thử thách"
+            android:visibility="gone"
+            android:layout_margin="30dp"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/orange"/>
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/public_not_challenge_progress"
+            android:layout_marginTop="30dp"
+            style="@style/SpinKitView.Small"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/blue"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/public_not_join_challenge_recyclerview"

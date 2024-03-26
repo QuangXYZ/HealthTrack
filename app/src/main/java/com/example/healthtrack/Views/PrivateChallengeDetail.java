@@ -110,7 +110,18 @@ public class PrivateChallengeDetail extends AppCompatActivity {
                             .setTitle("Confirm")
                             .setMessage("Bạn có chắc chắn")
                             .setNeutralButton("Có", (dialog, which) -> {
-                                challengeController.deleteChallenge(challenge.get_id());
+                                challengeController.leaveChallenge(challenge.get_id(), new ChallengeController.ChallengeControllerCallback() {
+                                    @Override
+                                    public void onSuccess(String message) {
+                                        finish();
+                                    }
+
+                                    @Override
+                                    public void onError(String error) {
+
+
+                                    }
+                                });
                             })
                             .setPositiveButton("Không", (dialog, which) -> {} ).show();
                 }

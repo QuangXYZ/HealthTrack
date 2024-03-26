@@ -18,11 +18,12 @@
             android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/create_challenge_toolbar"
+                android:id="@+id/public_challenge_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
                 android:elevation="5dp"
+                app:title="Chi tiết"
                 app:navigationIcon="@drawable/back_icon"
                 app:titleTextColor="@color/blue"
                 app:menu="@menu/public_challenge_menu"/>
@@ -42,76 +43,101 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:orientation="horizontal"
-                android:weightSum="3"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:gravity="center">
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/public_challenge_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="2">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tên thử thách"
-                        android:textColor="@color/blue"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                    android:text="Tên thử thách"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ngày bắt đầu"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/public_challenge_date_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày ket thuc"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/public_challenge_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mo ta"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal"
+                    android:weightSum="8"
+
+                    android:gravity="center">
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+
                         android:layout_height="wrap_content"
-                        android:text="Ngày kết thúc"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Số người tham gia"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Số bước mục tiêu: 100.000"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                    <ProgressBar
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/textView"
-                        android:id="@+id/progressBar"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:indeterminate="false"
-                        android:layout_marginTop="5dp"
-                        android:max="100"
-                        android:padding="5dp"
-                        android:progress="50"
-                        android:background="@drawable/progress_bar_background"
-                        android:progressDrawable="@drawable/curved_progress_bar"
-                        />
+                        android:orientation="vertical"
+                        android:layout_weight="5">
+
+                        <TextView
+                            android:id="@+id/public_challenge_member"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số người tham gia"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/public_challenge_target"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số bước mục tiêu: 100.000"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/public_challenge_step"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tiến độ hoàn thành: "
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                        <ProgressBar
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/textView"
+                            android:id="@+id/public_challenge_progress"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:indeterminate="false"
+                            android:layout_marginTop="5dp"
+                            android:max="100"
+                            android:padding="5dp"
+                            android:progress="50"
+                            android:background="@drawable/progress_bar_background"
+                            android:progressDrawable="@drawable/curved_progress_bar"
+                            />
+
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/running"
+                        android:layout_weight="3"/>
 
                 </LinearLayout>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/running"
-                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -159,6 +185,7 @@
 
 
                     <TextView
+                        android:id="@+id/public_challenge_exp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="10.000 EXP"
@@ -244,6 +271,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/public_challenge_step_achive"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="99.000"
@@ -284,6 +312,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/public_challenge_rank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="199.120"
@@ -318,7 +347,7 @@
                     android:textSize="18sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/challenge_detail_recylerview"
+                    android:id="@+id/public_challenge_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:listitem="@layout/single_user_ranking" />

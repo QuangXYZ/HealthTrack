@@ -26,7 +26,7 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:textSize="16sp"
-            android:text="Scan QR"
+            android:text="Quét mã QR"
             android:layout_margin="5dp"
             android:textStyle="bold"
             android:layout_gravity="center"
@@ -45,13 +45,24 @@
             android:textColor="@color/blue"
             app:backgroundTint="@color/orange"/>
 
-
+        <TextView
+            android:id="@+id/private_join_challenge_no_challenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:text="Chưa có thử thách"
+            android:layout_margin="30dp"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            app:backgroundTint="@color/orange"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/private_challenge_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:overScrollMode="never"
             tools:listitem="@layout/single_private_challenge"/>
+
         <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/private_challenge_progress"
             android:layout_marginTop="30dp"

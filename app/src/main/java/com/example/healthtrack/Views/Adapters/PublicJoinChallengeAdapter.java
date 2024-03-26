@@ -56,6 +56,8 @@ public class PublicJoinChallengeAdapter extends RecyclerView.Adapter<PublicJoinC
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PublicChallengeDetailActivity.class);
+                intent.putExtra("Challenge", challenge);
+
                 context.startActivity(intent);
                 context.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
             }

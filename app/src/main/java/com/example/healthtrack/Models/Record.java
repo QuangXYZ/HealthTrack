@@ -1,6 +1,7 @@
 package com.example.healthtrack.Models;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 public class Record implements Serializable {
     private String userId;
@@ -36,3 +37,6 @@ public class Record implements Serializable {
         this.stepTotal = stepTotal;
     }
 }
+
+
+

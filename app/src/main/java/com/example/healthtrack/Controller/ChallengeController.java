@@ -8,6 +8,7 @@ import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.ChallengeMember;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Request.JoinChallengeRequest;
+import com.example.healthtrack.Request.LeaveChallengeRequest;
 import com.example.healthtrack.Respone.BaseListResponse;
 import com.example.healthtrack.Respone.BaseResponse;
 import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
@@ -30,9 +31,10 @@ public class ChallengeController {
         String token = DataLocalManager.getToken();
         apiService = ApiUtils.getApiService(token);
     }
+
     public void createChallenge(String name, String dateStart, int target, final ChallengeControllerCallback challengeControllerCallback) {
         Challenge newChallenge = new Challenge(
-                name,"",
+                name, "",
                 dateStart,
                 target
         );
@@ -50,12 +52,12 @@ public class ChallengeController {
 
             @Override
             public void onFailure(Call<BaseResponse<Challenge>> call, Throwable t) {
-                    challengeControllerCallback.onError(t.getMessage());
+                challengeControllerCallback.onError(t.getMessage());
             }
         });
     }
 
-    public void joinChallenge(String idChallenge, final ChallengeControllerCallback challengeControllerCallback){
+    public void joinChallenge(String idChallenge, final ChallengeControllerCallback challengeControllerCallback) {
         JoinChallengeRequest joinChallengeRequest = new JoinChallengeRequest(idChallenge);
         apiService.joinChallenge(joinChallengeRequest).enqueue(new Callback<BaseResponse<Challenge>>() {
             @Override
@@ -69,9 +71,9 @@ public class ChallengeController {
                         challengeControllerCallback.onError(response.body().getMessage());
 
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     challengeControllerCallback.onError(e.getMessage());
-                    
+
                 }
             }
 
@@ -123,15 +125,17 @@ public class ChallengeController {
 
                     for (Challenge challenge : response.body().getData()) {
                         boolean join = false;
-                        for (ChallengeMember member: challenge.getListMember()){
-                            if (member.getUserId().equals(userId)){
+                        for (ChallengeMember member : challenge.getListMember()) {
+                            if (member.getUserId().equals(userId)) {
                                 join = true;
                                 joinChallenges.add(challenge);
                                 break;
                             }
 
                         }
-                        if (!join){notJoinChallenges.add(challenge);}
+                        if (!join) {
+                            notJoinChallenges.add(challenge);
+                        }
 
                     }
 
@@ -151,8 +155,24 @@ public class ChallengeController {
     }
 
 
-    public void deleteChallenge(String idChallenge) {
-        // TODO Auto-generated method stub
+    public void leaveChallenge(String idChallenge, final ChallengeControllerCallback challengeControllerCallback) {
+        String idUser = DataLocalManager.getUser().get_id();
+        LeaveChallengeRequest leaveChallengeRequest = new LeaveChallengeRequest(idUser, idChallenge);
+        apiService.leaveChallenge(leaveChallengeRequest).enqueue(new Callback<BaseResponse<Challenge>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Challenge>> call, Response<BaseResponse<Challenge>> response) {
+                if (response.isSuccessful()) {
+                    challengeControllerCallback.onSuccess(response.body().getMessage());
+                } else {
+                    challengeControllerCallback.onError(response.body().getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Challenge>> call, Throwable t) {
+                challengeControllerCallback.onError(t.getMessage());
+            }
+        });
     }
 
     public interface ChallengeControllerCallback {
@@ -160,13 +180,16 @@ public class ChallengeController {
 
         void onError(String error);
     }
+
     public interface GetChallengeCallback {
         void onSuccess(List<Challenge> challenges);
 
         void onError(String error);
     }
+
     public interface PublicChallengeCallback {
         void onJoinChallenge(List<Challenge> challenges);
+
         void onNotJoinChallenge(List<Challenge> challenges);
 
         void onError(String error);

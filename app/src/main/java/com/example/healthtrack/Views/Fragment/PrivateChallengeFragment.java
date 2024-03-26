@@ -47,7 +47,7 @@ public class PrivateChallengeFragment extends Fragment {
     RecyclerView challengeRecyclerview;
     PrivateChallengeAdapter adapter;
     Button createChallengeBtn,qrScanBtn;
-    TextView textview;
+    TextView textview, noChallenge;
     ChallengeController challengeController;
     List<Challenge> challengeList;
     ProgressBar progressBar;
@@ -69,6 +69,7 @@ public class PrivateChallengeFragment extends Fragment {
         createChallengeBtn = view.findViewById(R.id.fragment_challenge_create_button);
         qrScanBtn = view.findViewById(R.id.fragment_challenge_qr_scan);
         progressBar = view.findViewById(R.id.private_challenge_progress);
+        noChallenge = view.findViewById(R.id.private_join_challenge_no_challenge);
         Sprite doubleBounce = new ThreeBounce();
         progressBar.setIndeterminateDrawable(doubleBounce);
 
@@ -90,11 +91,15 @@ public class PrivateChallengeFragment extends Fragment {
                 challengeList.addAll(challenges);
                 adapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
+                if (challengeList.size() == 0) {
+                    noChallenge.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onError(String error) {
-
+                noChallenge.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         });
 

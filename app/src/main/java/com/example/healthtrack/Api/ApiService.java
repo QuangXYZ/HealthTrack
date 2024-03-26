@@ -5,6 +5,7 @@ import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Request.JoinChallengeRequest;
+import com.example.healthtrack.Request.LeaveChallengeRequest;
 import com.example.healthtrack.Respone.BaseListResponse;
 import com.example.healthtrack.Respone.BaseResponse;
 import com.example.healthtrack.Respone.LoginBodyResponse;
@@ -64,9 +65,9 @@ public interface ApiService {
             @Path("idChallenge") String idChallenge
     );
 
-    @POST("user/challenge/leave")
+    @POST("users/challenge/leave")
     Call<BaseResponse<Challenge>> leaveChallenge(
-            @Body JoinChallengeRequest joinChallengeRequest
+            @Body LeaveChallengeRequest leaveChallengeRequest
     );
 
     @PATCH("challenges/")
