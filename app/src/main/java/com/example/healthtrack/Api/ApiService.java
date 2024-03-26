@@ -5,6 +5,7 @@ import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Request.JoinChallengeRequest;
+import com.example.healthtrack.Request.StepRequest;
 import com.example.healthtrack.Request.LeaveChallengeRequest;
 import com.example.healthtrack.Respone.BaseListResponse;
 import com.example.healthtrack.Respone.BaseResponse;
@@ -39,13 +40,13 @@ public interface ApiService {
 
     @POST("goals")
     Call<SetGoals> insertSetGoals(@Body SetGoals setGoals);
-  
+
     @GET("step/{idUser}/{date}")
     Call<StepResponse<Step>> getStepHistory(
             @Path("idUser") String idUser,
             @Path("date") String date
     );
-  
+
     @POST("challenges/create")
     Call<BaseResponse<Challenge>> createChallenge(@Body Challenge challenge);
 
@@ -72,8 +73,18 @@ public interface ApiService {
 
     @PATCH("challenges/")
     Call<Challenge> updateChallenge(@Body Challenge challenge);
+
+    @PATCH("step/update/{idUser}/{date}")
+    Call<ResponseBody> updateStep(@Path("idUser") String idUser,
+                                  @Path("date") String date,
+                                  @Body RequestBody body);
+
+    @POST("step")
+    Call<StepRequest> insertStep(@Body StepRequest stepRequest);
+
     @GET("challenges/")
     Call<BaseListResponse<Challenge>> getPublicChallenge(
 
     );
+
 }

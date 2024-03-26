@@ -35,6 +35,10 @@ public class DataLocalManager {
         return DataLocalManager.getInstance().mySharedPreferences.getIntValue(key);
     }
 
+    public static void clearWalkingStep(String key) {
+        DataLocalManager.getInstance().mySharedPreferences.clearValue(key);
+    }
+
     public static void setToken(String token) {
         DataLocalManager.getInstance().mySharedPreferences.putStringValue(TOKEN_USER, token);
 
