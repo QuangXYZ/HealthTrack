@@ -8,6 +8,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dialog">#F4F1FA</color>
     <color name="Gray">#F5F2F2</color>
+    <color name="grey">#F5F2F2</color>
 
     <color name="blue">#553CAF</color>
     <color name="pink">#FBA6AE</color>
