@@ -95,7 +95,7 @@ public class HomeFragment extends Fragment {
             currentCounts = totalStepNum;
         }
         animateTextView(Integer.valueOf(walkingStep.getText().toString()), currentCounts, walkingStep);
-        walkingStep.setText(String.valueOf(currentCounts));
+
     }
 
     // Phương thức để thiết lập đối tượng StepService từ MainActivity hoặc từ bất kỳ nơi nào cần truy cập
