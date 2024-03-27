@@ -2,11 +2,14 @@ package com.example.healthtrack.Models;
 
 import com.example.healthtrack.Utils.DataLocalManager;
 
+
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Challenge {
+public class Challenge implements Serializable {
     private String _id;
     private String name;
     private String description;

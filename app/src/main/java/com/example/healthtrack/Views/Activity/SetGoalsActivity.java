@@ -135,7 +135,7 @@ public class SetGoalsActivity extends AppCompatActivity {
         });
 
         NumberPicker numberPicker = (NumberPicker) dialog.findViewById(R.id.number_picker_km);
-        String[] data = {"1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000", "9000", "10000", "11000"};
+        String[] data = {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110"};
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(data.length);
         numberPicker.setDisplayedValues(data);
@@ -144,7 +144,7 @@ public class SetGoalsActivity extends AppCompatActivity {
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                newValue[0] = Integer.parseInt(newVal + "0000");
+                newValue[0] = Integer.parseInt(newVal + "0");
             }
         });
 
@@ -416,7 +416,7 @@ public class SetGoalsActivity extends AppCompatActivity {
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                newValue[0] = Integer.parseInt(newVal + "0000");
+                newValue[0] = Integer.parseInt(newVal + "000");
             }
         });
 

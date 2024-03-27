@@ -1,6 +1,7 @@
 package com.example.healthtrack.Views.Adapters;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtrack.R;
@@ -28,6 +30,7 @@ public class PrivateHealthAdapter extends RecyclerView.Adapter<PrivateHealthAdap
         void onItemClick1();
         void onItemClick2();
         void onItemClick3();
+        void onItemClick4();
 
 
     }
@@ -54,8 +57,10 @@ public class PrivateHealthAdapter extends RecyclerView.Adapter<PrivateHealthAdap
         iv = holder.itemView.findViewById(R.id.imgview);
         button = holder.itemView.findViewById(R.id.btn);
         if(position==0) {
-            tv.setText("0/2000ml");
-            iv.setImageResource(R.drawable.glass);
+            tv.setText("1200/2000 ml");
+            tv.setTextColor(Color.parseColor("#6FCEFA"));
+            button.setBackgroundColor(Color.parseColor("#6FCEFA"));
+            iv.setImageResource(R.drawable.waterbottle);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -66,8 +71,10 @@ public class PrivateHealthAdapter extends RecyclerView.Adapter<PrivateHealthAdap
             });
         }
         if(position==1) {
-            tv.setText("7 ngày nữa");
-            iv.setImageResource(R.drawable.kinh);
+            tv.setText("12,39 %");
+            tv.setTextColor(Color.parseColor("#F4CC57"));
+            iv.setImageResource(R.drawable.bodyvariant);
+            button.setBackgroundColor(Color.parseColor("#F4CC57"));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -78,8 +85,10 @@ public class PrivateHealthAdapter extends RecyclerView.Adapter<PrivateHealthAdap
             });
         }
         if(position==2) {
-            tv.setText("120/80 mmHg");
-            iv.setImageResource(R.drawable.huyetap);
+            tv.setText("71 bpm");
+            tv.setTextColor(Color.parseColor("#F3673B"));
+            iv.setImageResource(R.drawable.pulse);
+            button.setBackgroundColor(Color.parseColor("#F3673B"));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -90,13 +99,27 @@ public class PrivateHealthAdapter extends RecyclerView.Adapter<PrivateHealthAdap
             });
         }
         if(position==3) {
-            tv.setText("0/1.655 kcal");
-            iv.setImageResource(R.drawable.h12);
+            tv.setText("135 mmHg");
+            tv.setTextColor(Color.parseColor("#D81506"));
+            iv.setImageResource(R.drawable.bloodpressure);
+            button.setBackgroundColor(Color.parseColor("#D81506"));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mListener != null) {
                         mListener.onItemClick3(); // Gọi phương thức của Interface khi click xảy ra
+                    }
+                }
+            });
+        }
+        if(position==4) {
+            tv.setText("7 ngày nữa");
+            iv.setImageResource(R.drawable.menstrualcycle);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        mListener.onItemClick4(); // Gọi phương thức của Interface khi click xảy ra
                     }
                 }
             });

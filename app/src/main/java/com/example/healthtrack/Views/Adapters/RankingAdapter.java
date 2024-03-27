@@ -10,17 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.healthtrack.Models.Record;
 import com.example.healthtrack.R;
 
 import java.util.List;
 
 public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHolder> {
     Activity context;
-    List<Integer> rankings;
+    List<Record> records;
 
-    public RankingAdapter(Activity context, List<Integer> rankings) {
+    public RankingAdapter(Activity context, List<Record> records) {
         this.context = context;
-        this.rankings = rankings;
+        this.records = records;
     }
 
     @NonNull
@@ -34,6 +35,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        Record record = records.get(position);
         if (position<=2) {
             holder.rankingNumber.setVisibility(View.GONE);
             if (position == 0) {
@@ -54,21 +56,26 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
             holder.rankingNumber.setText(String.valueOf(position+1));
             holder.rankingBadge.setVisibility(View.GONE);
         }
+        holder.name.setText(record.getUserName());
+        holder.step.setText(String.valueOf(record.getStepTotal()));
     }
 
     @Override
     public int getItemCount() {
-        return rankings.size();
+        return records.size();
     }
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView rankingNumber;
         ImageView rankingBadge;
+        TextView name, step;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             rankingNumber = itemView.findViewById(R.id.single_ranking_number);
             rankingBadge = itemView.findViewById(R.id.single_ranking_badge);
+            name = itemView.findViewById(R.id.single_ranking_name);
+            step = itemView.findViewById(R.id.single_ranking_record);
         }
     }
 }

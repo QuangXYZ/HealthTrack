@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.example.healthtrack.Utils.Constants;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -32,7 +34,7 @@ public class RetrofitClientInstance {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .client(client)
-                    .baseUrl("https://healthtrack2.cyclic.app/")
+                    .baseUrl(Constants.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

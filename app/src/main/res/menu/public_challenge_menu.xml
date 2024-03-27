@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/edit"
+        android:id="@+id/exit_challenge"
         android:title="Dừng thử thách"
         app:showAsAction="never" />
 
