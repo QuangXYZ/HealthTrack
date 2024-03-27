@@ -38,6 +38,7 @@ public class PrivateHealthFragment extends Fragment implements PrivateHealthAdap
         health.add(2);
         health.add(3);
         health.add(4);
+        health.add(5);
         adapter = new PrivateHealthAdapter((Activity) getContext(), health, this);
         healthRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         healthRecyclerview.setAdapter(adapter);
@@ -49,7 +50,7 @@ public class PrivateHealthFragment extends Fragment implements PrivateHealthAdap
     public void onItemClick0() {
         // Thay đổi Fragment khi sự kiện click xảy ra
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_health_frame, new Water());
+        transaction.replace(R.id.content_frame, new Water());
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -57,7 +58,7 @@ public class PrivateHealthFragment extends Fragment implements PrivateHealthAdap
     public void onItemClick1() {
         // Thay đổi Fragment khi sự kiện click xảy ra
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_health_frame, new MenstrualCycle());
+        transaction.replace(R.id.content_frame, new BodyComposition());
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -65,7 +66,7 @@ public class PrivateHealthFragment extends Fragment implements PrivateHealthAdap
     public void onItemClick2() {
         // Thay đổi Fragment khi sự kiện click xảy ra
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_health_frame, new HeartRate());
+        transaction.replace(R.id.content_frame, new HeartRate());
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -73,7 +74,14 @@ public class PrivateHealthFragment extends Fragment implements PrivateHealthAdap
     public void onItemClick3() {
         // Thay đổi Fragment khi sự kiện click xảy ra
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_health_frame, new BodyComposition());
+        transaction.replace(R.id.content_frame, new BloodPressure());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+    public void onItemClick4() {
+        // Thay đổi Fragment khi sự kiện click xảy ra
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_frame, new MenstrualCycle());
         transaction.addToBackStack(null);
         transaction.commit();
     }
