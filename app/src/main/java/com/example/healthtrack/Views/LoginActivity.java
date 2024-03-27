@@ -17,8 +17,7 @@ import com.github.ybq.android.spinkit.style.ThreeBounce;
 public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     ProgressBar loginProgressBar;
-    TextView signupText;
-
+    TextView signupText,loginEmail, loginPass;
     private LoginController loginController;
 
     @Override
@@ -34,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginButton);
         loginProgressBar = findViewById(R.id.loginProgressBar);
         signupText = findViewById(R.id.signupText);
+        loginEmail = findViewById(R.id.login_email);
+        loginPass = findViewById(R.id.login_password);
+
 
         Sprite doubleBounce = new ThreeBounce();
         loginProgressBar.setIndeterminateDrawable(doubleBounce);
@@ -46,11 +48,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loginBtn.setVisibility(View.GONE);
                 loginProgressBar.setVisibility(View.VISIBLE);
-//                Intent intent = new Intent(LoginActivity.this, MainHomeActivity.class);
-//                startActivity(intent);
-                loginController.loginController(LoginActivity.this, "nhuy3@gmail.com", "123456");
+                String email = loginEmail.getText().toString();
+                String pass = loginPass.getText().toString();
+                loginController.loginController(LoginActivity.this, email, pass);
                 overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-//                finish();
+
             }
         });
         signupText.setOnClickListener(new View.OnClickListener() {

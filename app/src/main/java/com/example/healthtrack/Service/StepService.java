@@ -25,6 +25,7 @@ import androidx.core.app.NotificationCompat;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Utils.DataLocalManager;
+import com.example.healthtrack.Views.MainHomeActivity;
 import com.example.healthtrack.Views.TestWalkingStep;
 
 
@@ -68,6 +69,27 @@ public class StepService extends Service implements SensorEventListener {
     public void registerCallback(UpdateUiCallBack paramICallback) {
         mCallback = paramICallback;
     }
+
+    public void resetStepCount() {
+        resetStepSensor();
+        saveData(); // Lưu dữ liệu mới (số bước chân đã đặt lại)
+        updateNotification(); // Cập nhật thông báo với số bước chân mới
+    }
+
+
+    private void resetStepSensor() {
+        if (mSensorManager != null) {
+            mSensorManager.unregisterListener(this);
+            mSensorManager = null;
+        }
+        mHasRecord = false;
+        mHasStepCount = 0;
+        mPreviousStepCount = 0;
+        mCurrentStep = 0;
+        initTodayData(); // Cập nhật lại dữ liệu ngày hiện tại
+        startStepDetector(); // Khởi động lại lắng nghe cảm biến
+    }
+
 
     private void startStepDetector() {
         if (mSensorManager != null) {
@@ -181,7 +203,7 @@ public class StepService extends Service implements SensorEventListener {
     }
 
     private void updateNotification() {
-        Intent hangIntent = new Intent(this, TestWalkingStep.class);
+        Intent hangIntent = new Intent(this, MainHomeActivity.class);
         PendingIntent hangPendingIntent =
                 PendingIntent.getActivity(this, 0, hangIntent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         Notification notification =
@@ -217,7 +239,7 @@ public class StepService extends Service implements SensorEventListener {
     }
 
     public void saveData() {
-        DataLocalManager.getInstance().setWalkingStep(CommonUtils.getKeyToday(), mCurrentStep);
+        DataLocalManager.getInstance().setWalkingStep(CommonUtils.STEP_NUMBER_KEY, mCurrentStep);
     }
 
 

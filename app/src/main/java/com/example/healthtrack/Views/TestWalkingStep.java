@@ -24,31 +24,30 @@ public class TestWalkingStep extends AppCompatActivity {
 
     private boolean mIsBind;
     private TextView walkingStep;
-    private ServiceConnection mServiceConnection = new
-            ServiceConnection() {
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder service) {
+            StepService stepService = ((StepService.StepBinder) service).getService();
+            showStepCount(CommonUtils.getStepNumber(),
+                    stepService.getStepCount());
+            stepService.registerCallback(new UpdateUiCallBack() {
                 @Override
-                public void onServiceConnected(ComponentName componentName, IBinder service) {
-                    StepService stepService = ((StepService.StepBinder) service).getService();
-                    showStepCount(CommonUtils.getStepNumber(),
-                            stepService.getStepCount());
-                    stepService.registerCallback(new UpdateUiCallBack() {
-                        @Override
-                        public void updateUi(int stepCount) {
-                            showStepCount(CommonUtils.getStepNumber(), stepCount);
-                        }
-                    });
+                public void updateUi(int stepCount) {
+                    showStepCount(CommonUtils.getStepNumber(), stepCount);
                 }
+            });
+        }
 
-                @Override
-                public void onServiceDisconnected(ComponentName componentName) {
-                }
-            };
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+        }
+    };
 
     public void showStepCount(int totalStepNum, int currentCounts) {
         if (currentCounts < totalStepNum) {
             currentCounts = totalStepNum;
         }
-        animateTextView(Integer.valueOf( walkingStep.getText().toString()), currentCounts, walkingStep);
+        animateTextView(Integer.valueOf(walkingStep.getText().toString()), currentCounts, walkingStep);
 //        walkingStep.setText(String.valueOf(currentCounts));
     }
 
@@ -79,7 +78,8 @@ public class TestWalkingStep extends AppCompatActivity {
             unbindService(mServiceConnection);
         }
     }
-    public void animateTextView(int initialValue, int finalValue, final TextView  textview) {
+
+    public void animateTextView(int initialValue, int finalValue, final TextView textview) {
         ValueAnimator valueAnimator = ValueAnimator.ofInt(initialValue, finalValue);
         valueAnimator.setDuration(1500);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

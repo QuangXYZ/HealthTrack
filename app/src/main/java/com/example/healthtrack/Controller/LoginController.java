@@ -12,6 +12,9 @@ import com.example.healthtrack.Respone.BaseResponse;
 import com.example.healthtrack.Respone.LoginBodyResponse;
 import com.example.healthtrack.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
+import com.example.healthtrack.Utils.CommonUtils;
+import com.example.healthtrack.Utils.Constants;
+import com.example.healthtrack.Utils.DataLocalManager;
 import com.example.healthtrack.Views.MainHomeActivity;
 
 import retrofit2.Call;
@@ -28,7 +31,7 @@ public class LoginController {
     }
 
     Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("https://healthtrack.cyclic.app/")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create());
     Retrofit retrofit = builder.build();
     ApiService iLoginService = retrofit.create(ApiService.class);
@@ -49,6 +52,15 @@ public class LoginController {
                         // Lưu token vào SharedPreferences
                         SharedPreferencesUtil.saveToken(context, token);
                         SharedPrefUser.SaveId(context, idUser);
+
+
+                        // t lưu tạm cái token vào SharedPreferences
+                        DataLocalManager.setToken(token);
+                        // luu user
+                        User user = response.body().getData();
+                        DataLocalManager.setUser(user);
+
+
 
                         Log.d("idUserResponse","idUser:" + idUser);
                         Intent intent = new Intent(context, MainHomeActivity.class);
