@@ -1,7 +1,5 @@
 package com.example.healthtrack.Views.Fragment;
 
-import static android.content.ContentValues.TAG;
-
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.ComponentName;
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.IBinder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +27,6 @@ import com.example.healthtrack.Controller.StepController;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Request.StepRequest;
 import com.example.healthtrack.Respone.SetGoalsResponse;
 import com.example.healthtrack.Respone.StepResponse;
 import com.example.healthtrack.Service.StepService;
@@ -38,11 +34,7 @@ import com.example.healthtrack.Service.UpdateUiCallBack;
 import com.example.healthtrack.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Views.Activity.HistoryStepActivity;
-import com.example.healthtrack.Views.Activity.SetGoalsActivity;
 import com.example.healthtrack.Views.Adapters.ExerciseAdapter;
-import com.example.healthtrack.Views.Adapters.PrivateChallengeAdapter;
-import com.example.healthtrack.Worker.CreateStepWorker;
-import com.example.healthtrack.Worker.UpdateStepWorker;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.gson.JsonObject;
@@ -95,7 +87,7 @@ public class HomeFragment extends Fragment {
             currentCounts = totalStepNum;
         }
         animateTextView(Integer.valueOf(walkingStep.getText().toString()), currentCounts, walkingStep);
-        walkingStep.setText(String.valueOf(currentCounts));
+//        walkingStep.setText(String.valueOf(currentCounts));
     }
 
     // Phương thức để thiết lập đối tượng StepService từ MainActivity hoặc từ bất kỳ nơi nào cần truy cập
@@ -122,7 +114,7 @@ public class HomeFragment extends Fragment {
         exerciseRecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         exerciseRecyclerview.setAdapter(adapter);
         exerciseRecyclerview.setNestedScrollingEnabled(true);
-        walkingStep = view.findViewById(R.id.text_step2);
+        walkingStep = view.findViewById(R.id.step_home);
         showStepCount(CommonUtils.getStepNumber(), 0);
         setupService();
         stepController = new StepController(getContext());
@@ -132,7 +124,7 @@ public class HomeFragment extends Fragment {
         progressCalo = (LinearProgressIndicator) view.findViewById(R.id.linearProgressIndicator_calo_home);
         progressTime = (LinearProgressIndicator) view.findViewById(R.id.linearProgressIndicator_time_home);
         progressKm = (LinearProgressIndicator) view.findViewById(R.id.linearProgressIndicator_km_home);
-        tvStep = view.findViewById(R.id.step_home);
+//        tvStep = view.findViewById(R.id.step_home);
         tvStepGoals = view.findViewById(R.id.step_goals_home);
         tvTime = view.findViewById(R.id.time_home);
         tvTimeGoals = view.findViewById(R.id.time_goals_home);
@@ -142,6 +134,8 @@ public class HomeFragment extends Fragment {
         tvKmGoals = view.findViewById(R.id.km_goals_home);
         mListStep = new ArrayList<>();
         mListSetGoals = new ArrayList<>();
+
+
 
 //        UpdateStepWorker.updateStepWorker(getContext());
 //        CreateStepWorker.createStepWorker(getContext());
@@ -171,9 +165,9 @@ public class HomeFragment extends Fragment {
             @Override
             protected Void doInBackground(Void... params) {
                 // Thực hiện tác vụ cần đợi
-                String step = String.valueOf(CommonUtils.getStepNumber());
+//                String step = String.valueOf(CommonUtils.getStepNumber());
                 JsonObject newData = new JsonObject();
-                newData.addProperty("numberStep", step);
+                newData.addProperty("numberStep", CommonUtils.getStepNumber());
                 newData.addProperty("weight", 50);
                 JsonObject requestBody = new JsonObject();
                 requestBody.add("newData", newData);
@@ -216,9 +210,13 @@ public class HomeFragment extends Fragment {
                         // Thực hiện các hành động sau khi tác vụ hoàn thành
                         getStepCurrent();
                         getSetGoals();
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 }
-                swipeRefreshLayout.setRefreshing(false);
+
+                // Khởi tạo và thực thi AsyncTask
+                MyAsyncTask task = new MyAsyncTask();
+                task.execute();
             }
         });
     }
@@ -227,6 +225,7 @@ public class HomeFragment extends Fragment {
         Intent intent = new Intent(getContext(), StepService.class);
         mIsBind = getActivity().bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
         getContext().startService(intent);
+
     }
 
     @Override
@@ -256,7 +255,7 @@ public class HomeFragment extends Fragment {
             public void onSuccess(StepResponse<Step> step) {
                 mListStep = (ArrayList<Step>) step.getData();
                 for (int i = 0; i < mListStep.size(); i++) {
-                    tvStep.setText(String.valueOf(mListStep.get(0).getNumberStep()));
+//                    tvStep.setText(String.valueOf(mListStep.get(0).getNumberStep()));
                     tvCalo.setText(String.valueOf(mListStep.get(0).getCalo()));
                     tvTime.setText(String.valueOf(mListStep.get(0).getTime()));
                     tvKm.setText(String.valueOf(mListStep.get(0).getDistance()));

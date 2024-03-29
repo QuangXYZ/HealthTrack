@@ -6,6 +6,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +28,8 @@ import com.example.healthtrack.Views.Fragment.ChallengeFragment;
 import com.example.healthtrack.Views.Fragment.HealthFragment;
 import com.example.healthtrack.Views.Fragment.HomeFragment;
 import com.example.healthtrack.Views.Fragment.ProfileFragment;
+import com.example.healthtrack.Worker.AlarmReceiver;
+import com.example.healthtrack.Worker.CreateStep;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -42,6 +52,7 @@ public class MainHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_home);
         init();
         settingUpListeners();
+        scheduleAlarm(this);
     }
 
     void init() {
@@ -68,6 +79,27 @@ public class MainHomeActivity extends AppCompatActivity {
 
         HomeFragment homeFragment = new HomeFragment();
         replaceFragment(homeFragment);
+    }
+
+    private void scheduleAlarm(Context context) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, AlarmReceiver.class); // AlarmReceiver là BroadcastReceiver của bạn
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        // Nếu thời gian hiện tại đã qua 22 giờ, thiết lập báo thức cho ngày tiếp theo
+        if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        // Đặt báo thức lặp lại hàng ngày
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     void settingUpListeners() {
