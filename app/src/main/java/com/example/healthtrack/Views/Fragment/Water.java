@@ -17,50 +17,10 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.example.healthtrack.R;
+import com.john.waveview.WaveView;
 
 import java.util.ArrayList;
 public class Water extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    Button bt;
-    public Water() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Water newInstance(String param1, String param2) {
-        Water water = new Water();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        water.setArguments(args);
-        return water;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,23 +34,31 @@ public class Water extends Fragment {
             }
         });
 
+
+        WaveView wv = view.findViewById(R.id.wave_view);
+        wv.setProgress(30);
+
+
         BarChart barChart = view.findViewById(R.id.bar_chart);
 
         ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(1, 100f));
-        entries.add(new BarEntry(2, 150f));
-        entries.add(new BarEntry(3, 250f));
-        entries.add(new BarEntry(4, 300f));
-        entries.add(new BarEntry(5, 100f));
+        entries.add(new BarEntry(1, 1200f));
+        entries.add(new BarEntry(2, 1400f));
+        entries.add(new BarEntry(3, 1600f));
+        entries.add(new BarEntry(4, 1200f));
+        entries.add(new BarEntry(5, 2000f));
+        entries.add(new BarEntry(6, 1800f));
+        entries.add(new BarEntry(7, 1400f));
 
-        BarDataSet barDataSet = new BarDataSet(entries, "Lượng nước uống trong ngày");
-        barDataSet.setColor(Color.rgb(0, 0, 200)); // Set color of bars
+
+        BarDataSet barDataSet = new BarDataSet(entries, "Lượng nước uống trong ngày (ml)");
+        barDataSet.setColor(Color.rgb(0, 180, 255)); // Set color of bars
         barDataSet.setValueTextColor(Color.rgb(0, 0, 200)); // Set color of value text
 
         BarData barData = new BarData(barDataSet);
         barChart.setData(barData);
         barChart.setFitBars(true); // Make the bars fit to the full width of the x-axis
-        barChart.setMinimumHeight(500);
+        barChart.setMinimumHeight(800);
         barChart.invalidate(); // Refresh the chart
         Description description = new Description();
         description.setText("");
@@ -101,7 +69,7 @@ public class Water extends Fragment {
 
     public void replaceFragment() {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_health_frame, new HealthFragment());
+        transaction.replace(R.id.content_frame, new HealthFragment());
         transaction.addToBackStack(null);
         transaction.commit();
     }
