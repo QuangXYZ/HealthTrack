@@ -4,7 +4,11 @@ import static android.os.Build.VERSION_CODES.S;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 
 import androidx.work.Configuration;
 
@@ -27,24 +31,20 @@ public class CreateStep extends JobService {
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
         Context context = getApplicationContext();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // Truy cập StepService thông qua getSystemService
-                StepService stepService = (StepService) getSystemService(String.valueOf("step"));
-
-                if (stepService != null) {
-                    // Gọi resetStepCount() từ StepService
-                    stepService.resetStepCount();
-                }
-            }
-        }).start();
+        // Khởi tạo StepService
+        Intent intent = new Intent(getApplicationContext(), StepService.class);
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
         performScheduledTask(context);
         return false;
     }
 
     @Override
     public boolean onStopJob(JobParameters jobParameters) {
+        // Hủy kết nối với StepService khi công việc bị hủy
+        if (stepService != null) {
+            unbindService(serviceConnection);
+            stepService = null;
+        }
         return false;
     }
 
@@ -75,4 +75,25 @@ public class CreateStep extends JobService {
             }
         });
     }
+
+    // ServiceConnection để quản lý việc kết nối và ngắt kết nối với StepService
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            // Được gọi khi kết nối với StepService thành công
+            StepService.StepBinder binder = (StepService.StepBinder) iBinder;
+            stepService = binder.getService();
+
+            // Gọi resetStepCount() từ StepService
+            if (stepService != null) {
+                stepService.resetStepCount();
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            // Được gọi khi kết nối với StepService bị ngắt
+            stepService = null;
+        }
+    };
 }
