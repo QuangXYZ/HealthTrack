@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginBottom="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/single_friend_invite_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"/>
+
+    <TextView
+        android:id="@+id/single_friend_invite_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nguyen Thannh Quang"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/single_friend_invite_img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0"/>
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/single_friend_invite_decline"
+        android:layout_width="60dp"
+        android:layout_height="36dp"
+        android:layout_margin="10dp"
+        app:cpb_textIdle="Xóa"
+        app:cpb_textComplete="Done"
+        app:cpb_textError="Error"
+        app:cpb_cornerRadius="48dp"
+        android:textSize="14sp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:backgroundTint="#ff7961"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/single_friend_invite_accept"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/single_friend_invite_name" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/single_friend_invite_accept"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+        android:layout_margin="10dp"
+        app:cpb_textIdle="Chấp nhận"
+        app:cpb_cornerRadius="48dp"
+        android:textSize="14sp"
+        android:backgroundTint="#6b5be2"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cpb_textComplete="Done"
+        app:cpb_textError="Error"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/single_friend_invite_name"
+        app:layout_constraintHorizontal_bias="1"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

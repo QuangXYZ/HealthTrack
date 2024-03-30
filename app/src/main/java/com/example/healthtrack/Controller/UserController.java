@@ -3,10 +3,17 @@ package com.example.healthtrack.Controller;
 import android.util.Log;
 
 import com.example.healthtrack.Api.ApiService;
+import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.User;
+import com.example.healthtrack.Request.FriendRequest;
+import com.example.healthtrack.Respone.BaseListResponse;
 import com.example.healthtrack.Respone.BaseResponse;
 import com.example.healthtrack.Respone.LoginBodyResponse;
 import com.example.healthtrack.Utils.Constants;
+import com.example.healthtrack.Utils.DataLocalManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -58,11 +65,11 @@ public class UserController {
         });
     }
 
-
     public interface UserControllerCallback {
         void onSuccess(String message);
 
         void onError(String error);
     }
+
 
 }

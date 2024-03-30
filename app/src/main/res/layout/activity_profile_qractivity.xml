@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6b5be2"
+    tools:context=".Views.ProfileQRActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/profile_qr_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="#6b5be2"
+                    android:elevation="5dp"
+                    app:navigationIcon="@drawable/back_icon"
+                    app:navigationIconTint="@color/white"
+                    app:title="Mã QR của tôi"
+                    app:titleTextColor="@color/white" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgAvatar"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/avatar"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="3dp" />
+                <TextView
+                    android:id="@+id/profile_my_qr_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyễn Thanh Quang"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="10dp"/>
+
+
+
+            </LinearLayout>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/white"
+                android:elevation="3dp"
+                app:cardCornerRadius="20dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HEALTH TRACK"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/profile_my_qr"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        app:civ_circle_background_color="@color/Gray" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đưa mã này cho bạn bè"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

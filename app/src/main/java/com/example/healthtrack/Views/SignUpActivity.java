@@ -53,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_righ);
                 finish();
             }
         });

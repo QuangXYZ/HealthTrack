@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,7 @@ public class MainHomeActivity extends AppCompatActivity {
     private int currentFragment = FRAGMENT_HOME;
     MaterialToolbar toolbar;
     TextView title;
+    ImageView editprofile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class MainHomeActivity extends AppCompatActivity {
         challengeTxt = findViewById(R.id.main_challenge_text);
         healthTxt = findViewById(R.id.main_health_text);
         profileTxt = findViewById(R.id.main_profile_text);
+        editprofile = findViewById(R.id.edit_profile);
 
 //        toolbar = findViewById(R.id.class_main_toolbar);
 
@@ -67,7 +70,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
 
         HomeFragment homeFragment = new HomeFragment();
-        replaceFragment(homeFragment);
+        replaceFragment(homeFragment, 1);
     }
 
     void settingUpListeners() {
@@ -81,6 +84,8 @@ public class MainHomeActivity extends AppCompatActivity {
                     challengeTxt.setVisibility(View.GONE);
                     healthTxt.setVisibility(View.GONE);
                     profileTxt.setVisibility(View.GONE);
+                    editprofile.setVisibility(View.GONE);
+
 
                     challengeLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
                     healthLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
@@ -102,7 +107,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     homeLayout.setAnimation(scaleAnimation);
 
                     HomeFragment homeFragment = new HomeFragment();
-                    replaceFragment(homeFragment);
+                    replaceFragment(homeFragment, 1);
                     currentFragment = FRAGMENT_HOME;
                 }
             }
@@ -116,6 +121,8 @@ public class MainHomeActivity extends AppCompatActivity {
                     homeTxt.setVisibility(View.GONE);
                     healthTxt.setVisibility(View.GONE);
                     profileTxt.setVisibility(View.GONE);
+                    editprofile.setVisibility(View.GONE);
+
 
                     homeLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
                     healthLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
@@ -135,7 +142,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     scaleAnimation.setFillAfter(true);
                     challengeLayout.setAnimation(scaleAnimation);
                     ChallengeFragment challengeFragment = new ChallengeFragment();
-                    replaceFragment(challengeFragment);
+                    replaceFragment(challengeFragment,2);
                     currentFragment = FRAGMENT_CHALLENGE;
                 }
             }
@@ -148,6 +155,8 @@ public class MainHomeActivity extends AppCompatActivity {
                 challengeTxt.setVisibility(View.GONE);
                 homeTxt.setVisibility(View.GONE);
                 profileTxt.setVisibility(View.GONE);
+                editprofile.setVisibility(View.GONE);
+
 
                 challengeLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
                 homeLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
@@ -169,7 +178,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 healthLayout.setAnimation(scaleAnimation);
                 if (currentFragment != FRAGMENT_HEALTH) {
                     HealthFragment healthFragment = new HealthFragment();
-                    replaceFragment(healthFragment);
+                    replaceFragment(healthFragment,3);
                     currentFragment = FRAGMENT_HEALTH;
                 }
             }
@@ -181,6 +190,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 challengeTxt.setVisibility(View.GONE);
                 healthTxt.setVisibility(View.GONE);
                 homeTxt.setVisibility(View.GONE);
+                editprofile.setVisibility(View.VISIBLE);
 
                 challengeLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
                 healthLayout.setBackgroundResource(getResources().getColor(android.R.color.transparent));
@@ -203,15 +213,29 @@ public class MainHomeActivity extends AppCompatActivity {
                 profileLayout.setAnimation(scaleAnimation);
                 if (currentFragment!= FRAGMENT_PROFILE) {
                     ProfileFragment profileFragment = new ProfileFragment();
-                    replaceFragment(profileFragment);
+                    replaceFragment(profileFragment,4);
                     currentFragment = FRAGMENT_PROFILE;
                 }
             }
         });
+        editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainHomeActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+            }
+        });
+
 }
 
-    private void replaceFragment(Fragment fragment) {
+    private void replaceFragment(Fragment fragment, int index) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        if (index> currentFragment)
+            fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left);
+        else
+            fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_righ);
         fragmentTransaction.replace(R.id.content_frame, fragment);
         fragmentTransaction.commit();
     }
