@@ -183,6 +183,7 @@ public class FriendActivity extends AppCompatActivity {
             }
             Toast.makeText(FriendActivity.this, scanContent + "   type:" + scanFormat, Toast.LENGTH_SHORT).show();
             UserInfoBottomSheetFragment bottomSheetFragment = new UserInfoBottomSheetFragment();
+            bottomSheetFragment.setFriendId(scanContent);
             bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
         } else {
             Toast.makeText(FriendActivity.this, "Nothing scanned", Toast.LENGTH_SHORT).show();
@@ -208,10 +209,5 @@ public class FriendActivity extends AppCompatActivity {
         });
     }
 
-
-
-        public interface AddFriendListener {
-            void addFriend();
-        }
 
 }

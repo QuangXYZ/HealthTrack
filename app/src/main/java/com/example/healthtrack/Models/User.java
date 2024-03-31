@@ -8,6 +8,7 @@ public class User {
     private String name;
     private String password;
     private String email;
+    private String profilePicture;
     private String gender;
     private String token;
     private List<String> badges;
@@ -22,11 +23,12 @@ public class User {
         this.email = email;
     }
 
-    public User(String _id, String name, String password, String email, String gender, String token, List<String> badges, List<String> friends, String dateOfBirth, List<String> idChallenges, int level, int exp) {
+    public User(String _id, String name, String password, String email, String profilePicture, String gender, String token, List<String> badges, List<String> friends, String dateOfBirth, List<String> idChallenges, int level, int exp) {
         this._id = _id;
         this.name = name;
         this.password = password;
         this.email = email;
+        this.profilePicture = profilePicture;
         this.gender = gender;
         this.token = token;
         this.badges = badges;
@@ -35,6 +37,15 @@ public class User {
         this.idChallenges = idChallenges;
         this.level = level;
         this.exp = exp;
+    }
+
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public String get_id() {

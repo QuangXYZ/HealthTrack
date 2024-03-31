@@ -7,6 +7,7 @@
     app:strokeWidth="1dp"
     >
     <LinearLayout
+        android:id="@+id/bottom_sheet_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -32,6 +33,7 @@
                 android:layout_weight="2"
                 android:gravity="center">
                 <TextView
+                    android:id="@+id/bottom_sheet_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nguyen Thanh Quang"
@@ -39,6 +41,7 @@
                     android:layout_marginBottom="5dp"
                     android:textStyle="bold" />
                 <TextView
+                    android:id="@+id/bottom_sheet_lv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="LV 1"
@@ -88,6 +91,21 @@
         </LinearLayout>
 
 
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bottom_sheet_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Không tìm thấy bạn bè"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 

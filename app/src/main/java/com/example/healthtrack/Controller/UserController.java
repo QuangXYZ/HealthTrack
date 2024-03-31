@@ -3,6 +3,7 @@ package com.example.healthtrack.Controller;
 import android.util.Log;
 
 import com.example.healthtrack.Api.ApiService;
+import com.example.healthtrack.Api.ApiUtils;
 import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Request.FriendRequest;
@@ -65,11 +66,41 @@ public class UserController {
         });
     }
 
+
+    public void updateUser(User user, final UserControllerCallback userControllerCallback) {
+        String token = DataLocalManager.getToken();
+        ApiService apiServiceUpdate = ApiUtils.getApiService(token);
+
+        apiServiceUpdate.updateUser(user).enqueue(new Callback<BaseResponse<User>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+                try {
+                    if (response.isSuccessful()){
+                        userControllerCallback.onSuccess(response.body().getMessage());
+                    }
+                    else {
+                        userControllerCallback.onError("Can not update user");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    userControllerCallback.onError(response.body().getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+
+            }
+        });
+    }
+
     public interface UserControllerCallback {
         void onSuccess(String message);
 
         void onError(String error);
     }
+
+
 
 
 }

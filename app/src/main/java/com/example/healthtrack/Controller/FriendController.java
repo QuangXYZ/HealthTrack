@@ -50,6 +50,27 @@ public class FriendController {
         });
     }
 
+    public void getDetailFriend(String friendId, final FriendCallback friendCallback) {
+        apiService.getDetailFriend(friendId).enqueue(new Callback<BaseResponse<User>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+                if (response.isSuccessful()){
+                    List<User> users = new ArrayList<>();
+                    users.add(response.body().getData());
+                    friendCallback.onSuccess(users);
+                }
+                else {
+                    friendCallback.onError("User not found");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+                    friendCallback.onError(t.getMessage());
+            }
+        });
+    }
+
     public void addFriend(String friendId,final FriendCallback friendCallback){
         String userId = DataLocalManager.getUser().get_id();
         FriendRequest friendRequest = new FriendRequest(userId, friendId);

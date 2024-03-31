@@ -61,6 +61,11 @@ public interface ApiService {
             @Body JoinChallengeRequest joinChallengeRequest
     );
 
+    @POST("users/update")
+    Call<BaseResponse<User>> updateUser(
+            @Body User User
+    );
+
 
     @GET("challenges/{idChallenge}")
     Call<Challenge> getChallenge(
@@ -86,6 +91,10 @@ public interface ApiService {
     );
     @GET("users/friends/myRequest/{idUser}")
     Call<BaseListResponse<User>> getMyFriendRequest(
+            @Path("idUser") String idUser
+    );
+    @GET("users/{idUser}")
+    Call<BaseResponse<User>> getDetailFriend(
             @Path("idUser") String idUser
     );
     @POST("users/friends/accept")
