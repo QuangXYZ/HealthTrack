@@ -1,68 +1,97 @@
 package com.example.healthtrack.Views.Fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.example.healthtrack.Models.Badges;
-import com.example.healthtrack.Models.Friends;
+import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Views.Adapters.BadgesAdapter;
-import com.example.healthtrack.Views.Adapters.FriendsAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.healthtrack.Utils.DataLocalManager;
+import com.example.healthtrack.Views.CreateChallengeActivity;
+import com.example.healthtrack.Views.FriendActivity;
+import com.example.healthtrack.Views.ProfileQRActivity;
+import com.example.healthtrack.Views.SplashScreen;
+
 
 public class ProfileFragment extends Fragment {
-    RecyclerView listFriendRecyclerview;
-    RecyclerView listBadgeRecyclerview;
 
-    FriendsAdapter adapter;
-    BadgesAdapter adapter_1;
-    ArrayList<Friends> friends;
-    ArrayList<Badges> badges;
+    Button friendBtn, qrBtn;
+    LinearLayout logout;
+    User user;
+    TextView name, email, gender, dateOfBirth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        innit(view);
+        init(view);
+        settingUpListener();
         return view;
     }
 
-    private void innit(View view) {
-        listFriendRecyclerview = view.findViewById(R.id.listFriends);
-        List<Friends> friends = new ArrayList<>();
-        friends.add(new Friends("Như Y", R.drawable.avatar));
-        friends.add(new Friends("Quang", R.drawable.avatar));
-        friends.add(new Friends("Quân", R.drawable.avatar));
-        friends.add(new Friends("Toàn", R.drawable.avatar));
-        friends.add(new Friends("1", R.drawable.avatar));
-        friends.add(new Friends("2", R.drawable.avatar));
-        friends.add(new Friends("3", R.drawable.avatar));
-        friends.add(new Friends("4", R.drawable.avatar));
-        adapter = new FriendsAdapter(getContext(), friends);
-        listFriendRecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        listFriendRecyclerview.setAdapter(adapter);
-        listFriendRecyclerview.setNestedScrollingEnabled(true);
+    void init(View view) {
+        friendBtn = view.findViewById(R.id.profile_fragment_friend_btn);
+        qrBtn = view.findViewById(R.id.profile_fragment_qr_btn);
+        logout = view.findViewById(R.id.profile_fragment_logout_btn);
+        user = DataLocalManager.getUser();
+        name = view.findViewById(R.id.fragment_profile_name);
+        email = view.findViewById(R.id.fragment_profile_email);
+        gender = view.findViewById(R.id.fragment_profile_gender);
+        dateOfBirth = view.findViewById(R.id.fragment_profile_date_of_birth);
 
-        listBadgeRecyclerview = view.findViewById(R.id.listBadges);
-        List<Badges> badges = new ArrayList<>();
-        badges.add(new Badges("Badge 1", R.drawable.avatar));
-        badges.add(new Badges("Badge 2", R.drawable.avatar));
-        badges.add(new Badges("Badge 3", R.drawable.avatar));
-        badges.add(new Badges("Badge 4", R.drawable.avatar));
-        badges.add(new Badges("Badge 5", R.drawable.avatar));
-        badges.add(new Badges("Badge 6", R.drawable.avatar));
-        adapter_1 = new BadgesAdapter(getContext(), badges);
-        listBadgeRecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        listBadgeRecyclerview.setAdapter(adapter_1);
-        listBadgeRecyclerview.setNestedScrollingEnabled(true);
+        name.setText(user.getName());
+        email.setText(user.getEmail());
+        gender.setText(user.getGender());
+        dateOfBirth.setText(user.getDateOfBirth());
     }
+    void settingUpListener() {
+        friendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getContext();
+                Intent intent = new Intent(context, FriendActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left);
+            }
+        });
+        qrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getContext();
+                Intent intent = new Intent(context, ProfileQRActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getContext();
+
+                new AlertDialog.Builder(context)
+                        .setTitle("Xác nhận")
+                        .setMessage("Bạn có muốn đăng xuất")
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            Intent intent = new Intent(context, SplashScreen.class);
+                            startActivity(intent);
+                            getActivity().overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
+                            getActivity().finish();
+                        } ).setNegativeButton("Hủy", (dialog, which) -> {}).show();
+
+            }
+        });
+    }
+
+
 }

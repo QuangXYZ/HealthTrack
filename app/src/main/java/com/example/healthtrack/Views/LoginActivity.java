@@ -52,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
                 String pass = loginPass.getText().toString();
                 loginController.loginController(LoginActivity.this, email, pass);
                 overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-                loginBtn.setVisibility(View.VISIBLE);
-                loginProgressBar.setVisibility(View.GONE);
+//                loginBtn.setVisibility(View.VISIBLE);
+//                loginProgressBar.setVisibility(View.GONE);
             }
         });
         signupText.setOnClickListener(new View.OnClickListener() {

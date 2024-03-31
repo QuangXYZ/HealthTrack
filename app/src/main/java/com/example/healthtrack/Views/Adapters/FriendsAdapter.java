@@ -11,34 +11,35 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthtrack.Models.Friends;
+import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
 
 import java.util.List;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendViewHolder> {
     Context context;
-    List<Friends> friends;
+    List<User> users;
 
-    public FriendsAdapter(Context context, List<Friends> friends) {
+    public FriendsAdapter(Context context, List<User> users) {
         this.context = context;
-        this.friends = friends;
+        this.users = users;
     }
 
     @NonNull
     @Override
     public FriendViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new FriendViewHolder(LayoutInflater.from(context).inflate(R.layout.friend_view, parent, false));
+        return new FriendViewHolder(LayoutInflater.from(context).inflate(R.layout.single_friend, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
-        holder.name.setText(friends.get(position).getName());
-        holder.friendAva.setImageResource(friends.get(position).getImage());
+        holder.name.setText(users.get(position).getName());
+
     }
 
     @Override
     public int getItemCount() {
-        return friends.size();
+        return users.size();
     }
 
     public class FriendViewHolder extends RecyclerView.ViewHolder {
