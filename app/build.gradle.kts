@@ -70,7 +70,8 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.github.john990:WaveView:v0.9")
     implementation ("com.jakewharton.threetenabp:threetenabp:1.2.0")
-    implementation ("androidx.work:work-runtime:2.7.1")
+    implementation ("androidx.work:work-runtime:2.7.0-alpha05")
+
     implementation ("com.github.dmytrodanylyk:circular-progress-button:1.4")
 
 

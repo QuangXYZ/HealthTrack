@@ -15,7 +15,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Binder;
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
+
 import android.os.IBinder;
 import android.util.Log;
 
@@ -116,8 +119,17 @@ public class StepService extends Service implements SensorEventListener {
         return mCurrentStep;
     }
 
+
+
     public PendingIntent getDefaultIntent(int flags) {
-        return PendingIntent.getActivity(this, 1, new Intent(), flags);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            return PendingIntent.getActivity(this, 1, new Intent(), PendingIntent.FLAG_MUTABLE);
+        }
+        else
+        {
+            return PendingIntent.getActivity(this, 1, new Intent(), flags);
+        }
+
     }
 
     private void initTodayData() {
