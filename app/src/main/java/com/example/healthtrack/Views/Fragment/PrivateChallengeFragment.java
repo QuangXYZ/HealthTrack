@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.Manifest;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +48,8 @@ public class PrivateChallengeFragment extends Fragment {
     RecyclerView challengeRecyclerview;
     PrivateChallengeAdapter adapter;
     Button createChallengeBtn,qrScanBtn;
-    TextView textview, noChallenge;
+    TextView textview;
+    LinearLayout noChallenge;
     ChallengeController challengeController;
     List<Challenge> challengeList;
     ProgressBar progressBar;

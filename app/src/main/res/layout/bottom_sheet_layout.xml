@@ -19,6 +19,7 @@
             android:weightSum="3"
             android:gravity="center">
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/bottom_sheet_img"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@drawable/faker"

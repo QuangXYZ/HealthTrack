@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
 
@@ -23,6 +24,8 @@ import com.example.healthtrack.Views.FriendActivity;
 import com.example.healthtrack.Views.ProfileQRActivity;
 import com.example.healthtrack.Views.SplashScreen;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class ProfileFragment extends Fragment {
 
@@ -30,6 +33,7 @@ public class ProfileFragment extends Fragment {
     LinearLayout logout;
     User user;
     TextView name, email, gender, dateOfBirth;
+    CircleImageView imageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,10 +53,13 @@ public class ProfileFragment extends Fragment {
         email = view.findViewById(R.id.fragment_profile_email);
         gender = view.findViewById(R.id.fragment_profile_gender);
         dateOfBirth = view.findViewById(R.id.fragment_profile_date_of_birth);
+        imageView = view.findViewById(R.id.fragment_profile_img);
 
         name.setText(user.getName());
         email.setText(user.getEmail());
         gender.setText(user.getGender());
+        if (user.getProfilePicture()!=null)
+            Glide.with(this).load(user.getProfilePicture()).into(imageView);
         dateOfBirth.setText(user.getDateOfBirth());
     }
     void settingUpListener() {

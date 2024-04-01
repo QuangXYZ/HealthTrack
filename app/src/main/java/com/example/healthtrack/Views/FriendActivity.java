@@ -16,6 +16,7 @@ import android.os.Bundle;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -42,6 +43,7 @@ public class FriendActivity extends AppCompatActivity {
     RecyclerView friendRequestRV, friendMyRequestRV, friendListRV;
     FriendsAdapter friendAdapter,myFriendInviteAdapter;
     FriendInviteAdapter friendInviteAdapter;
+    LinearLayout requestEmpty, myRequestEmpty, friendEmpty;
 
     List<User> friendsList, friendRequestList, myFriendRequestList;
 
@@ -59,6 +61,9 @@ public class FriendActivity extends AppCompatActivity {
         friendRequestRV = findViewById(R.id.friend_request);
         friendMyRequestRV = findViewById(R.id.friend_my_request);
         toolbar = findViewById(R.id.friend_toolbar);
+        requestEmpty = findViewById(R.id.friend_request_empty);
+        myRequestEmpty = findViewById(R.id.friend_my_request_empty);
+        friendEmpty = findViewById(R.id.friend_friend_empty);
 
         friendRequestList = new ArrayList<>();
         friendsList = new ArrayList<>();
@@ -85,6 +90,10 @@ public class FriendActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<User> users) {
                 friendsList.clear();
+                if (users.size() == 0) {
+                    friendEmpty.setVisibility(View.VISIBLE);
+                    friendListRV.setVisibility(View.GONE);
+                }
                 friendsList.addAll(users);
                 friendAdapter.notifyDataSetChanged();
             }
@@ -99,7 +108,12 @@ public class FriendActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<User> users) {
                 friendRequestList.clear();
+                if (users.size() == 0) {
+                    requestEmpty.setVisibility(View.VISIBLE);
+                    friendRequestRV.setVisibility(View.GONE);
+                }
                 friendRequestList.addAll(users);
+
                 friendInviteAdapter.notifyDataSetChanged();
             }
 
@@ -113,6 +127,10 @@ public class FriendActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<User> users) {
                 myFriendRequestList.clear();
+                if (users.size() == 0) {
+                    myRequestEmpty.setVisibility(View.VISIBLE);
+                    friendMyRequestRV.setVisibility(View.GONE);
+                }
                 myFriendRequestList.addAll(users);
                 myFriendInviteAdapter.notifyDataSetChanged();
             }
@@ -190,24 +208,7 @@ public class FriendActivity extends AppCompatActivity {
         }
     }
 
-    void addFriend(String friendId) {
-        friendController.addFriend(friendId, new FriendController.FriendCallback() {
-            @Override
-            public void onSuccess(List<User> users) {
-                new AlertDialog.Builder(FriendActivity.this)
-                        .setTitle("Thành công")
-                        .setMessage("Da ket ban thanh cong")
-                        .setPositiveButton("OK", (dialog, which) -> {
 
-                        } ).show();
-            }
-
-            @Override
-            public void onError(String error) {
-
-            }
-        });
-    }
 
 
 }

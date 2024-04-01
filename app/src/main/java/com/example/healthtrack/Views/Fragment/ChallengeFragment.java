@@ -21,7 +21,12 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
+import com.example.healthtrack.Utils.DataLocalManager;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ChallengeFragment extends Fragment {
@@ -30,6 +35,9 @@ public class ChallengeFragment extends Fragment {
     private static final int FRAGMENT_PRIVATE = 1;
     private static final int FRAGMENT_PUBLIC = 2;
     private static int currentFragment ;
+
+    CircleImageView img;
+    TextView name,lv;
     SwipeRefreshLayout swipeRefreshLayout ;
 
 
@@ -47,6 +55,16 @@ public class ChallengeFragment extends Fragment {
         tab1 = view.findViewById(R.id.fragment_challenge_tab1);
         tab2 = view.findViewById(R.id.fragment_challenge_tab2);
         swipeRefreshLayout = view.findViewById(R.id.fragment_challenge_refresh);
+        img = view.findViewById(R.id.fragment_challenge_img);
+        name = view.findViewById(R.id.fragment_challenge_name);
+        lv = view.findViewById(R.id.fragment_challenge_lv);
+
+        User user = DataLocalManager.getUser();
+        name.setText(user.getName());
+        lv.setText("Level: "+user.getLevel());
+        if (user.getProfilePicture()!=null)
+            Glide.with(this).load(user.getProfilePicture()).into(img);
+
 
 
         currentFragment = FRAGMENT_PRIVATE;

@@ -3,6 +3,7 @@ package com.example.healthtrack.Views;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,10 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.healthtrack.Controller.UserController;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.DataLocalManager;
+import com.example.healthtrack.Utils.Upload;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
@@ -37,6 +40,7 @@ public class EditProfileActivity extends AppCompatActivity {
     Uri filePath = null;
     UserController userController;
     User user ;
+    ProgressDialog pd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +63,9 @@ public class EditProfileActivity extends AppCompatActivity {
         name.setText(user.getName());
         email.setText(user.getEmail());
         dateOfBirth.setText(user.getDateOfBirth());
+        if (user.getProfilePicture()!=null)
+            Glide.with(this).load(user.getProfilePicture()).into(imgUser);
+        pd=new ProgressDialog(this);
 
 
 
@@ -82,7 +89,7 @@ public class EditProfileActivity extends AppCompatActivity {
         materialDatePicker.addOnPositiveButtonClickListener((date) -> {
             Date dob = new Date(date);
             // Định dạng ngày thành chuỗi
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             String formattedDate = sdf.format(dob);
             dateOfBirth.setText(formattedDate);
 
@@ -112,32 +119,26 @@ public class EditProfileActivity extends AppCompatActivity {
                     name.setError("Tên ít nhất 5 kí tự");
                     return;
                 }
+                pd.show(EditProfileActivity.this,"Please Wait..","Đang cập nhật");
 
-                user.setName(name.getText().toString());
-                String dob= dateOfBirth.getText().toString().split("/")[0]+"-"+dateOfBirth.getText().toString().split("/")[1]+"-"+dateOfBirth.getText().toString().split("/")[2];
-                user.setDateOfBirth(dob);
-//                user.setProfilePicture();
-                userController.updateUser(user, new UserController.UserControllerCallback() {
-                    @Override
-                    public void onSuccess(String message) {
-                        new AlertDialog.Builder(EditProfileActivity.this)
-                                .setTitle("Thành công")
-                                .setMessage(message)
-                                .setPositiveButton("OK", (dialog, which) -> {
-                                        finish();
-                                } ).show();
-                    }
+                if (filePath!=null) {
+                    Upload upload = new Upload();
+                    upload.UploadImage(filePath, new Upload.UploadCallback() {
+                        @Override
+                        public void onSuccess(String downloadUrl) {
+                            user.setProfilePicture(downloadUrl);
+                            updateUser();
 
-                    @Override
-                    public void onError(String error) {
-                        new AlertDialog.Builder(EditProfileActivity.this)
-                                .setTitle("Lỗi")
-                                .setMessage(error)
-                                .setPositiveButton("OK", (dialog, which) -> {
+                        }
 
-                                } ).show();
-                    }
-                });
+                        @Override
+                        public void onError(String error) {
+
+                        }
+                    });
+                }
+                else updateUser();
+
             }
         });
 
@@ -162,5 +163,38 @@ public class EditProfileActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+    void updateUser() {
+        user.setName(name.getText().toString());
+        if(!dateOfBirth.getText().toString().isEmpty()) {
+            String dob= dateOfBirth.getText().toString().split("-")[0]+"-"+dateOfBirth.getText().toString().split("-")[1]+"-"+dateOfBirth.getText().toString().split("-")[2];
+            user.setDateOfBirth(dob);
+        }
+
+
+        userController.updateUser(user, new UserController.UserControllerCallback() {
+            @Override
+            public void onSuccess(String message) {
+                DataLocalManager.setUser(user);
+                pd.dismiss();
+                new AlertDialog.Builder(EditProfileActivity.this)
+                        .setTitle("Thành công")
+                        .setMessage(message)
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            finish();
+                        } ).show();
+            }
+
+            @Override
+            public void onError(String error) {
+                pd.dismiss();
+                new AlertDialog.Builder(EditProfileActivity.this)
+                        .setTitle("Lỗi")
+                        .setMessage(error)
+                        .setPositiveButton("OK", (dialog, which) -> {
+
+                        } ).show();
+            }
+        });
     }
 }

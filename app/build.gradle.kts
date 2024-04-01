@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 buildscript {
@@ -71,8 +72,13 @@ dependencies {
     implementation("com.github.john990:WaveView:v0.9")
     implementation ("com.jakewharton.threetenabp:threetenabp:1.2.0")
     implementation ("androidx.work:work-runtime:2.7.0-alpha05")
-
     implementation ("com.github.dmytrodanylyk:circular-progress-button:1.4")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-storage")
+
 
 
 
