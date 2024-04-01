@@ -93,8 +93,8 @@ public class SignUpActivity extends AppCompatActivity {
                     username.requestFocus();
                     Toast.makeText(getApplicationContext(), "Password chưa đủ 8 kí tự", Toast.LENGTH_SHORT).show();
                 }
-                else if (passwordText.length()<8) {
-                    password.setError("Password chưa đủ 8 kí tự");
+                else if (passwordText.length()<6) {
+                    password.setError("Password chưa đủ 6 kí tự");
                     password.requestFocus();
                     Toast.makeText(getApplicationContext(), "Password chưa đủ 8 kí tự", Toast.LENGTH_SHORT).show();
                 }

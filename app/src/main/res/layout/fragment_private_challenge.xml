@@ -45,17 +45,28 @@
             android:textColor="@color/blue"
             app:backgroundTint="@color/orange"/>
 
-        <TextView
-            android:id="@+id/private_join_challenge_no_challenge"
+
+    <LinearLayout
+        android:id="@+id/private_join_challenge_no_challenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        >
+        <ImageView
             android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:src="@drawable/empty_box"/>
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:text="Chưa có thử thách"
-            android:layout_margin="30dp"
-            android:textColor="@color/black"
-            android:visibility="gone"
-            app:backgroundTint="@color/orange"/>
+            android:textSize="16sp"
+            android:gravity="center"
+
+            />
+    </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/private_challenge_recyclerview"
             android:layout_width="match_parent"
