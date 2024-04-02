@@ -38,8 +38,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Exercise exercise = exercises.get(position);
         holder.title.setText(exercise.getTitle());
-        holder.time.setText(String.valueOf(exercise.getTime() + "Phút"));
-        holder.calo.setText(String.valueOf(exercise.getCalo() + "Calo"));
+        holder.time.setText(String.valueOf(exercise.getTime() + " Phút"));
+        holder.calo.setText(String.valueOf(exercise.getCalo() + " Calo"));
 
         holder.exerciseLayout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -59,8 +59,6 @@ public class StepController {
         String token = SharedPreferencesUtil.getToken(context);
         String idUser = SharedPrefUser.getId(context);
         LocalDate today = LocalDate.now();
-        LocalDate tomorrow = today.plusDays(1);
-        Log.d(TAG, "Ngày hiện mai: " + String.valueOf(tomorrow));
         apiService = ApiUtils.getApiService(token);
         apiService.updateStep(idUser, String.valueOf(today), RequestBody.create(MediaType.parse("application/json"), requestBody.toString()))
                 .enqueue(new retrofit2.Callback<ResponseBody>() {
