@@ -252,6 +252,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -264,16 +265,16 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/view_all_popular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="7dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="Xem thêm"
-                    android:textColor="@color/purple_700"
-                    android:textSize="16sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/view_all_popular"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginRight="7dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text="Xem thêm"-->
+<!--                    android:textColor="@color/purple_700"-->
+<!--                    android:textSize="16sp" />-->
 
             </LinearLayout>
 
@@ -286,6 +287,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/exercise_progress"
+                android:layout_marginTop="30dp"
+                style="@style/SpinKitView.Small"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/blue"
+                android:visibility="gone"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

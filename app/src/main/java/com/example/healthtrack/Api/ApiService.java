@@ -1,6 +1,7 @@
 package com.example.healthtrack.Api;
 
 import com.example.healthtrack.Models.Challenge;
+import com.example.healthtrack.Models.Exercise;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.Models.User;
@@ -121,5 +122,8 @@ public interface ApiService {
     Call<BaseListResponse<Challenge>> getPublicChallenge(
 
     );
+
+    @GET("exercise")
+    Call<BaseListResponse<Exercise>> getExercise();
 
 }

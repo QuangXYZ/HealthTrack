@@ -27,6 +27,12 @@
         android:theme="@style/Theme.HealthTrack"
         tools:targetApi="31">
         <activity
+            android:name=".Views.Activity.PreviewExerciseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Views.Activity.ExerciseActivity"
+            android:exported="false" />
+        <activity
             android:name=".Views.ProfileQRActivity"
             android:exported="false" />
         <activity
@@ -93,10 +99,13 @@
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </service>
-        <service android:name=".Worker.CreateStep"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true"/>
-        <receiver android:name=".Worker.AlarmReceiver"
+        <service
+            android:name=".Worker.CreateStep"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver
+            android:name=".Worker.AlarmReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

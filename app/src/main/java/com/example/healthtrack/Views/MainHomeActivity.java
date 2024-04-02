@@ -93,7 +93,7 @@ public class MainHomeActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 10);
+        calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
 
         // Nếu thời gian hiện tại đã qua 22 giờ, thiết lập báo thức cho ngày tiếp theo
