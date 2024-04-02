@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -33,7 +34,7 @@ public class PublicChallengeFragment extends Fragment {
     ArrayList<Challenge> joinChallenges;
     ArrayList<Challenge> notJoinChallenges;
 
-    TextView noChallenge,noChallengeNotJoin;
+    LinearLayout noChallenge,noChallengeNotJoin;
     ProgressBar progressBar, progressBarNotJoin;
     ChallengeController challengeController;
 

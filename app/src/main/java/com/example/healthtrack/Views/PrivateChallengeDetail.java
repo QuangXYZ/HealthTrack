@@ -87,8 +87,6 @@ public class PrivateChallengeDetail extends AppCompatActivity {
         date.setText("Thử thách bắt đầu từ "+challenge.getDateStart());
 
 
-
-
         adapter = new RankingAdapter(this, challenge.getUserRecords());
         rankingRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         rankingRecyclerview.setAdapter(adapter);

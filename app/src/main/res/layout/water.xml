@@ -14,34 +14,41 @@
         android:layout_marginRight="10dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="horizontal">
+            android:layout_marginRight="10dp">
 
             <Button
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/back_icon"
                 android:textColor="@color/black"
                 android:textSize="17dp"
-                android:drawableLeft="@drawable/back_icon" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0"/>
 
             <Button
                 android:id="@+id/btn200ml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
                 android:backgroundTint="#83A8F4"
+                android:text="+ 200ml"
                 android:textColor="@color/black"
                 android:textSize="17dp"
-                android:text="+ 200ml" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="1"/>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -100,7 +107,9 @@
                             wave:blow_wave_color="#FFFFFF"
                             wave:wave_height="large"
                             wave:wave_hz="fast"
-                            wave:wave_length="large" />
+                            wave:wave_length="large"
+                            tools:ignore="MissingClass" />
+
                     </com.google.android.material.card.MaterialCardView>
 
                 </LinearLayout>

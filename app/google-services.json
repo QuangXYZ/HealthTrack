@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "892530797088",
+    "project_id": "healthtrack-ff70c",
+    "storage_bucket": "healthtrack-ff70c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892530797088:android:ea88ab7381098cbd9baa45",
+        "android_client_info": {
+          "package_name": "com.example.healthtrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqtfKNlAtwrdCNSbTqKgTHq-nObN6XZME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

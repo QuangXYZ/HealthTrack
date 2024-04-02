@@ -53,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_righ);
                 finish();
             }
         });
@@ -93,8 +93,8 @@ public class SignUpActivity extends AppCompatActivity {
                     username.requestFocus();
                     Toast.makeText(getApplicationContext(), "Password chưa đủ 8 kí tự", Toast.LENGTH_SHORT).show();
                 }
-                else if (passwordText.length()<8) {
-                    password.setError("Password chưa đủ 8 kí tự");
+                else if (passwordText.length()<6) {
+                    password.setError("Password chưa đủ 6 kí tự");
                     password.requestFocus();
                     Toast.makeText(getApplicationContext(), "Password chưa đủ 8 kí tự", Toast.LENGTH_SHORT).show();
                 }
