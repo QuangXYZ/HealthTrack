@@ -19,14 +19,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.healthtrack.Controller.ExerciseController;
 import com.example.healthtrack.Controller.SetGoalsController;
 import com.example.healthtrack.Controller.StepController;
+import com.example.healthtrack.Models.Exercise;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.R;
+import com.example.healthtrack.Respone.BaseResponse;
 import com.example.healthtrack.Respone.SetGoalsResponse;
 import com.example.healthtrack.Respone.StepResponse;
 import com.example.healthtrack.Service.StepService;
@@ -35,6 +39,8 @@ import com.example.healthtrack.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Views.Activity.HistoryStepActivity;
 import com.example.healthtrack.Views.Adapters.ExerciseAdapter;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.gson.JsonObject;
@@ -48,7 +54,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView exerciseRecyclerview;
     private ExerciseAdapter adapter;
     private LinearLayout layout;
-    private ArrayList<Integer> exercise;
+    private ArrayList<Exercise> exerciseList;
     private boolean mIsBind;
     private TextView walkingStep, tvStep, tvStepGoals, tvTime, tvTimeGoals, tvCalo, tvCaloGoals, tvKm, tvKmGoals;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -56,12 +62,13 @@ public class HomeFragment extends Fragment {
     private SetGoalsController setGoalsController;
     private ArrayList<Step> mListStep;
     private ArrayList<SetGoals> mListSetGoals;
-
+    private ExerciseController exerciseController;
     private CircularProgressIndicator progressStep;
     private LinearProgressIndicator progressCalo, progressTime, progressKm;
     private int step1, calo, stepGoals, caloGoals, kmGoals, km;
     private int time, timeGoals;
     private StepService mStepService;
+    private ProgressBar progressBar;
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
@@ -104,12 +111,9 @@ public class HomeFragment extends Fragment {
     private void innit(View view) {
         layout = view.findViewById(R.id.layout);
         exerciseRecyclerview = view.findViewById(R.id.exercise_recyclerview);
-        exercise = new ArrayList<>();
-        exercise.add(1);
-        exercise.add(2);
-        exercise.add(3);
-        exercise.add(4);
-        adapter = new ExerciseAdapter((Activity) getContext(), exercise);
+        exerciseList = new ArrayList<>();
+
+        adapter = new ExerciseAdapter((Activity) getContext(), exerciseList);
         exerciseRecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         exerciseRecyclerview.setAdapter(adapter);
         exerciseRecyclerview.setNestedScrollingEnabled(true);
@@ -118,6 +122,7 @@ public class HomeFragment extends Fragment {
         setupService();
         stepController = new StepController(getContext());
         setGoalsController = new SetGoalsController(getContext());
+        exerciseController = new ExerciseController(getContext());
         swipeRefreshLayout = view.findViewById(R.id.course_stored_swipe);
         progressStep = (CircularProgressIndicator) view.findViewById(R.id.circularProgressIndicator_home_step);
         progressCalo = (LinearProgressIndicator) view.findViewById(R.id.linearProgressIndicator_calo_home);
@@ -131,6 +136,9 @@ public class HomeFragment extends Fragment {
         tvCaloGoals = view.findViewById(R.id.calo_golas_home);
         tvKm = view.findViewById(R.id.km_home);
         tvKmGoals = view.findViewById(R.id.km_goals_home);
+        progressBar = view.findViewById(R.id.exercise_progress);
+        Sprite doubleBounce = new ThreeBounce();
+        progressBar.setIndeterminateDrawable(doubleBounce);
         mListStep = new ArrayList<>();
         mListSetGoals = new ArrayList<>();
 
@@ -138,6 +146,21 @@ public class HomeFragment extends Fragment {
 
 //        UpdateStepWorker.updateStepWorker(getContext());
 //        CreateStepWorker.createStepWorker(getContext());
+
+        progressBar.setVisibility(View.VISIBLE);
+        exerciseController.getExercise(getContext(), new ExerciseController.GetExercise() {
+            @Override
+            public void onSuccess(ArrayList<Exercise> exercise) {
+                exerciseList.addAll(exercise);
+                adapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure() {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
     }
 
     void settingUpListeners(){

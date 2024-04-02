@@ -1,5 +1,6 @@
 package com.example.healthtrack.Worker;
 
+import static android.content.ContentValues.TAG;
 import static android.os.Build.VERSION_CODES.S;
 
 import android.app.job.JobParameters;
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.work.Configuration;
 
@@ -17,6 +19,8 @@ import com.example.healthtrack.Request.StepRequest;
 import com.example.healthtrack.Service.StepService;
 import com.example.healthtrack.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.Utils.CommonUtils;
+
+import java.time.LocalDate;
 
 public class CreateStep extends JobService {
 
@@ -51,12 +55,15 @@ public class CreateStep extends JobService {
     private void performScheduledTask(Context context) {
         // Thực hiện nhiệm vụ cần thiết ở đây
 //        stepService.resetStepCount();
+        LocalDate today = LocalDate.now();
+        LocalDate tomorrow = today.plusDays(1);
         CommonUtils.clearStepNumber();
         String idUser = SharedPrefUser.getId(context);
         StepRequest stepRequest = new StepRequest();
         stepRequest.setIdUser(idUser);
         stepRequest.setNumberStep(CommonUtils.getStepNumber());
         stepRequest.setWeight(50);
+        stepRequest.setDate(String.valueOf(tomorrow));
         insertStep(stepRequest);
     }
 
