@@ -18,6 +18,7 @@ import com.example.healthtrack.Controller.StepController;
 import com.example.healthtrack.Request.StepRequest;
 import com.example.healthtrack.Service.StepService;
 import com.example.healthtrack.SharedPreferences.SharedPrefUser;
+import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
 import com.example.healthtrack.Utils.CommonUtils;
 
 import java.time.LocalDate;
@@ -53,17 +54,16 @@ public class CreateStep extends JobService {
     }
 
     private void performScheduledTask(Context context) {
-        // Thực hiện nhiệm vụ cần thiết ở đây
-//        stepService.resetStepCount();
+        int weight = SharedPreferencesUtil.getWeight(context);
         LocalDate today = LocalDate.now();
-        LocalDate tomorrow = today.plusDays(1);
+//        LocalDate tomorrow = today.plusDays(1);
         CommonUtils.clearStepNumber();
         String idUser = SharedPrefUser.getId(context);
         StepRequest stepRequest = new StepRequest();
         stepRequest.setIdUser(idUser);
         stepRequest.setNumberStep(CommonUtils.getStepNumber());
-        stepRequest.setWeight(50);
-        stepRequest.setDate(String.valueOf(tomorrow));
+        stepRequest.setWeight(weight);
+        stepRequest.setDate(String.valueOf(today));
         insertStep(stepRequest);
     }
 

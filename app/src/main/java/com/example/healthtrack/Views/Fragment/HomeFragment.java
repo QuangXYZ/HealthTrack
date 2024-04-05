@@ -1,27 +1,38 @@
 package com.example.healthtrack.Views.Fragment;
 
+import static android.content.ContentValues.TAG;
+import static android.content.Context.MODE_PRIVATE;
+
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.os.IBinder;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.healthtrack.Controller.ExerciseController;
 import com.example.healthtrack.Controller.SetGoalsController;
@@ -30,21 +41,25 @@ import com.example.healthtrack.Models.Exercise;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Respone.BaseResponse;
+import com.example.healthtrack.Request.StepRequest;
 import com.example.healthtrack.Respone.SetGoalsResponse;
 import com.example.healthtrack.Respone.StepResponse;
 import com.example.healthtrack.Service.StepService;
 import com.example.healthtrack.Service.UpdateUiCallBack;
 import com.example.healthtrack.SharedPreferences.SharedPrefUser;
+import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Views.Activity.HistoryStepActivity;
+import com.example.healthtrack.Views.Activity.SetGoalsActivity;
 import com.example.healthtrack.Views.Adapters.ExerciseAdapter;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.gson.JsonObject;
+import com.shawnlin.numberpicker.NumberPicker;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
@@ -69,6 +84,7 @@ public class HomeFragment extends Fragment {
     private int time, timeGoals;
     private StepService mStepService;
     private ProgressBar progressBar;
+    private SharedPreferences sharedPreferences;
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
@@ -96,7 +112,11 @@ public class HomeFragment extends Fragment {
         animateTextView(Integer.valueOf(walkingStep.getText().toString()), currentCounts, walkingStep);
     }
 
-    // Phương thức để thiết lập đối tượng StepService từ MainActivity hoặc từ bất kỳ nơi nào cần truy cập
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sharedPreferences = getActivity().getSharedPreferences("WeightPrefs", MODE_PRIVATE);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,6 +124,14 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         innit(view);
+
+        if (!sharedPreferences.getBoolean("ShowDialog", false)) {
+            dialogInputWeight();
+
+            // Cập nhật cờ
+            sharedPreferences.edit().putBoolean("ShowDialog", true).apply();
+        }
+
         settingUpListeners();
         return view;
     }
@@ -143,7 +171,6 @@ public class HomeFragment extends Fragment {
         mListSetGoals = new ArrayList<>();
 
 
-
 //        UpdateStepWorker.updateStepWorker(getContext());
 //        CreateStepWorker.createStepWorker(getContext());
 
@@ -163,7 +190,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    void settingUpListeners(){
+    void settingUpListeners() {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,25 +199,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        walkingStep.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                CommonUtils.clearStepNumber();
-//                mStepService.resetStepCount();
-//                Toast.makeText(getContext(), "click", Toast.LENGTH_SHORT).show();
-//                Log.d(TAG, "NumberStep: " + CommonUtils.getStepNumber());
-//            }
-//        });
-
         class MyAsyncTask extends AsyncTask<Void, Void, Void> {
 
             @Override
             protected Void doInBackground(Void... params) {
                 // Thực hiện tác vụ cần đợi
-//                String step = String.valueOf(CommonUtils.getStepNumber());
+                int weight = SharedPreferencesUtil.getWeight(getContext());
+                Log.d(TAG, "Cân nặng SharePre: " + weight);
                 JsonObject newData = new JsonObject();
                 newData.addProperty("numberStep", CommonUtils.getStepNumber());
-                newData.addProperty("weight", 50);
+                newData.addProperty("weight", weight);
                 JsonObject requestBody = new JsonObject();
                 requestBody.add("newData", newData);
                 updateStep(requestBody);
@@ -217,10 +235,11 @@ public class HomeFragment extends Fragment {
                     @Override
                     protected Void doInBackground(Void... params) {
                         // Thực hiện tác vụ cần đợi
+                        int weight = SharedPreferencesUtil.getWeight(getContext());
                         String step = String.valueOf(CommonUtils.getStepNumber());
                         JsonObject newData = new JsonObject();
                         newData.addProperty("numberStep", step);
-                        newData.addProperty("weight", 50);
+                        newData.addProperty("weight", weight);
                         JsonObject requestBody = new JsonObject();
                         requestBody.add("newData", newData);
                         updateStep(requestBody);
@@ -364,5 +383,78 @@ public class HomeFragment extends Fragment {
         if (km != 0 && kmGoals != 0) {
             progressDistance.setProgress(Integer.valueOf((int) Math.round(km * 100 / kmGoals)));
         }
+    }
+
+    private void dialogInputWeight() {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.layout_dialog_weight);
+
+        Window window = dialog.getWindow();
+        if (window == null) {
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+
+        NumberPicker numberPicker = (NumberPicker) dialog.findViewById(R.id.number_picker_weight);
+
+        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                Log.d(TAG, "Cân nặng: " + newVal);
+                SharedPreferencesUtil.saveWeight(getContext(), newVal);
+
+            }
+        });
+
+        Button btnNext = dialog.findViewById(R.id.btn_next_dialog);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+
+                //insert Step
+                int weight = SharedPreferencesUtil.getWeight(getContext());
+                String idUser = SharedPrefUser.getId(getContext());
+                LocalDate today = LocalDate.now();
+                CommonUtils.clearStepNumber();
+                StepRequest stepRequest = new StepRequest();
+                stepRequest.setIdUser(idUser);
+                stepRequest.setNumberStep(CommonUtils.getStepNumber());
+                stepRequest.setWeight(weight);
+                stepRequest.setDate(String.valueOf(today));
+                insertStep(stepRequest);
+
+                //insert set goals
+                SetGoals setGoals = new SetGoals();
+                setGoals.setIdUser(idUser);
+                setGoals.setDistanceGoals(10);
+                setGoals.setCaloGoals(100);
+                setGoals.setTimeGoals("50");
+                setGoals.setNumberStepGoals(1000);
+                setGoalsController.insertSetGoals(setGoals);
+            }
+        });
+        dialog.show();
+    }
+
+    private void insertStep(StepRequest stepRequest) {
+        stepController.insertStep(getContext(), stepRequest, new StepController.InsertCallback() {
+
+            @Override
+            public void onSuccess(StepRequest stepRequest) {
+
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
     }
 }

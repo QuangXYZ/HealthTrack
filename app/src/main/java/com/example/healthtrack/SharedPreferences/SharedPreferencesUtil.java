@@ -7,6 +7,9 @@ public class SharedPreferencesUtil {
     private static final String PREF_NAME = "YourAppPrefs";
     private static final String TOKEN_KEY = "token";
 
+    private static final String PREF_Weight = "WeightAppPrefs";
+    private static final String WEIGHT_KEY = "weight";
+
     // Lưu token vào SharedPreferences
     public static void saveToken(Context context, String token) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -26,6 +29,25 @@ public class SharedPreferencesUtil {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(TOKEN_KEY);
+        editor.apply();
+    }
+
+    public static void saveWeight(Context context, int weight) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_Weight, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(WEIGHT_KEY, weight);
+        editor.apply();
+    }
+
+    public static int getWeight(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_Weight, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(WEIGHT_KEY, 0);
+    }
+
+    public static void clearWeight(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_Weight, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(WEIGHT_KEY);
         editor.apply();
     }
 }
