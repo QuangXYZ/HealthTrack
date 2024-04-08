@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.healthtrack.Api.ApiService;
+import com.example.healthtrack.Network.Api.ApiService;
 import com.example.healthtrack.Models.User;
-import com.example.healthtrack.Respone.BaseResponse;
-import com.example.healthtrack.Respone.LoginBodyResponse;
-import com.example.healthtrack.SharedPreferences.SharedPrefUser;
-import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
-import com.example.healthtrack.Utils.CommonUtils;
+import com.example.healthtrack.Network.Respone.BaseResponse;
+import com.example.healthtrack.Network.Respone.LoginBodyResponse;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPreferencesUtil;
 import com.example.healthtrack.Utils.Constants;
 import com.example.healthtrack.Utils.DataLocalManager;
 import com.example.healthtrack.Views.MainHomeActivity;

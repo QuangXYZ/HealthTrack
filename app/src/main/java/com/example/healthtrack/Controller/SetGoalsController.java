@@ -2,18 +2,17 @@ package com.example.healthtrack.Controller;
 
 import android.content.Context;
 
-import com.example.healthtrack.Api.ApiService;
-import com.example.healthtrack.Api.ApiUtils;
+import com.example.healthtrack.Network.Api.ApiService;
+import com.example.healthtrack.Network.Api.ApiUtils;
 import com.example.healthtrack.Models.SetGoals;
-import com.example.healthtrack.Respone.SetGoalsResponse;
-import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
+import com.example.healthtrack.Network.Respone.SetGoalsResponse;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPreferencesUtil;
 import com.google.gson.JsonObject;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SetGoalsController {

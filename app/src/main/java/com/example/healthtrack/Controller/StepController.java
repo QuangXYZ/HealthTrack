@@ -5,16 +5,13 @@ import static android.content.ContentValues.TAG;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.healthtrack.Api.ApiService;
-import com.example.healthtrack.Api.ApiUtils;
-import com.example.healthtrack.Models.SetGoals;
+import com.example.healthtrack.Network.Api.ApiService;
+import com.example.healthtrack.Network.Api.ApiUtils;
 import com.example.healthtrack.Models.Step;
-import com.example.healthtrack.Request.StepRequest;
-import com.example.healthtrack.Respone.SetGoalsResponse;
-import com.example.healthtrack.Respone.StepResponse;
-import com.example.healthtrack.SharedPreferences.SharedPrefUser;
-import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
-import com.example.healthtrack.Views.Activity.SetGoalsActivity;
+import com.example.healthtrack.Network.Request.StepRequest;
+import com.example.healthtrack.Network.Respone.StepResponse;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPreferencesUtil;
 import com.google.gson.JsonObject;
 
 import java.time.LocalDate;
@@ -23,7 +20,6 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StepController {

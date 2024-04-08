@@ -1,4 +1,4 @@
-package com.example.healthtrack.SharedPreferences;
+package com.example.healthtrack.Utils.SharedPreferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;

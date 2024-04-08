@@ -1,4 +1,4 @@
-package com.example.healthtrack.Request;
+package com.example.healthtrack.Network.Request;
 
 public class StepRequest {
     private String idUser;

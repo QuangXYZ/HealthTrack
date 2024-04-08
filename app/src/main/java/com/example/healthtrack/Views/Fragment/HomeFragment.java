@@ -27,11 +27,12 @@ import com.example.healthtrack.Controller.StepController;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Respone.SetGoalsResponse;
-import com.example.healthtrack.Respone.StepResponse;
+import com.example.healthtrack.Network.Respone.SetGoalsResponse;
+import com.example.healthtrack.Network.Respone.StepResponse;
 import com.example.healthtrack.Service.StepService;
 import com.example.healthtrack.Service.UpdateUiCallBack;
-import com.example.healthtrack.SharedPreferences.SharedPrefUser;
+import com.example.healthtrack.Service.Worker.UpdateStepWorker;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Views.Activity.HistoryStepActivity;
 import com.example.healthtrack.Views.Adapters.ExerciseAdapter;
@@ -136,7 +137,7 @@ public class HomeFragment extends Fragment {
 
 
 
-//        UpdateStepWorker.updateStepWorker(getContext());
+        UpdateStepWorker.updateStepWorker(getContext());
 //        CreateStepWorker.createStepWorker(getContext());
     }
 

@@ -1,6 +1,4 @@
-package com.example.healthtrack.Worker;
-
-import static android.os.Build.VERSION_CODES.S;
+package com.example.healthtrack.Service.Worker;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
@@ -10,12 +8,10 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import androidx.work.Configuration;
-
 import com.example.healthtrack.Controller.StepController;
-import com.example.healthtrack.Request.StepRequest;
+import com.example.healthtrack.Network.Request.StepRequest;
 import com.example.healthtrack.Service.StepService;
-import com.example.healthtrack.SharedPreferences.SharedPrefUser;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.Utils.CommonUtils;
 
 public class CreateStep extends JobService {
