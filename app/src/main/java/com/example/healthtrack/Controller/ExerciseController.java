@@ -2,15 +2,12 @@ package com.example.healthtrack.Controller;
 
 import android.content.Context;
 import android.util.Log;
-
-import com.example.healthtrack.Api.ApiService;
-import com.example.healthtrack.Api.ApiUtils;
 import com.example.healthtrack.Models.Exercise;
-import com.example.healthtrack.Respone.BaseListResponse;
-import com.example.healthtrack.Respone.BaseResponse;
-import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
-
 import java.util.ArrayList;
+import com.example.healthtrack.Network.Api.*;
+import com.example.healthtrack.Network.Respone.BaseListResponse;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPreferencesUtil;
+
 import java.util.List;
 
 import retrofit2.Call;

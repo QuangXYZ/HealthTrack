@@ -20,14 +20,11 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
 
-            <Button
+            <ImageView
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:drawableLeft="@drawable/back_icon"
-                android:textColor="@color/black"
-                android:textSize="17dp"
+                android:src="@drawable/back_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +32,7 @@
                 app:layout_constraintHorizontal_bias="0"/>
 
             <Button
-                android:id="@+id/btn200ml"
+                android:id="@+id/Amount_drinking_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#83A8F4"
@@ -62,17 +59,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+
+                android:padding="10dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/ml"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="\nLượng Nước Uống Trong Ngày: 1200ml \n"
+                    android:text="Lượng Nước Uống Trong Ngày:"
                     android:textStyle="bold"
-                    android:textSize="20dp"
+                    android:textSize="16sp"
+                    android:paddingStart="10dp"
+                    android:textColor="#1F65F3"/>
+                <TextView
+                    android:id="@+id/amount_drinking_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 /2000ml"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:padding="10dp"
                     android:textColor="#1F65F3"/>
 
 
@@ -81,38 +87,34 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="2000ml\n\n\n1600ml\n\n\n1200ml\n\n\n  800ml\n\n\n  600ml\n\n\n      0ml"
-                        android:textColor="#1F65F3"/>
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        wave:strokeWidth="1dp"
-                        wave:strokeColor="@color/blue"
-                        android:layout_gravity="right"
-                        >
-                        <com.john.waveview.WaveView
-                            android:layout_marginTop="100dp"
-                            android:id="@+id/wave_view"
-                            android:layout_width="250dp"
-                            android:layout_height="170dp"
-                            android:background="#FFFFFF"
-                            wave:above_wave_color="#0019FF"
-                            wave:blow_wave_color="#FFFFFF"
-                            wave:wave_height="large"
-                            wave:wave_hz="fast"
-                            wave:wave_length="large"
-                            tools:ignore="MissingClass" />
 
-                    </com.google.android.material.card.MaterialCardView>
+                        <cjh.WaveProgressBarlibrary.WaveProgressBar
+                            android:id="@+id/waveProgressbar"
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
+                            app:arc_color="#F4F1FA"
+                            app:cavans_bg="@color/blue"
+                            app:progress="0"
+                            app:wave_duration="3000"
+                            app:shape="circle"
+                            android:gravity="center"
+                            app:text_size="20sp" />
 
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/amount_drinking_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bạn chưa ưống đủ nước ngày hôm nay"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/red"/>
 
             </LinearLayout>
 
@@ -137,9 +139,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="\nLượng Nước Đã Uống Trong Tuần Trước\n"
-                    android:textSize="20dp"
+                    android:text="Lượng nước đã uống trong tuần"
+                    android:textSize="16sp"
                     android:textStyle="bold"
+                    android:padding="20dp"
                     android:textColor="#1F65F3"/>
 
                 <com.github.mikephil.charting.charts.BarChart
