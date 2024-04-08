@@ -1,17 +1,15 @@
 package com.example.healthtrack.Controller;
 
-import com.example.healthtrack.Api.ApiService;
-import com.example.healthtrack.Api.ApiUtils;
+import com.example.healthtrack.Network.Api.ApiService;
+import com.example.healthtrack.Network.Api.ApiUtils;
 import com.example.healthtrack.Models.User;
-import com.example.healthtrack.Request.FriendRequest;
-import com.example.healthtrack.Respone.BaseListResponse;
-import com.example.healthtrack.Respone.BaseResponse;
+import com.example.healthtrack.Network.Request.FriendRequest;
+import com.example.healthtrack.Network.Respone.BaseListResponse;
+import com.example.healthtrack.Network.Respone.BaseResponse;
 import com.example.healthtrack.Utils.DataLocalManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.ArrayList;
 import java.util.List;

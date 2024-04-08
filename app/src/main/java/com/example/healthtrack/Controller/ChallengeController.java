@@ -2,24 +2,20 @@ package com.example.healthtrack.Controller;
 
 import android.util.Log;
 
-import com.example.healthtrack.Api.ApiService;
-import com.example.healthtrack.Api.ApiUtils;
+import com.example.healthtrack.Network.Api.ApiService;
+import com.example.healthtrack.Network.Api.ApiUtils;
 import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.ChallengeMember;
-import com.example.healthtrack.Models.User;
-import com.example.healthtrack.Request.JoinChallengeRequest;
-import com.example.healthtrack.Request.LeaveChallengeRequest;
-import com.example.healthtrack.Respone.BaseListResponse;
-import com.example.healthtrack.Respone.BaseResponse;
-import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
+import com.example.healthtrack.Network.Request.JoinChallengeRequest;
+import com.example.healthtrack.Network.Request.LeaveChallengeRequest;
+import com.example.healthtrack.Network.Respone.BaseListResponse;
+import com.example.healthtrack.Network.Respone.BaseResponse;
 import com.example.healthtrack.Utils.DataLocalManager;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

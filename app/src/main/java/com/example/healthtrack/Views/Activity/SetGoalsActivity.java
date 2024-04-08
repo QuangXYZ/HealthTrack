@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -27,11 +26,10 @@ import android.widget.Toast;
 import com.example.healthtrack.Controller.SetGoalsController;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Respone.SetGoalsResponse;
-import com.example.healthtrack.SharedPreferences.SharedPrefUser;
+import com.example.healthtrack.Network.Respone.SetGoalsResponse;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import okhttp3.ResponseBody;
 

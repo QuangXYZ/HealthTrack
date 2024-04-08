@@ -41,13 +41,13 @@ import com.example.healthtrack.Models.Exercise;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Request.StepRequest;
-import com.example.healthtrack.Respone.SetGoalsResponse;
-import com.example.healthtrack.Respone.StepResponse;
+
+import com.example.healthtrack.Network.Respone.SetGoalsResponse;
+import com.example.healthtrack.Network.Respone.StepResponse;
 import com.example.healthtrack.Service.StepService;
 import com.example.healthtrack.Service.UpdateUiCallBack;
-import com.example.healthtrack.SharedPreferences.SharedPrefUser;
-import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
+import com.example.healthtrack.Service.Worker.UpdateStepWorker;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Views.Activity.HistoryStepActivity;
 import com.example.healthtrack.Views.Activity.SetGoalsActivity;
@@ -171,7 +171,10 @@ public class HomeFragment extends Fragment {
         mListSetGoals = new ArrayList<>();
 
 
-//        UpdateStepWorker.updateStepWorker(getContext());
+
+
+        UpdateStepWorker.updateStepWorker(getContext());
+
 //        CreateStepWorker.createStepWorker(getContext());
 
         progressBar.setVisibility(View.VISIBLE);
