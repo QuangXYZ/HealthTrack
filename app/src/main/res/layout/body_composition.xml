@@ -16,19 +16,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+           android:padding="10dp"
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
                 android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"
-                android:textSize="17dp"
-                android:drawableLeft="@drawable/back_icon" />
+                android:src="@drawable/back_icon" />
 
 
 
@@ -83,7 +81,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     style="?attr/textInputFilledStyle"
-                    android:id="@+id/body_composition_height"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:boxBackgroundColor="#F4F1FA"
@@ -91,6 +88,8 @@
                     android:layout_margin="5dp"
                     android:hint="Chiều cao">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/body_composition_height"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
@@ -141,7 +140,6 @@
                 </LinearLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     style="?attr/textInputFilledStyle"
-                    android:id="@+id/body_composition_weight"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:boxBackgroundColor="#F4F1FA"
@@ -150,6 +148,8 @@
                     android:hint="Cân nặng">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/body_composition_weight"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
@@ -360,9 +360,11 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/body_composition_ideal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="\n77.88 - 85.47 KG\n"
+                android:padding="10dp"
+                android:text="100kg"
                 android:gravity="center"
                 android:textSize="18sp" />
 

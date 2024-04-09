@@ -1,5 +1,9 @@
 package com.example.healthtrack.Views.Fragment;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,19 +27,20 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
-public class HeartRate extends Fragment {
+public class HeartRate extends Fragment{
+
+    String heartRateValue;
+    Button back;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.heart_rate, container, false);
-        Button bt = view.findViewById(R.id.btnBack);
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment();
-            }
-        });
+        init(view);
+        settingUpListeners();
+
+
+
 
         LineChart lineChart = view.findViewById(R.id.line);
 
@@ -68,6 +73,19 @@ public class HeartRate extends Fragment {
 
         return view;
     }
+    void init(View view){
+         back = view.findViewById(R.id.btnBack);
+
+
+    }
+    void settingUpListeners(){
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment();
+            }
+        });
+    }
 
     public void replaceFragment() {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -75,5 +93,7 @@ public class HeartRate extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
 }
 

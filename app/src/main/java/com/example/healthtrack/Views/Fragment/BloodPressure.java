@@ -24,65 +24,34 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 
 public class BloodPressure extends Fragment {
+    Button back;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.blood_pressure, container, false);
-        Button bt = view.findViewById(R.id.btnBack);
-        bt.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
+
+        // Lắng nghe sự kiện khi giá trị của SeekBar thay đổi
+
+
+        return view;
+    }
+    void init(View view) {
+
+        back = view.findViewById(R.id.btnBack);
+    }
+    void settingUpListeners(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 replaceFragment();
             }
         });
-
-        TextView textView = view.findViewById(R.id.tvv);
-        SeekBar seekBar = view.findViewById(R.id.seekBar);
-
-        // Lắng nghe sự kiện khi giá trị của SeekBar thay đổi
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Cập nhật giá trị của TextView khi giá trị của SeekBar thay đổi
-                textView.setText(String.valueOf(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // Không cần xử lý ở đây
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // Không cần xử lý ở đây
-            }
-        });
-
-        TextView textView2 = view.findViewById(R.id.tvv2);
-        SeekBar seekBar2 = view.findViewById(R.id.seekBar2);
-
-        // Lắng nghe sự kiện khi giá trị của SeekBar thay đổi
-        seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Cập nhật giá trị của TextView khi giá trị của SeekBar thay đổi
-                textView2.setText(String.valueOf(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // Không cần xử lý ở đây
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // Không cần xử lý ở đây
-            }
-        });
-
-        return view;
     }
-
     public void replaceFragment() {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame, new HealthFragment());

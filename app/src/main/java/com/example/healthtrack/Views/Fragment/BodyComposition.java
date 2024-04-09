@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,10 +27,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 public class BodyComposition extends Fragment {
     ImageView man, woman;
-    Button back;
+    ImageView back;
     TextInputEditText height, weight;
     CircularProgressButton button;
-    TextView bmi;
+    TextView bmi,ideal;
     boolean gender = true;
     TextView bmi_1, bmi_2, bmi_3, bmi_4, bmi_5;
     @Override
@@ -53,6 +54,7 @@ public class BodyComposition extends Fragment {
         bmi_3 = view.findViewById(R.id.body_composition_bmi_3);
         bmi_4 = view.findViewById(R.id.body_composition_bmi_4);
         bmi_5 = view.findViewById(R.id.body_composition_bmi_5);
+        ideal = view.findViewById(R.id.body_composition_ideal);
 
 
 
@@ -68,6 +70,9 @@ public class BodyComposition extends Fragment {
                 float w = Float.parseFloat(weight.getText().toString());
                 float h = Float.parseFloat(height.getText().toString());
                 float bmi_float = w / (h * h);
+                float d = h*9/10;
+
+                ideal.setText(d+" Kg");
                 bmi.setText(String.valueOf(bmi_float));
                 if (bmi_float < 18.5) {
                     bmi_1.setTextColor(getResources().getColor(R.color.orange));
@@ -107,6 +112,8 @@ public class BodyComposition extends Fragment {
                     bmi_5.setTextColor(getResources().getColor(R.color.orange));
 
                 }
+                button.setProgress(0);
+
 
             }
         });

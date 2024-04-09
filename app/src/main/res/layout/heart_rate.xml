@@ -41,15 +41,15 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnLuu2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="#FFFFFF"
-            android:textSize="17dp"
-            android:text="Chạm để bắt đầu"
-            android:textColor="#F3673B"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnLuu2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:backgroundTint="#FFFFFF"-->
+<!--            android:textSize="17dp"-->
+<!--            android:text="Chạm để bắt đầu"-->
+<!--            android:textColor="#F3673B"/>-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -71,7 +71,8 @@
             app:trackCornerRadius="8dp"
             app:trackThickness="8dp" />
 
-        <TextView
+        <EditText
+            android:id="@+id/heart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="71 bpm"
