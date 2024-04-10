@@ -39,8 +39,9 @@ public class EditProfileActivity extends AppCompatActivity {
     int PICK_IMAGE_REQUEST = 111;
     Uri filePath = null;
     UserController userController;
-    User user ;
+    User user;
     ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,22 +64,19 @@ public class EditProfileActivity extends AppCompatActivity {
         name.setText(user.getName());
         email.setText(user.getEmail());
         dateOfBirth.setText(user.getDateOfBirth());
-        if (user.getProfilePicture()!=null)
+        if (user.getProfilePicture() != null)
             Glide.with(this).load(user.getProfilePicture()).into(imgUser);
-        pd=new ProgressDialog(this);
-
+        pd = new ProgressDialog(this);
 
 
         materialDatePicker = MaterialDatePicker.Builder.datePicker()
-                        .setTitleText("Select date")
-                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                        .build();
-
-
-
+                .setTitleText("Select date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build();
 
 
     }
+
     void settingUpListener() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +95,8 @@ public class EditProfileActivity extends AppCompatActivity {
         dateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!materialDatePicker.isAdded()) materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
+                if (!materialDatePicker.isAdded())
+                    materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
             }
         });
 
@@ -115,13 +114,13 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (name.getText().toString().length()<5) {
+                if (name.getText().toString().length() < 5) {
                     name.setError("Tên ít nhất 5 kí tự");
                     return;
                 }
-                pd.show(EditProfileActivity.this,"Please Wait..","Đang cập nhật");
+                pd.show(EditProfileActivity.this, "Please Wait..", "Đang cập nhật");
 
-                if (filePath!=null) {
+                if (filePath != null) {
                     Upload upload = new Upload();
                     upload.UploadImage(filePath, new Upload.UploadCallback() {
                         @Override
@@ -136,8 +135,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                         }
                     });
-                }
-                else updateUser();
+                } else updateUser();
 
             }
         });
@@ -150,6 +148,7 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -164,10 +163,11 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         }
     }
+
     void updateUser() {
         user.setName(name.getText().toString());
-        if(!dateOfBirth.getText().toString().isEmpty()) {
-            String dob= dateOfBirth.getText().toString().split("-")[0]+"-"+dateOfBirth.getText().toString().split("-")[1]+"-"+dateOfBirth.getText().toString().split("-")[2];
+        if (!dateOfBirth.getText().toString().isEmpty()) {
+            String dob = dateOfBirth.getText().toString().split("-")[0] + "-" + dateOfBirth.getText().toString().split("-")[1] + "-" + dateOfBirth.getText().toString().split("-")[2];
             user.setDateOfBirth(dob);
         }
 
@@ -182,7 +182,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         .setMessage(message)
                         .setPositiveButton("OK", (dialog, which) -> {
                             finish();
-                        } ).show();
+                        }).show();
             }
 
             @Override
@@ -193,7 +193,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         .setMessage(error)
                         .setPositiveButton("OK", (dialog, which) -> {
 
-                        } ).show();
+                        }).show();
             }
         });
     }

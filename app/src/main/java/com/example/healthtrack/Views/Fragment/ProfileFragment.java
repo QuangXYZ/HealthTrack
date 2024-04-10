@@ -58,10 +58,11 @@ public class ProfileFragment extends Fragment {
         name.setText(user.getName());
         email.setText(user.getEmail());
         gender.setText(user.getGender());
-        if (user.getProfilePicture()!=null)
+        if (user.getProfilePicture() != null)
             Glide.with(this).load(user.getProfilePicture()).into(imageView);
         dateOfBirth.setText(user.getDateOfBirth());
     }
+
     void settingUpListener() {
         friendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +95,9 @@ public class ProfileFragment extends Fragment {
                             startActivity(intent);
                             getActivity().overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
                             getActivity().finish();
-                        } ).setNegativeButton("Hủy", (dialog, which) -> {}).show();
-
+                        }).setNegativeButton("Hủy", (dialog, which) -> {
+                        }).show();
             }
         });
     }
-
-
 }

@@ -26,6 +26,7 @@ public class ProfileQRActivity extends AppCompatActivity {
     MaterialToolbar toolbar;
     TextView name;
     CircleImageView img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class ProfileQRActivity extends AppCompatActivity {
         init();
         settingUpListener();
     }
+
     void init() {
         qrcode = findViewById(R.id.profile_my_qr);
         toolbar = findViewById(R.id.profile_qr_toolbar);
@@ -42,14 +44,14 @@ public class ProfileQRActivity extends AppCompatActivity {
         String userId = DataLocalManager.getUser().get_id();
 
         name.setText(DataLocalManager.getUser().getName());
-        if (DataLocalManager.getUser().getProfilePicture()!=null)
+        if (DataLocalManager.getUser().getProfilePicture() != null)
             Glide.with(this).load(DataLocalManager.getUser().getProfilePicture()).into(img);
 
         //initializing MultiFormatWriter for QR code
         MultiFormatWriter mWriter = new MultiFormatWriter();
         try {
             //BitMatrix class to encode entered text and set Width & Height
-            BitMatrix mMatrix = mWriter.encode(userId, BarcodeFormat.QR_CODE, 400,400);
+            BitMatrix mMatrix = mWriter.encode(userId, BarcodeFormat.QR_CODE, 400, 400);
             BarcodeEncoder mEncoder = new BarcodeEncoder();
             Bitmap mBitmap = mEncoder.createBitmap(mMatrix);//creating bitmap of code
             qrcode.setImageBitmap(mBitmap);//Setting generated QR code to imageView
@@ -57,6 +59,7 @@ public class ProfileQRActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     void settingUpListener() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +68,4 @@ public class ProfileQRActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
