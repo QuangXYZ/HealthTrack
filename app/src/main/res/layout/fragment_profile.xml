@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:paddingTop="20dp">
 
-
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +37,6 @@
                     android:paddingEnd="10dp"
                     android:paddingBottom="10dp">
                     >
-
 
                     <TextView
                         android:id="@+id/fragment_profile_name"
@@ -163,7 +161,6 @@
                 app:civ_border_width="5dp" />
         </RelativeLayout>
 
-
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -188,14 +185,13 @@
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -219,13 +215,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-
                 <LinearLayout
                     android:id="@+id/profile_fragment_logout_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -238,21 +233,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:text="Log out"
                         android:textColor="@color/red"
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
-
             </LinearLayout>
-
 
         </com.google.android.material.card.MaterialCardView>
 
-
     </LinearLayout>
-
 
 </androidx.core.widget.NestedScrollView>

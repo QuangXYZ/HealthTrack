@@ -41,13 +41,14 @@ public class FriendActivity extends AppCompatActivity {
     ImageView qrBtn;
     MaterialToolbar toolbar;
     RecyclerView friendRequestRV, friendMyRequestRV, friendListRV;
-    FriendsAdapter friendAdapter,myFriendInviteAdapter;
+    FriendsAdapter friendAdapter, myFriendInviteAdapter;
     FriendInviteAdapter friendInviteAdapter;
     LinearLayout requestEmpty, myRequestEmpty, friendEmpty;
 
     List<User> friendsList, friendRequestList, myFriendRequestList;
 
     FriendController friendController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,7 @@ public class FriendActivity extends AppCompatActivity {
         init();
         settingUpListeners();
     }
+
     void init() {
         qrBtn = findViewById(R.id.friend_qr_btn);
         friendListRV = findViewById(R.id.friend_list_friend);
@@ -142,8 +144,8 @@ public class FriendActivity extends AppCompatActivity {
         });
 
 
-
     }
+
     void settingUpListeners() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +169,7 @@ public class FriendActivity extends AppCompatActivity {
         });
 
     }
+
     private void initQRCodeScanner() {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
@@ -188,13 +191,14 @@ public class FriendActivity extends AppCompatActivity {
             }
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (scanningResult != null) {
-            String scanContent = null,scanFormat = null;
+            String scanContent = null, scanFormat = null;
             if (scanningResult.getContents() != null) {
                 scanContent = scanningResult.getContents().toString();
                 scanFormat = scanningResult.getFormatName().toString();
@@ -207,8 +211,4 @@ public class FriendActivity extends AppCompatActivity {
             Toast.makeText(FriendActivity.this, "Nothing scanned", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
 }
