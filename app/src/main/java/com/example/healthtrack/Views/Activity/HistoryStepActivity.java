@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.healthtrack.Controller.SetGoalsController;
 import com.example.healthtrack.Controller.StepController;
@@ -33,14 +34,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class HistoryStepActivity extends AppCompatActivity {
-    ImageView settingImg;
+    ImageView settingImg, toolbar;
     private StepController stepController;
     private SetGoalsController setGoalsController;
     private ArrayList<Step> mListStep;
     private ArrayList<SetGoals> mListSetGoals;
     private int step1, calo, stepGoals, caloGoals, kmGoals, km;
     private int time, timeGoals;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class HistoryStepActivity extends AppCompatActivity {
 
     private void init() {
         settingImg = findViewById(R.id.setting);
-
+        toolbar = findViewById(R.id.toolbar_history);
         stepController = new StepController(this);
         setGoalsController = new SetGoalsController(this);
         mListStep = new ArrayList<>();
@@ -67,6 +67,13 @@ public class HistoryStepActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HistoryStepActivity.this, SetGoalsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

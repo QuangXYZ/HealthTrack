@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.healthtrack.Models.Challenge;
@@ -24,12 +26,14 @@ public class ExerciseActivity extends AppCompatActivity {
     private SmallExerciseAdapter adapter;
     private RecyclerView recyclerView;
     private TextView titleAppbar;
+    private ImageView imgGoBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
 
         init();
+        settingUpListeners();
     }
 
     void init(){
@@ -48,12 +52,20 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         }
 
+        imgGoBack = findViewById(R.id.toolbar_exercise);
         recyclerView = findViewById(R.id.recyclerview_list_small_exercise);
         adapter = new SmallExerciseAdapter(this, smallExercisesList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(true);
+    }
 
-
+    private void settingUpListeners() {
+        imgGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

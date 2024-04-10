@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.google.gson.JsonObject;
@@ -35,7 +36,8 @@ import okhttp3.ResponseBody;
 
 public class SetGoalsActivity extends AppCompatActivity {
 
-    LinearLayout layoutStep, layoutCalo, layoutTime, layoutKm;
+    private LinearLayout layoutStep, layoutCalo, layoutTime, layoutKm;
+    private ImageView imgGoBack;
 
     private TextView tvNumberStepGoals, tvCaloGoals, tvDistanceGoals, tvTimeGoals;
     private SetGoalsController setGoalsController;
@@ -65,7 +67,7 @@ public class SetGoalsActivity extends AppCompatActivity {
         tvCaloGoals = findViewById(R.id.tv_calo_goals);
         tvDistanceGoals = findViewById(R.id.tv_distance_goals);
         tvTimeGoals = findViewById(R.id.time_goals);
-
+        imgGoBack = findViewById(R.id.toolbar_set_goal);
         setGoalsController = new SetGoalsController(this);
         mListSetGoals = new ArrayList<>();
 
@@ -97,6 +99,13 @@ public class SetGoalsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setDialogKm(Gravity.CENTER);
+            }
+        });
+
+        imgGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

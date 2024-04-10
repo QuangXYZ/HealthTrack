@@ -40,6 +40,7 @@ import com.example.healthtrack.Controller.StepController;
 import com.example.healthtrack.Models.Exercise;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
+import com.example.healthtrack.Network.Request.StepRequest;
 import com.example.healthtrack.R;
 
 import com.example.healthtrack.Network.Respone.SetGoalsResponse;
@@ -49,6 +50,7 @@ import com.example.healthtrack.Service.UpdateUiCallBack;
 import com.example.healthtrack.Service.Worker.UpdateStepWorker;
 import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.Utils.CommonUtils;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPreferencesUtil;
 import com.example.healthtrack.Views.Activity.HistoryStepActivity;
 import com.example.healthtrack.Views.Activity.SetGoalsActivity;
 import com.example.healthtrack.Views.Adapters.ExerciseAdapter;
