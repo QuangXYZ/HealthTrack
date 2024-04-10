@@ -1,4 +1,4 @@
-package com.example.healthtrack.Request;
+package com.example.healthtrack.Network.Request;
 
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Utils.DataLocalManager;

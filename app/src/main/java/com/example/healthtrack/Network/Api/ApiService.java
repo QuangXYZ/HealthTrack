@@ -1,18 +1,19 @@
-package com.example.healthtrack.Api;
+package com.example.healthtrack.Network.Api;
 
 import com.example.healthtrack.Models.Challenge;
+import com.example.healthtrack.Models.Exercise;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.Models.User;
-import com.example.healthtrack.Request.FriendRequest;
-import com.example.healthtrack.Request.JoinChallengeRequest;
-import com.example.healthtrack.Request.StepRequest;
-import com.example.healthtrack.Request.LeaveChallengeRequest;
-import com.example.healthtrack.Respone.BaseListResponse;
-import com.example.healthtrack.Respone.BaseResponse;
-import com.example.healthtrack.Respone.LoginBodyResponse;
-import com.example.healthtrack.Respone.SetGoalsResponse;
-import com.example.healthtrack.Respone.StepResponse;
+import com.example.healthtrack.Network.Request.FriendRequest;
+import com.example.healthtrack.Network.Request.JoinChallengeRequest;
+import com.example.healthtrack.Network.Request.StepRequest;
+import com.example.healthtrack.Network.Request.LeaveChallengeRequest;
+import com.example.healthtrack.Network.Respone.BaseListResponse;
+import com.example.healthtrack.Network.Respone.BaseResponse;
+import com.example.healthtrack.Network.Respone.LoginBodyResponse;
+import com.example.healthtrack.Network.Respone.SetGoalsResponse;
+import com.example.healthtrack.Network.Respone.StepResponse;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -121,5 +122,8 @@ public interface ApiService {
     Call<BaseListResponse<Challenge>> getPublicChallenge(
 
     );
+
+    @GET("exercise")
+    Call<BaseListResponse<Exercise>> getExercise();
 
 }

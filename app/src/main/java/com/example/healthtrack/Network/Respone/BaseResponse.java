@@ -1,4 +1,4 @@
-package com.example.healthtrack.Respone;
+package com.example.healthtrack.Network.Respone;
 
 public class BaseResponse<T> {
     private T data;

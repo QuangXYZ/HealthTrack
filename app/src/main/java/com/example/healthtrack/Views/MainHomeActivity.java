@@ -1,6 +1,5 @@
 package com.example.healthtrack.Views;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -9,15 +8,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.icu.util.Calendar;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -30,11 +24,8 @@ import com.example.healthtrack.Views.Fragment.ChallengeFragment;
 import com.example.healthtrack.Views.Fragment.HealthFragment;
 import com.example.healthtrack.Views.Fragment.HomeFragment;
 import com.example.healthtrack.Views.Fragment.ProfileFragment;
-import com.example.healthtrack.Worker.AlarmReceiver;
-import com.example.healthtrack.Worker.CreateStep;
+import com.example.healthtrack.Service.Worker.AlarmReceiver;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 public class MainHomeActivity extends AppCompatActivity {
     LinearLayout homeLayout, challengeLayout, healthLayout, profileLayout;
@@ -92,8 +83,8 @@ public class MainHomeActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 10);
+        calendar.set(Calendar.HOUR_OF_DAY, 2);
+        calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
 
         // Nếu thời gian hiện tại đã qua 22 giờ, thiết lập báo thức cho ngày tiếp theo

@@ -64,7 +64,7 @@
                         android:drawableStart="@drawable/email"
                         android:drawablePadding="8dp"
                         android:hint="Email"
-                        android:text="quang@gmail.com"
+                        android:text="nhuy4@gmail.com"
                         android:inputType="text"
                         android:maxLines="1"
                         android:padding="8dp"

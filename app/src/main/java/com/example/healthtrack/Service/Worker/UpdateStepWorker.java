@@ -1,4 +1,4 @@
-package com.example.healthtrack.Worker;
+package com.example.healthtrack.Service.Worker;
 
 import static android.content.ContentValues.TAG;
 
@@ -15,6 +15,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import com.example.healthtrack.Controller.StepController;
+import com.example.healthtrack.SharedPreferences.SharedPreferencesUtil;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.google.gson.JsonObject;
 
@@ -36,10 +37,11 @@ public class UpdateStepWorker extends Worker {
     @Override
     public Result doWork() {
         String step = String.valueOf(CommonUtils.getStepNumber());
+        int weight = SharedPreferencesUtil.getWeight(context);
         Log.d(TAG, "số bước chân hiện tại: " +step);
         JsonObject newData = new JsonObject();
         newData.addProperty("numberStep", step);
-        newData.addProperty("weight", 50);
+        newData.addProperty("weight", weight);
         JsonObject requestBody = new JsonObject();
         requestBody.add("newData", newData);
         updateStep(requestBody);

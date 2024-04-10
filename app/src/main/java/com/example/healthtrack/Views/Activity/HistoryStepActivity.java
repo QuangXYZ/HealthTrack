@@ -1,7 +1,5 @@
 package com.example.healthtrack.Views.Activity;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -9,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -23,9 +20,9 @@ import com.example.healthtrack.Controller.StepController;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Respone.SetGoalsResponse;
-import com.example.healthtrack.Respone.StepResponse;
-import com.example.healthtrack.SharedPreferences.SharedPrefUser;
+import com.example.healthtrack.Network.Respone.SetGoalsResponse;
+import com.example.healthtrack.Network.Respone.StepResponse;
+import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.squareup.timessquare.CalendarPickerView;
