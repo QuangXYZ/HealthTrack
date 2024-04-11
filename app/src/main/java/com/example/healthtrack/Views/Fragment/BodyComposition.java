@@ -24,6 +24,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.example.healthtrack.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 public class BodyComposition extends Fragment {
     ImageView man, woman;
@@ -65,15 +66,20 @@ public class BodyComposition extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (weight.getText().toString().isEmpty()||height.getText().toString().isEmpty()) return;
                 button.setIndeterminateProgressMode(true); // turn on indeterminate progress
                 button.setProgress(50);
                 float w = Float.parseFloat(weight.getText().toString());
-                float h = Float.parseFloat(height.getText().toString());
+                float h = Float.parseFloat(height.getText().toString())/100;
                 float bmi_float = w / (h * h);
-                float d = h*9/10;
+                float d = (h*100 - ((int) h)*100)*9/10;
+                DecimalFormat df = new DecimalFormat("#.##");
+
+                // Sử dụng DecimalFormat để lấy 2 số thập phân
+
 
                 ideal.setText(d+" Kg");
-                bmi.setText(String.valueOf(bmi_float));
+                bmi.setText(df.format(bmi_float));
                 if (bmi_float < 18.5) {
                     bmi_1.setTextColor(getResources().getColor(R.color.orange));
                     bmi_2.setTextColor(getResources().getColor(R.color.text_color));
@@ -94,7 +100,6 @@ public class BodyComposition extends Fragment {
                     bmi_3.setTextColor(getResources().getColor(R.color.orange));
                     bmi_4.setTextColor(getResources().getColor(R.color.text_color));
                     bmi_5.setTextColor(getResources().getColor(R.color.text_color));
-
                 }
                 else if (bmi_float >= 30 && bmi_float <= 34.9) {
                     bmi_1.setTextColor(getResources().getColor(R.color.text_color));
@@ -140,6 +145,7 @@ public class BodyComposition extends Fragment {
             }
         });
     }
+
 
     public void replaceFragment() {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

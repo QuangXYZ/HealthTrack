@@ -174,8 +174,8 @@
                 <com.dd.CircularProgressButton
                     android:id="@+id/body_composition_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:layout_gravity="center"
@@ -183,7 +183,7 @@
                     android:textAllCaps="false"
 
 
-                    app:cpb_textIdle="Tính" />
+                    app:cpb_textIdle="Xử lý" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -208,7 +208,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:weightSum="5"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
@@ -258,35 +258,35 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="&lt;18,5"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="18.5-24.9"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="25-29.9"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="30-34.9"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="&gt;35"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
 
             </LinearLayout>
