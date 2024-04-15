@@ -2,6 +2,7 @@ package com.example.healthtrack.Controller;
 
 import android.content.Context;
 import android.util.Log;
+
 import com.example.healthtrack.Models.Exercise;
 import java.util.ArrayList;
 import com.example.healthtrack.Network.Api.*;
@@ -10,8 +11,8 @@ import com.example.healthtrack.Utils.SharedPreferences.SharedPreferencesUtil;
 
 import java.util.List;
 
+
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ExerciseController {

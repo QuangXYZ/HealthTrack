@@ -30,8 +30,6 @@ public class FriendInviteAdapter extends RecyclerView.Adapter<FriendInviteAdapte
     List<User> users;
     FriendController friendController;
 
-
-
     public FriendInviteAdapter(Activity context, List<User> users) {
         this.context = context;
         this.users = users;
@@ -42,7 +40,7 @@ public class FriendInviteAdapter extends RecyclerView.Adapter<FriendInviteAdapte
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.single_friend_invite,parent,false);
+                .inflate(R.layout.single_friend_invite, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -88,12 +86,10 @@ public class FriendInviteAdapter extends RecyclerView.Adapter<FriendInviteAdapte
                         holder.accept.setProgress(-1);
                     }
                 });
-
             }
         });
-
-
     }
+
     public void removeItem(int position) {
         users.remove(position);
         notifyItemRemoved(position);
@@ -108,6 +104,7 @@ public class FriendInviteAdapter extends RecyclerView.Adapter<FriendInviteAdapte
 
         TextView name;
         CircularProgressButton decline, accept;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.single_friend_invite_name);

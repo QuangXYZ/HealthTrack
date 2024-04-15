@@ -7,6 +7,7 @@ import com.example.healthtrack.Network.Request.FriendRequest;
 import com.example.healthtrack.Network.Respone.BaseListResponse;
 import com.example.healthtrack.Network.Respone.BaseResponse;
 import com.example.healthtrack.Utils.DataLocalManager;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,10 +29,9 @@ public class FriendController {
             @Override
             public void onResponse(Call<BaseListResponse<User>> call, Response<BaseListResponse<User>> response) {
                 try {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         callback.onSuccess(response.body().getData());
-                    }
-                    else {
+                    } else {
                         callback.onError(response.body().getMessage());
                     }
                 } catch (Exception e) {
@@ -52,34 +52,34 @@ public class FriendController {
         apiService.getDetailFriend(friendId).enqueue(new Callback<BaseResponse<User>>() {
             @Override
             public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     List<User> users = new ArrayList<>();
                     users.add(response.body().getData());
                     friendCallback.onSuccess(users);
-                }
-                else {
+                } else {
                     friendCallback.onError("User not found");
                 }
             }
 
             @Override
             public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
-                    friendCallback.onError(t.getMessage());
+                friendCallback.onError(t.getMessage());
             }
         });
     }
 
+
     public void addFriend(String friendId,final AddCallback friendCallback){
+
         String userId = DataLocalManager.getUser().get_id();
         FriendRequest friendRequest = new FriendRequest(userId, friendId);
         apiService.addFriend(friendRequest).enqueue(new Callback<BaseResponse<User>>() {
             @Override
             public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                 try {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         friendCallback.onSuccess(response.body().getData());
-                    }
-                    else {
+                    } else {
                         friendCallback.onError(response.body().getMessage());
                     }
                 } catch (Exception e) {
@@ -103,10 +103,9 @@ public class FriendController {
             @Override
             public void onResponse(Call<BaseListResponse<User>> call, Response<BaseListResponse<User>> response) {
                 try {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         callback.onSuccess(response.body().getData());
-                    }
-                    else {
+                    } else {
                         callback.onError(response.body().getMessage());
                     }
                 } catch (Exception e) {
@@ -129,10 +128,9 @@ public class FriendController {
             @Override
             public void onResponse(Call<BaseListResponse<User>> call, Response<BaseListResponse<User>> response) {
                 try {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         callback.onSuccess(response.body().getData());
-                    }
-                    else {
+                    } else {
                         callback.onError(response.body().getMessage());
                     }
                 } catch (Exception e) {
@@ -149,19 +147,18 @@ public class FriendController {
         });
     }
 
-    public void acceptFriendRequest(String friendId,final FriendCallback friendCallback){
+    public void acceptFriendRequest(String friendId, final FriendCallback friendCallback) {
         String userId = DataLocalManager.getUser().get_id();
         FriendRequest friendRequest = new FriendRequest(userId, friendId);
         apiService.acceptFriendRequest(friendRequest).enqueue(new Callback<BaseResponse<User>>() {
             @Override
             public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                 try {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         List<User> users = new ArrayList<>();
                         users.add(response.body().getData());
                         friendCallback.onSuccess(users);
-                    }
-                    else {
+                    } else {
                         friendCallback.onError(response.body().getMessage());
                     }
                 } catch (Exception e) {
@@ -178,19 +175,18 @@ public class FriendController {
         });
     }
 
-    public void declineFriendRequest(String friendId,final FriendCallback friendCallback){
+    public void declineFriendRequest(String friendId, final FriendCallback friendCallback) {
         String userId = DataLocalManager.getUser().get_id();
         FriendRequest friendRequest = new FriendRequest(userId, friendId);
         apiService.declineFriendRequest(friendRequest).enqueue(new Callback<BaseResponse<User>>() {
             @Override
             public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                 try {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         List<User> users = new ArrayList<>();
                         users.add(response.body().getData());
                         friendCallback.onSuccess(users);
-                    }
-                    else {
+                    } else {
                         friendCallback.onError(response.body().getMessage());
                     }
                 } catch (Exception e) {
@@ -211,10 +207,12 @@ public class FriendController {
 
         void onError(String error);
     }
+
     public interface AddCallback {
         void onSuccess(User users);
 
         void onError(String error);
     }
+
 
 }
