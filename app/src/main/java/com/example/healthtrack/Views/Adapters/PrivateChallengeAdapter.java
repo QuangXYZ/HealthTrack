@@ -48,7 +48,7 @@ public class PrivateChallengeAdapter extends RecyclerView.Adapter<PrivateChallen
         for (Record record: challenge.getUserRecords()) {
             if (record.getUserId().equals(userId)) {
                 holder.step.setText(record.getStepTotal()+"");
-                holder.progressBar.setProgress((int) (record.getStepTotal()/challenge.getTarget()*1.0)*100);
+                holder.progressBar.setProgress((int) (record.getStepTotal()*100/challenge.getTarget()));
             }
         }
 
@@ -77,7 +77,6 @@ public class PrivateChallengeAdapter extends RecyclerView.Adapter<PrivateChallen
             super(itemView);
             challengeLayout = itemView.findViewById(R.id.single_private_challenge_layout);
             name = itemView.findViewById(R.id.single_private_challenge_name);
-            date = itemView.findViewById(R.id.single_private_challenge_date);
             target = itemView.findViewById(R.id.single_private_challenge_target);
             users = itemView.findViewById(R.id.single_private_challenge_user);
             step = itemView.findViewById(R.id.single_private_challenge_step);

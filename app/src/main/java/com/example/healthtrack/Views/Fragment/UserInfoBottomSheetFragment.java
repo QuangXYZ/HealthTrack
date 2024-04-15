@@ -11,11 +11,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.bumptech.glide.Glide;
 import com.example.healthtrack.Controller.FriendController;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
+import com.example.healthtrack.Views.CreateChallengeActivity;
 import com.example.healthtrack.Views.FriendActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -81,8 +83,27 @@ public class UserInfoBottomSheetFragment extends BottomSheetDialogFragment {
         addFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                friendController.addFriend(friendId, new FriendController.AddCallback() {
+                    @Override
+                    public void onSuccess(User users) {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Thành công")
+                                .setMessage("Đã gửi lời mời")
+                                .setPositiveButton("OK", (dialog, which) -> {
+                                    dismiss();
+                                } ).show();
+                    }
 
-                dismiss();
+                    @Override
+                    public void onError(String error) {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Lỗi")
+                                .setMessage(error.toString())
+                                .setPositiveButton("OK", (dialog, which) -> {
+                                    dismiss();
+                                } ).show();
+                    }
+                });
             }
         });
 

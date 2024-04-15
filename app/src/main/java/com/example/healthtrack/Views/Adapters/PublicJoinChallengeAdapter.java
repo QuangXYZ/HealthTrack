@@ -49,7 +49,7 @@ public class PublicJoinChallengeAdapter extends RecyclerView.Adapter<PublicJoinC
         for (Record record: challenge.getUserRecords()) {
             if (record.getUserId().equals(userId)) {
                 holder.step.setText(record.getStepTotal()+"");
-                holder.progressBar.setProgress((int) (record.getStepTotal()/challenge.getTarget()*1.0)*100);
+                holder.progressBar.setProgress((int) (record.getStepTotal()*100/challenge.getTarget()));
             }
         }
         holder.challengeLayout.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,7 @@ package com.example.healthtrack.Network.Api;
 
 import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.Exercise;
+import com.example.healthtrack.Models.HealthActivity;
 import com.example.healthtrack.Models.SetGoals;
 import com.example.healthtrack.Models.Step;
 import com.example.healthtrack.Models.User;
@@ -66,6 +67,10 @@ public interface ApiService {
     Call<BaseResponse<User>> updateUser(
             @Body User User
     );
+    @GET("users/{idUser}")
+    Call<BaseResponse<User>> getDetailUser(
+            @Path("idUser") String idUser
+    );
 
 
     @GET("challenges/{idChallenge}")
@@ -83,7 +88,7 @@ public interface ApiService {
             @Path("idUser") String idUser
     );
     @POST("users/friends/add")
-    Call<BaseListResponse<User>> addFriend(
+    Call<BaseResponse<User>> addFriend(
             @Body FriendRequest addFriendRequest
     );
     @GET("users/friends/request/{idUser}")
@@ -126,4 +131,17 @@ public interface ApiService {
     @GET("exercise")
     Call<BaseListResponse<Exercise>> getExercise();
 
+    @POST("healthActivity/")
+    Call<BaseResponse<HealthActivity>> insertHealthActivity(
+            @Body HealthActivity healthActivity
+    );
+    @GET("healthActivity/{idUser}/{date}")
+    Call<BaseListResponse<HealthActivity>> getHealthActivity(
+            @Path("idUser") String idUser,
+            @Path("date") String date
+    );
+    @PATCH("healthActivity/update/{idUser}/{date}")
+    Call<ResponseBody> updateHealthActivity(@Path("idUser") String idUser,
+                                  @Path("date") String date,
+                                  @Body RequestBody body);
 }

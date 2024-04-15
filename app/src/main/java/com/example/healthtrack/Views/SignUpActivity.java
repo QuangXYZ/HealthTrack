@@ -73,34 +73,48 @@ public class SignUpActivity extends AppCompatActivity {
                 if (emailText.isEmpty()) {
                     email.setError("Nhập email");
                     email.requestFocus();
+                    progressBar.setVisibility(View.GONE);
+                    signUpButton.setVisibility(View.VISIBLE);
                 }
                 else if (usernameText.isEmpty()){
                     username.setError("Nhập username");
                     username.requestFocus();
+                    progressBar.setVisibility(View.GONE);
+                    signUpButton.setVisibility(View.VISIBLE);
                 }
                 else if (passwordText.isEmpty()){
                     password.setError("Nhập password");
                     password.requestFocus();
+                    progressBar.setVisibility(View.GONE);
+                    signUpButton.setVisibility(View.VISIBLE);
                 }
 
                 else if (!emailText.matches(emailPattern)) {
                     email.setError("Email không đúng định dạng");
                     email.requestFocus();
+                    progressBar.setVisibility(View.GONE);
+                    signUpButton.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "Email không đúng định dạng", Toast.LENGTH_SHORT).show();
                 }
                 else if (usernameText.length()<5) {
                     username.setError("username chưa đủ 5 kí tự");
                     username.requestFocus();
+                    progressBar.setVisibility(View.GONE);
+                    signUpButton.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "Password chưa đủ 8 kí tự", Toast.LENGTH_SHORT).show();
                 }
                 else if (passwordText.length()<6) {
                     password.setError("Password chưa đủ 6 kí tự");
                     password.requestFocus();
+                    progressBar.setVisibility(View.GONE);
+                    signUpButton.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "Password chưa đủ 8 kí tự", Toast.LENGTH_SHORT).show();
                 }
                 else if (!repasswordText.equals(passwordText)){
                     repassword.setError("Password không khớp");
                     repassword.requestFocus();
+                    progressBar.setVisibility(View.GONE);
+                    signUpButton.setVisibility(View.VISIBLE);
                 }
                 else {
                     userController.signup(
@@ -128,7 +142,9 @@ public class SignUpActivity extends AppCompatActivity {
                                     signUpButton.setVisibility(View.VISIBLE);
                                 }
                             });
+
                 }
+
             }
 
         });

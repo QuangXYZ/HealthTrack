@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.healthtrack.Models.Friends;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
@@ -34,6 +35,8 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendVi
     @Override
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
         holder.name.setText(users.get(position).getName());
+        if (users.get(position).getProfilePicture()!=null)
+            Glide.with(context).load(users.get(position).getProfilePicture()).into(holder.friendAva);
 
     }
 
