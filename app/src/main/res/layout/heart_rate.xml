@@ -3,43 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Views.Fragment.HeartRate">
+    android:layout_height="wrap_content"
+    tools:context=".Views.Fragment.HeartRateFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="135dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
                 android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/black"
-                android:layout_marginBottom="10dp"
                 android:textSize="17dp"
-                android:drawableLeft="@drawable/back_icon" />
+                android:src="@drawable/back_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0"/>
 
             <Button
-                android:id="@+id/btnLuu"
+                android:id="@+id/heart_rate_fragment_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="180dp"
                 android:backgroundTint="#F3673B"
-                android:textSize="17dp"
-                android:text="Lưu" />
+                android:text="Lưu"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="1"/>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--        <Button-->
 <!--            android:id="@+id/btnLuu2"-->
@@ -61,7 +68,7 @@
             android:id="@+id/circularProgressIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:progress="15"
+            android:progress="100"
             app:indicatorColor="#F3673B"
             app:indicatorSize="180dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,18 +78,50 @@
             app:trackCornerRadius="8dp"
             app:trackThickness="8dp" />
 
-        <EditText
-            android:id="@+id/heart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="71 bpm"
-            android:textColor="@color/blue"
-            android:layout_marginTop="70dp"
-            app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
-            app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator"
-            app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/circularProgressIndicator"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
+                app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator">
+
+                <EditText
+                    android:id="@+id/heart_rate_fragment_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="90"
+                    android:inputType="number"
+                    android:textColor="@color/blue"
+                    android:textSize="38sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/heart" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="bpm"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -94,28 +133,29 @@
             app:cardCornerRadius="20dp"
             app:strokeWidth="0dp"
             android:elevation="3dp"
+
             android:layout_marginBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="\n Lịch sử đo nhịp tim tuần trước \n"
+                    android:text="Lịch sử đo nhịp tim "
+                    android:padding="10dp"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="#F3673B"/>
 
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/line"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/heart_rate_list"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginBottom="150dp"/>
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"/>
 
 
             </LinearLayout>

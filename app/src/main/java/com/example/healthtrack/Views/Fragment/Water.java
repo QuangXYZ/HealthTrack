@@ -1,5 +1,6 @@
 package com.example.healthtrack.Views.Fragment;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +13,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.healthtrack.Models.AmountWater;
+import com.example.healthtrack.Models.HealthActivity;
+import com.example.healthtrack.Utils.DataLocalManager;
+import com.example.healthtrack.Views.Adapters.AmountDrinkingAdapter;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
@@ -21,6 +28,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.example.healthtrack.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cjh.WaveProgressBarlibrary.WaveProgressBar;
 
@@ -32,6 +40,10 @@ public class Water extends Fragment {
     WaveProgressBar wv;
     TextView amount,tip;
     float waterDrink = 0;
+    RecyclerView recyclerView;
+    AmountDrinkingAdapter amountDrinkingAdapter;
+    List<AmountWater> amountWaterList ;
+    HealthActivity healthActivity = DataLocalManager.getHealthActivity();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,34 +55,6 @@ public class Water extends Fragment {
 
 
 
-
-
-
-        BarChart barChart = view.findViewById(R.id.bar_chart);
-
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(1, 1200f));
-        entries.add(new BarEntry(2, 1400f));
-        entries.add(new BarEntry(3, 1600f));
-        entries.add(new BarEntry(4, 1200f));
-        entries.add(new BarEntry(5, 2000f));
-        entries.add(new BarEntry(6, 1800f));
-        entries.add(new BarEntry(7, 1400f));
-
-
-        BarDataSet barDataSet = new BarDataSet(entries, "Lượng nước uống trong ngày (ml)");
-        barDataSet.setColor(Color.rgb(0, 180, 255)); // Set color of bars
-        barDataSet.setValueTextColor(Color.rgb(0, 0, 200)); // Set color of value text
-
-        BarData barData = new BarData(barDataSet);
-        barChart.setData(barData);
-        barChart.setFitBars(true); // Make the bars fit to the full width of the x-axis
-        barChart.setMinimumHeight(800);
-        barChart.invalidate(); // Refresh the chart
-        Description description = new Description();
-        description.setText("");
-        barChart.setDescription(description);
-
         return view;
     }
     void init(View view) {
@@ -79,6 +63,31 @@ public class Water extends Fragment {
        amountDrink = view.findViewById(R.id.Amount_drinking_btn);
        amount = view.findViewById(R.id.amount_drinking_text);
        tip = view.findViewById(R.id.amount_drinking_tip);
+       recyclerView = view.findViewById(R.id.water_list);
+       amountWaterList = new ArrayList<>();
+       if (DataLocalManager.getAmountDrinkingList()==null)
+           DataLocalManager.saveAmountDrinkingList(amountWaterList);
+
+       amountWaterList.addAll(DataLocalManager.getAmountDrinkingList());
+       amountDrinkingAdapter = new AmountDrinkingAdapter((Activity) getActivity(), amountWaterList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+       recyclerView.setLayoutManager(layoutManager);
+       recyclerView.setAdapter(amountDrinkingAdapter);
+       recyclerView.setNestedScrollingEnabled(true);
+
+
+       if (healthActivity!=null) {
+           waterDrink = healthActivity.getAmountWater().getAmountDrinking();
+           amount.setText(String.valueOf(waterDrink)+" /2000ml");
+           wv.setProgress((int) ((waterDrink/2000)*100));
+           if(waterDrink>=2000) {
+               tip.setText("Bạn đã uống đủ lượng nước cần thiết");
+               tip.setTextColor(getResources().getColor(R.color.text_color));
+           }
+       }
+
     }
     void settingUpListeners(){
         back.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +101,12 @@ public class Water extends Fragment {
             @Override
             public void onClick(View v) {
                 waterDrink+=200;
+                healthActivity.getAmountWater().setAmountDrinking((int) waterDrink);
+                DataLocalManager.setHealthActivity(healthActivity);
+                AmountWater amountWater = new AmountWater(200);
+                amountWaterList.add(amountWater);
+                amountDrinkingAdapter.notifyDataSetChanged();
+                DataLocalManager.saveAmountDrinkingList(amountWaterList);
                 amount.setText(String.valueOf(waterDrink)+" /2000ml");
                 if (waterDrink<=2000)
                      wv.setProgress((int) ((waterDrink/2000)*100));

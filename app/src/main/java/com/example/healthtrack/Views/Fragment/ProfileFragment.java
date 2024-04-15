@@ -57,7 +57,7 @@ public class ProfileFragment extends Fragment {
 
         name.setText(user.getName());
         email.setText(user.getEmail());
-        gender.setText(user.getGender());
+        gender.setText(user.getGender()!=null ? user.getGender(): "unknown");
         if (user.getProfilePicture()!=null)
             Glide.with(this).load(user.getProfilePicture()).into(imageView);
         dateOfBirth.setText(user.getDateOfBirth());

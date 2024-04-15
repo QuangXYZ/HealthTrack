@@ -69,12 +69,12 @@ public class FriendController {
         });
     }
 
-    public void addFriend(String friendId,final FriendCallback friendCallback){
+    public void addFriend(String friendId,final AddCallback friendCallback){
         String userId = DataLocalManager.getUser().get_id();
         FriendRequest friendRequest = new FriendRequest(userId, friendId);
-        apiService.addFriend(friendRequest).enqueue(new Callback<BaseListResponse<User>>() {
+        apiService.addFriend(friendRequest).enqueue(new Callback<BaseResponse<User>>() {
             @Override
-            public void onResponse(Call<BaseListResponse<User>> call, Response<BaseListResponse<User>> response) {
+            public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                 try {
                     if (response.isSuccessful()){
                         friendCallback.onSuccess(response.body().getData());
@@ -89,7 +89,7 @@ public class FriendController {
             }
 
             @Override
-            public void onFailure(Call<BaseListResponse<User>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
                 friendCallback.onError(t.getMessage());
 
             }
@@ -208,6 +208,11 @@ public class FriendController {
 
     public interface FriendCallback {
         void onSuccess(List<User> users);
+
+        void onError(String error);
+    }
+    public interface AddCallback {
+        void onSuccess(User users);
 
         void onError(String error);
     }

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Views.Fragment.BodyComposition">
+    tools:context=".Views.Fragment.BodyCompositionFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -47,8 +47,6 @@
             android:padding="20dp"
             android:orientation="vertical">
 
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,6 +75,7 @@
                         android:inputType="number"
                         android:textSize="16sp"
                         android:textStyle="bold"
+                        android:text="25"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -197,7 +196,7 @@
                     android:id="@+id/body_composition_bmi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12,39"
+                    android:text="0"
                     android:paddingTop="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/green"
@@ -306,7 +305,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Bình thường (18.5 - 24.9)"
-                android:textColor="#F4CC57"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/body_composition_bmi_3"
@@ -345,8 +343,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:padding="10dp"
                 android:orientation="vertical">
 
             <TextView
@@ -363,8 +360,9 @@
                 android:id="@+id/body_composition_ideal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="0Kg"
                 android:padding="10dp"
-                android:text="100kg"
+                android:textColor="@color/blue"
                 android:gravity="center"
                 android:textSize="18sp" />
 
