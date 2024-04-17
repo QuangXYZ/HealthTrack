@@ -52,7 +52,7 @@ public class UserController {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    userControllerCallback.onError(response.body().getMessage());
+                    userControllerCallback.onError(e.toString());
                 }
             }
 
