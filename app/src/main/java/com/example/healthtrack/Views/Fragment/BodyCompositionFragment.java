@@ -114,7 +114,7 @@ public class BodyCompositionFragment extends Fragment {
         DecimalFormat df = new DecimalFormat("#.##");
 
         // Sử dụng DecimalFormat để lấy 2 số thập phân
-
+        // Hiện thông tin theo phần trăm
 
         ideal.setText(d+" Kg");
         bmi.setText(df.format(bmi_float));
