@@ -9,37 +9,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/black"
-                android:layout_marginBottom="10dp"
-                android:textSize="17dp"
-                android:drawableLeft="@drawable/back_icon" />
+                android:padding="10dp"
+                android:src="@drawable/back_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0"/>
 
-            <Button
-                android:id="@+id/btnLuu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="180dp"
-                android:backgroundTint="#D81506"
-                android:textSize="17dp"
-                android:text="Lưu" />
+<!--            <Button-->
+<!--                android:id="@+id/btnLuu"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:backgroundTint="#D81506"-->
+<!--                android:text="Lưu"-->
+<!--                android:textSize="17dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="1"/>-->
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -53,8 +59,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:padding="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -62,68 +67,89 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
                     <TextView
                         android:id="@+id/tvvv"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:text="Tâm Thu (mmHg): "
                         android:textColor="#D81506"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_weight="2"/>
 
-                    <TextView
-                        android:id="@+id/tvv"
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="?attr/textInputFilledStyle"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="0"
-                        android:textColor="#D81506"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        app:boxBackgroundColor="#F4F1FA"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                       >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/blood_pressure_sys"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:text="100"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
-                <SeekBar
-                    android:id="@+id/seekBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="40dp"
-                    android:max="300" /> <!-- Đặt giá trị tối đa của SeekBar, ví dụ là 100 -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
                     <TextView
                         android:id="@+id/tvvvv"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Tâm Trương (mmHg): "
                         android:textColor="#D81506"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_weight="2"/>
 
-                    <TextView
-                        android:id="@+id/tvv2"
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="?attr/textInputFilledStyle"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="#D81506"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        app:boxBackgroundColor="#F4F1FA"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                 >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/blood_pressure_dia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:textSize="24sp"
+                            android:text="60"
+                            android:textStyle="bold"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
-                <SeekBar
-                    android:id="@+id/seekBar2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:max="300" /> <!-- Đặt giá trị tối đa của SeekBar, ví dụ là 100 -->
+                <com.dd.CircularProgressButton
+                    android:id="@+id/blood_pressure_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="41dp"
+                    android:layout_margin="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:cpb_cornerRadius="48dp"
+                    app:cpb_textIdle="Xử lý" />
+
 
             </LinearLayout>
 
@@ -140,13 +166,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/t"
+                    android:id="@+id/blood_pressure_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cao huyết áp - giai đoạn 1"
@@ -156,7 +181,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/v2"
+                    android:id="@+id/blood_pressure_sys_dia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -165,34 +190,25 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="200dp"
-                    android:layout_marginTop="10dp"
 
-                    android:src="@drawable/sortdown"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:weightSum="6"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:weightSum="5"
+                    android:layout_margin="5dp"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#3F51B5"
-                        android:layout_marginRight="10dp"/>
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/green"
-                        android:layout_marginRight="10dp"/>
+
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/green" />
+
+
                     <View
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -218,9 +234,75 @@
                         android:background="#D81506" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:weightSum="5"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/blood_pressure_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:src="@drawable/arrow_up"
+                        android:layout_marginRight="10dp"
+
+                        android:textAlignment="center"
+                        />
+                    <ImageView
+                        android:id="@+id/blood_pressure_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/arrow_up"
+                        android:layout_marginRight="10dp"
+                        android:visibility="invisible"
+                        android:textAlignment="center"
+                        />
+                    <ImageView
+                        android:id="@+id/blood_pressure_3"
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/arrow_up"
+                        android:visibility="invisible"
+                        android:layout_marginRight="10dp"
+
+                        android:textAlignment="center"
+                        />
+                    <ImageView
+                        android:id="@+id/blood_pressure_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:src="@drawable/arrow_up"
+                        android:visibility="invisible"
+                        android:layout_marginEnd="10dp"
+                        android:textAlignment="center"
+                        />
+                    <ImageView
+                        android:id="@+id/blood_pressure_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:src="@drawable/arrow_up"
+                        android:visibility="invisible"
+                        android:textAlignment="center"
+                        />
+
+
+                </LinearLayout>
+
 
                 <TextView
-                    android:id="@+id/vg2"
+                    android:id="@+id/blood_pressure_advise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

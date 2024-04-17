@@ -8,6 +8,9 @@ import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Network.Respone.BaseResponse;
 import com.example.healthtrack.Utils.Constants;
 import com.example.healthtrack.Utils.DataLocalManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +44,7 @@ public class UserController {
                     if (response.isSuccessful()){
                         String idUser = response.body().getData().get_id();
                         Log.e("User",idUser);
+                        registerFirebase(email, username, password);
                         userControllerCallback.onSuccess(response.body().getMessage());
                     }
                     else {
@@ -48,7 +52,7 @@ public class UserController {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    userControllerCallback.onError(response.body().getMessage());
+                    userControllerCallback.onError(e.toString());
                 }
             }
 
@@ -56,6 +60,49 @@ public class UserController {
             public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
             }
         });
+    }
+    void registerFirebase(String email,String username, String password) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Đăng ký thành công
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(username)
+                                .build();
+                        user.updateProfile(userProfileChangeRequest);
+                        user.sendEmailVerification();
+                    } else {
+                        // Đăng ký thất bại
+                    }
+                });
+    }
+    public void getDetailUser(String idUser, final GetUserCallback callback){
+        String token = DataLocalManager.getToken();
+        ApiService apiService = ApiUtils.getApiService(token);
+        apiService.getDetailUser(idUser)
+               .enqueue(new Callback<BaseResponse<User>>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+                        try {
+                            if (response.isSuccessful()){
+                                callback.onSuccess(response.body().getData());
+                            }
+                            else {
+                                callback.onError(response.body().getMessage());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            callback.onError(response.body().getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+
+                    }
+                });
     }
 
 
@@ -88,6 +135,11 @@ public class UserController {
 
     public interface UserControllerCallback {
         void onSuccess(String message);
+
+        void onError(String error);
+    }
+    public interface GetUserCallback {
+        void onSuccess(User user);
 
         void onError(String error);
     }

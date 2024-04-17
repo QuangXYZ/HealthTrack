@@ -16,10 +16,15 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.healthtrack.Controller.ChallengeController;
 import com.example.healthtrack.Controller.LoginController;
+import com.example.healthtrack.Controller.UserController;
 import com.example.healthtrack.Models.Challenge;
+import com.example.healthtrack.Models.Record;
+import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
+import com.example.healthtrack.Utils.DataLocalManager;
 import com.example.healthtrack.Views.Adapters.RankingAdapter;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.github.ybq.android.spinkit.sprite.Sprite;
@@ -40,12 +45,13 @@ public class PrivateChallengeDetail extends AppCompatActivity {
     RankingAdapter  adapter;
     ArrayList<Integer> rankings;
     Button inviteBtn;
-    ImageView imageCode;
+    ImageView imageCode,myImg;
     MaterialToolbar toolbar;
     Challenge challenge;
     ChallengeController challengeController;
-    TextView name, description, step, member, date;
+    TextView name, description, step, member, date, myName, myStep;
 
+    UserController userController;
 
 
     @Override
@@ -65,6 +71,9 @@ public class PrivateChallengeDetail extends AppCompatActivity {
         step = findViewById(R.id.private_challenge_target);
         member = findViewById(R.id.private_challenge_member);
         date = findViewById(R.id.private_challenge_date);
+        myName = findViewById(R.id.private_challenge_my_name);
+        myImg = findViewById(R.id.private_challenge_my_img);
+        myStep = findViewById(R.id.private_challenge_my_step);
 
 
         rankings = new ArrayList<>();
@@ -84,8 +93,28 @@ public class PrivateChallengeDetail extends AppCompatActivity {
         description.setText(challenge.getDescription());
         step.setText("Số bước mục tiêu: "+challenge.getTarget());
         member.setText("Số người tham gia "+challenge.getListMember().size());
-        date.setText("Thử thách bắt đầu từ "+challenge.getDateStart());
+        date.setText("Thử thách bắt đầu từ "+challenge.getDateStart().split("T")[0]);
 
+
+        userController = new UserController();
+        String idUser = DataLocalManager.getUser().get_id();
+        userController.getDetailUser(idUser, new UserController.GetUserCallback() {
+            @Override
+            public void onSuccess(User user) {
+                Glide.with(PrivateChallengeDetail.this).load(user.getProfilePicture()).into(myImg);
+                myName.setText(user.getName());
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+        for (Record record: challenge.getUserRecords() ){
+            if (record.getUserId().equals(idUser)){
+                myStep.setText(record.getStepTotal()+" bước");
+            }
+        }
 
         adapter = new RankingAdapter(this, challenge.getUserRecords());
         rankingRecyclerview.setLayoutManager(new LinearLayoutManager(this));

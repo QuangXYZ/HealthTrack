@@ -1,6 +1,10 @@
 package com.example.healthtrack.Service.Worker;
 
 
+import static android.content.ContentValues.TAG;
+import static android.os.Build.VERSION_CODES.S;
+
+
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.content.ComponentName;
@@ -10,7 +14,9 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.example.healthtrack.Controller.HealthController;
 import com.example.healthtrack.Controller.StepController;
+import com.example.healthtrack.Models.HealthActivity;
 import com.example.healthtrack.Network.Request.StepRequest;
 import com.example.healthtrack.Service.StepService;
 import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
@@ -77,6 +83,21 @@ public class CreateStep extends JobService {
 
             }
         });
+        HealthController healthController = new HealthController();
+        HealthActivity healthActivity = new HealthActivity();
+        healthController.insertHealthActivity(healthActivity, new HealthController.InsertCallback() {
+            @Override
+            public void onSuccess(HealthActivity healthActivity) {
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+
+
     }
 
     // ServiceConnection để quản lý việc kết nối và ngắt kết nối với StepService

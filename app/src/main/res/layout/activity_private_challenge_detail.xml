@@ -156,14 +156,10 @@
                         android:textStyle="bold"
                         android:visibility="gone" />
 
-                    <ImageView
-                        android:id="@+id/single_ranking_badge"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ranking1" />
+
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/private_challenge_my_img"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
@@ -180,7 +176,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/single_ranking_name"
+                            android:id="@+id/private_challenge_my_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nguyen Thanh Quang"
@@ -189,7 +185,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/single_ranking_record"
+                            android:id="@+id/private_challenge_my_step"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="18.000 steps"

@@ -28,29 +28,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:weightSum="10">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="6">
-                <TextView
-                    android:id="@+id/single_private_challenge_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/blue"
-                    android:textSize="14sp"
-                    android:text="Bat dau sau 1 ngay" />
+
                 <TextView
                     android:id="@+id/single_private_challenge_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="So nguoi tham gia"/>
+                    android:text="Số người tham gia: "/>
                 <TextView
                     android:id="@+id/single_private_challenge_target"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tong so buoc"/>
+                    android:text="Tổng số bước chân"/>
                 <TextView
                     android:id="@+id/single_private_challenge_step"
                     android:layout_width="wrap_content"

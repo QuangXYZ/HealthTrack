@@ -13,127 +13,125 @@
         android:background="@color/white"
         android:gravity="center">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="16dp">-->
 
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/circularProgressIndicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:progress="85"
-                    app:indicatorColor="#D81506"
-                    app:indicatorSize="180dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:trackColor="@color/grey"
-                    app:trackCornerRadius="8dp"
-                    app:trackThickness="12dp" />
+<!--                <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--                    android:id="@+id/circularProgressIndicator"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:progress="85"-->
+<!--                    app:indicatorColor="#D81506"-->
+<!--                    app:indicatorSize="180dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:trackColor="@color/grey"-->
+<!--                    app:trackCornerRadius="8dp"-->
+<!--                    app:trackThickness="12dp" />-->
 
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/circularProgress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:progress="70"
-                    android:layout_marginTop="12dp"
-                    app:indicatorColor="#F3673B"
-                    app:indicatorSize="155.5dp"
-                    app:trackColor="@color/grey"
-                    app:trackCornerRadius="8dp"
-                    app:trackThickness="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--                    android:id="@+id/circularProgress"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:progress="70"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    app:indicatorColor="#F3673B"-->
+<!--                    app:indicatorSize="155.5dp"-->
+<!--                    app:trackColor="@color/grey"-->
+<!--                    app:trackCornerRadius="8dp"-->
+<!--                    app:trackThickness="12dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/circular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:progress="80"
-                    android:layout_marginTop="24dp"
-                    app:indicatorColor="#F4CC57"
-                    app:indicatorSize="131dp"
-                    app:trackColor="@color/grey"
-                    app:trackCornerRadius="8dp"
-                    app:trackThickness="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--                    android:id="@+id/circular"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:progress="80"-->
+<!--                    android:layout_marginTop="24dp"-->
+<!--                    app:indicatorColor="#F4CC57"-->
+<!--                    app:indicatorSize="131dp"-->
+<!--                    app:trackColor="@color/grey"-->
+<!--                    app:trackCornerRadius="8dp"-->
+<!--                    app:trackThickness="12dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/cir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:progress="90"
-                    android:layout_marginTop="36dp"
-                    app:indicatorColor="#6FCEFA"
-                    app:indicatorSize="106dp"
-                    app:trackColor="@color/grey"
-                    app:trackCornerRadius="8dp"
-                    app:trackThickness="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--                    android:id="@+id/cir"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:progress="90"-->
+<!--                    android:layout_marginTop="36dp"-->
+<!--                    app:indicatorColor="#6FCEFA"-->
+<!--                    app:indicatorSize="106dp"-->
+<!--                    app:trackColor="@color/grey"-->
+<!--                    app:trackCornerRadius="8dp"-->
+<!--                    app:trackThickness="12dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="7"
-                    android:textColor="@color/blue"
-                    android:layout_marginTop="60dp"
-                    app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
-                    app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator"
-                    app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
-                    android:textSize="45sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="7"-->
+<!--                    android:textColor="@color/blue"-->
+<!--                    android:layout_marginTop="60dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"-->
+<!--                    android:textSize="45sp"-->
+<!--                    android:textStyle="bold" />-->
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="\n\nTình Trạng"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp"
-                        android:layout_gravity="center"
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="\n\nTình Trạng"-->
+<!--                        android:textColor="@color/blue"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:textStyle="bold" />-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:src="@drawable/happyface"/>
+<!--                    <ImageView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:src="@drawable/happyface"/>-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tốt"
-                        android:textColor="@color/blue"
-                        android:layout_gravity="center"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Tốt"-->
+<!--                        android:textColor="@color/blue"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold" />-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <FrameLayout
             android:id="@+id/fragment_health_frame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="135dp"
-            android:nestedScrollingEnabled="true"/>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

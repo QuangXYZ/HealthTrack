@@ -2,6 +2,7 @@ package com.example.healthtrack.Controller;
 
 import android.util.Log;
 
+import com.example.healthtrack.Models.User;
 import com.example.healthtrack.Network.Api.ApiService;
 import com.example.healthtrack.Network.Api.ApiUtils;
 import com.example.healthtrack.Models.Challenge;
@@ -40,6 +41,20 @@ public class ChallengeController {
                 if (response.isSuccessful()) {
                     Log.d("Challenge", response.body().getData().toString());
                     challengeControllerCallback.onSuccess(response.body().getMessage());
+                    User user = DataLocalManager.getUser();
+                    user.addChallengeId(response.body().getData().get_id());
+                    apiService.updateUser(user)
+                            .enqueue(new Callback<BaseResponse<User>>() {
+                                @Override
+                                public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
+
+                                }
+                            });
                 } else {
                     Log.d("Challenge", response.body().getData().toString());
                     challengeControllerCallback.onError(response.body().getMessage());

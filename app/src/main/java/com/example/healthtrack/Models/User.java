@@ -43,6 +43,9 @@ public class User {
     public String getProfilePicture() {
         return profilePicture;
     }
+    public void addChallengeId(String challengeId) {
+        this.idChallenges.add(challengeId);
+    }
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
