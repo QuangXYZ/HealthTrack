@@ -15,6 +15,8 @@ import com.example.healthtrack.Utils.SharedPreferences.SharedPreferencesUtil;
 import com.example.healthtrack.Utils.Constants;
 import com.example.healthtrack.Utils.DataLocalManager;
 import com.example.healthtrack.Views.MainHomeActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,11 +37,12 @@ public class LoginController {
     Retrofit retrofit = builder.build();
     ApiService iLoginService = retrofit.create(ApiService.class);
 
-    public void loginController(Context context, String email, String password){
+    public void loginController(Context context, String email, String password, final CallbackFirebase callback){
         LoginBodyResponse loginBody = new LoginBodyResponse(email, password);
         Call<BaseResponse<User>> call = iLoginService.login(loginBody);
 
         call.enqueue(new Callback<BaseResponse<User>>() {
+
             @Override
             public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                 Log.d("loginreponse","đã vào hàm onResponse");
@@ -59,16 +62,25 @@ public class LoginController {
                         User user = response.body().getData();
                         DataLocalManager.setUser(user);
 
+                        loginFirebase(email, password, new CallbackFirebase() {
+                            @Override
+                            public void onSuccess(FirebaseUser user) {
+                                callback.onSuccess(user);
+                            }
+
+                            @Override
+                            public void onFailure(Exception e) {
+                                callback.onFailure(e);
+                            }
+                        });
 
 
-                        Log.d("idUserResponse","idUser:" + idUser);
-                        Intent intent = new Intent(context, MainHomeActivity.class);
-                        showToast("Đăng nhập thành công");
-                        context.startActivity(intent);
-                        ((Activity) context).finish();
+
+
+
+
                     } else {
-                        Log.e("loginreponse2", "Đăng nhập thất bại");
-                        showToast("Đăng nhập thất bại");
+                        callback.onFailure(new Exception("Can not login"));
                     }
                 } catch (Exception e){
                     Log.e("ExceptionLoginreponse", "error"+ e.getMessage());
@@ -83,7 +95,27 @@ public class LoginController {
         });
     }
 
+    void loginFirebase(String email, String password, final CallbackFirebase callback) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Đăng nhập thành công
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user.isEmailVerified()) callback.onSuccess(user);
+                        else callback.onFailure( new Exception("Email chưa được xác thực") );
+                    } else {
+                        // Đăng nhập thất bại
+                        callback.onFailure(task.getException());
+                    }
+                });
+    }
+
     void showToast(String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+    }
+    public interface CallbackFirebase {
+        void onSuccess(FirebaseUser user);
+        void onFailure(Exception e);
     }
 }

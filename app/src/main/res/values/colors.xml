@@ -10,6 +10,8 @@
     <color name="Gray">#F5F2F2</color>
     <color name="grey">#F5F2F2</color>
 
+    <color name="text_color">#535050</color>
+
     <color name="blue">#553CAF</color>
     <color name="pink">#FBA6AE</color>
     <color name="red">#F44336</color>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/friend_refresh"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,222 +8,257 @@
     android:background="#6b5be2"
     tools:context=".Views.FriendActivity">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.appbar.AppBarLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fitsSystemWindows="true">
+                android:orientation="vertical">
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/friend_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="#6b5be2"
-                    android:elevation="5dp"
-                    app:navigationIcon="@drawable/back_icon"
-                    app:navigationIconTint="@color/white"
-                    app:title="Bạn bè"
-                    app:titleTextColor="@color/white" />
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/white"
-                android:elevation="3dp"
-                app:cardCornerRadius="20dp"
-                app:strokeWidth="0dp">
-
-                <LinearLayout
+                <com.google.android.material.appbar.AppBarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:fitsSystemWindows="true">
 
-                    <TextView
+                    <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/friend_toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="20dp"
-                        android:text="Thêm bạn bè"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="#6b5be2"
+                        android:elevation="5dp"
+                        app:navigationIcon="@drawable/back_icon"
+                        app:navigationIconTint="@color/white"
+                        app:title="Bạn bè"
+                        app:titleTextColor="@color/white" />
+                </com.google.android.material.appbar.AppBarLayout>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/white"
+                    android:elevation="3dp"
+                    app:cardCornerRadius="20dp"
+                    app:strokeWidth="0dp">
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:id="@+id/friend_qr_btn"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:scaleType="center"
-                            android:src="@drawable/qr_icon"
-                            app:civ_circle_background_color="@color/Gray" />
+                        android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Mã QR"
+                            android:padding="20dp"
+                            android:text="Thêm bạn bè"
+
+                            android:textSize="16sp"
                             android:textStyle="bold" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:id="@+id/friend_qr_btn"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:scaleType="center"
+                                android:src="@drawable/qr_icon"
+                                app:civ_circle_background_color="@color/Gray" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mã QR"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/grey"
+                            android:elevation="3dp"
+                            app:cardCornerRadius="20dp"
+                            app:strokeWidth="0dp">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:orientation="vertical"
+                                android:padding="20dp">
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+
+                                    android:layout_marginBottom="20dp"
+                                    android:text="Lời mời kết bạn"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                                <LinearLayout
+                                    android:id="@+id/friend_my_request_empty"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:orientation="vertical"
+                                    >
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="80dp"
+                                        android:src="@drawable/empty_box"/>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Trống"
+                                        android:textSize="16sp"
+                                        android:gravity="center" />
+
+
+
+                                </LinearLayout>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/friend_request"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    tools:listitem="@layout/single_friend" />
+
+
+
+
+
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:text="Đã mời"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                                <LinearLayout
+                                    android:id="@+id/friend_request_empty"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+
+                                    android:orientation="vertical"
+                                    >
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="80dp"
+                                        android:src="@drawable/empty_box"/>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Trống"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+
+                                        />
+                                </LinearLayout>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/friend_my_request"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:listitem="sing" />
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:backgroundTint="@color/grey"
+                            android:elevation="3dp"
+                            app:cardCornerRadius="20dp"
+                            app:strokeWidth="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:orientation="vertical"
+                                android:padding="20dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:layout_marginBottom="20dp"
+                                    android:text="Bạn bè"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                                <LinearLayout
+                                    android:id="@+id/friend_friend_empty"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:orientation="vertical"
+                                    >
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="80dp"
+                                        android:src="@drawable/empty_box"/>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Trống"
+                                        android:textSize="16sp"
+                                        android:gravity="center"
+
+                                        />
+                                </LinearLayout>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/friend_list_friend"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:listitem="sing" />
+
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+
                     </LinearLayout>
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:backgroundTint="@color/grey"
-                        android:elevation="3dp"
-                        app:cardCornerRadius="20dp"
-                        app:strokeWidth="0dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="20dp">
+                </com.google.android.material.card.MaterialCardView>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
 
-                                android:layout_marginBottom="20dp"
-                                android:text="Lời mời kết bạn"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+            </LinearLayout>
 
-                            <LinearLayout
-                                android:id="@+id/friend_my_request_empty"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+        </androidx.core.widget.NestedScrollView>
 
-                                android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="80dp"
-                                    android:src="@drawable/empty_box" />
+    </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="Trống"
-                                    android:textSize="16sp" />
 
-                            </LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/friend_request"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                tools:listitem="@layout/single_friend" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="20dp"
-                                android:text="Đã mời"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:id="@+id/friend_request_empty"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="80dp"
-                                    android:src="@drawable/empty_box" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="Trống"
-                                    android:textSize="16sp" />
-                            </LinearLayout>
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/friend_my_request"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                tools:listitem="sing" />
-
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:backgroundTint="@color/grey"
-                        android:elevation="3dp"
-                        app:cardCornerRadius="20dp"
-                        app:strokeWidth="0dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="20dp">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="20dp"
-                                android:text="Bạn bè"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:id="@+id/friend_friend_empty"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="80dp"
-                                    android:src="@drawable/empty_box" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="Trống"
-                                    android:textSize="16sp" />
-                            </LinearLayout>
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/friend_list_friend"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                tools:listitem="sing" />
-
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</LinearLayout>

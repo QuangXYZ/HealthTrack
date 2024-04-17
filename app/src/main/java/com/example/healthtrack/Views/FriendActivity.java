@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -46,6 +47,7 @@ public class FriendActivity extends AppCompatActivity {
     LinearLayout requestEmpty, myRequestEmpty, friendEmpty;
 
     List<User> friendsList, friendRequestList, myFriendRequestList;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     FriendController friendController;
 
@@ -66,6 +68,7 @@ public class FriendActivity extends AppCompatActivity {
         requestEmpty = findViewById(R.id.friend_request_empty);
         myRequestEmpty = findViewById(R.id.friend_my_request_empty);
         friendEmpty = findViewById(R.id.friend_friend_empty);
+        swipeRefreshLayout = findViewById(R.id.friend_refresh);
 
         friendRequestList = new ArrayList<>();
         friendsList = new ArrayList<>();
@@ -96,6 +99,10 @@ public class FriendActivity extends AppCompatActivity {
                     friendEmpty.setVisibility(View.VISIBLE);
                     friendListRV.setVisibility(View.GONE);
                 }
+                else {
+                    friendEmpty.setVisibility(View.GONE);
+                    friendListRV.setVisibility(View.VISIBLE);
+                }
                 friendsList.addAll(users);
                 friendAdapter.notifyDataSetChanged();
             }
@@ -111,8 +118,12 @@ public class FriendActivity extends AppCompatActivity {
             public void onSuccess(List<User> users) {
                 friendRequestList.clear();
                 if (users.size() == 0) {
-                    requestEmpty.setVisibility(View.VISIBLE);
+                    myRequestEmpty.setVisibility(View.VISIBLE);
                     friendRequestRV.setVisibility(View.GONE);
+                }
+                else {
+                    myRequestEmpty.setVisibility(View.GONE);
+                    friendRequestRV.setVisibility(View.VISIBLE);
                 }
                 friendRequestList.addAll(users);
 
@@ -130,8 +141,12 @@ public class FriendActivity extends AppCompatActivity {
             public void onSuccess(List<User> users) {
                 myFriendRequestList.clear();
                 if (users.size() == 0) {
-                    myRequestEmpty.setVisibility(View.VISIBLE);
+                    requestEmpty.setVisibility(View.VISIBLE);
                     friendMyRequestRV.setVisibility(View.GONE);
+                }
+                else {
+                    requestEmpty.setVisibility(View.GONE);
+                    friendMyRequestRV.setVisibility(View.VISIBLE);
                 }
                 myFriendRequestList.addAll(users);
                 myFriendInviteAdapter.notifyDataSetChanged();
@@ -147,6 +162,82 @@ public class FriendActivity extends AppCompatActivity {
     }
 
     void settingUpListeners() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                friendController.getFriendList(new FriendController.FriendCallback() {
+                    @Override
+                    public void onSuccess(List<User> users) {
+                        friendsList.clear();
+                        if (users.size() == 0) {
+                            friendEmpty.setVisibility(View.VISIBLE);
+                            friendListRV.setVisibility(View.GONE);
+                        }
+                        else {
+                            friendEmpty.setVisibility(View.GONE);
+                            friendListRV.setVisibility(View.VISIBLE);
+                        }
+                        friendsList.addAll(users);
+                        friendAdapter.notifyDataSetChanged();
+                        friendController.getFriendRequest(new FriendController.FriendCallback() {
+                            @Override
+                            public void onSuccess(List<User> users) {
+                                friendRequestList.clear();
+                                if (users.size() == 0) {
+                                    myRequestEmpty.setVisibility(View.VISIBLE);
+                                    friendRequestRV.setVisibility(View.GONE);
+                                }
+                                else {
+                                    myRequestEmpty.setVisibility(View.GONE);
+                                    friendRequestRV.setVisibility(View.VISIBLE);
+                                }
+                                friendRequestList.addAll(users);
+
+                                friendInviteAdapter.notifyDataSetChanged();
+                                friendController.getMyFriendRequest(new FriendController.FriendCallback() {
+                                    @Override
+                                    public void onSuccess(List<User> users) {
+                                        myFriendRequestList.clear();
+                                        if (users.size() == 0) {
+                                            requestEmpty.setVisibility(View.VISIBLE);
+                                            friendMyRequestRV.setVisibility(View.GONE);
+                                        }
+                                        else {
+                                            requestEmpty.setVisibility(View.GONE);
+                                            friendMyRequestRV.setVisibility(View.VISIBLE);
+                                        }
+                                        myFriendRequestList.addAll(users);
+                                        myFriendInviteAdapter.notifyDataSetChanged();
+                                        swipeRefreshLayout.setRefreshing(false);
+
+                                    }
+
+                                    @Override
+                                    public void onError(String error) {
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onError(String error) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+
+
+
+
+
+            }
+        });
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
