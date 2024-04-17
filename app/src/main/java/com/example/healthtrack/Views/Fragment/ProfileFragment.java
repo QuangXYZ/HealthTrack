@@ -101,5 +101,4 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-//    test commit
 }
