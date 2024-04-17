@@ -21,7 +21,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class SignUpActivity extends AppCompatActivity {
 
     TextView loginText;
-    TextInputEditText email,username, password, repassword;
+    TextInputEditText email, username, password, repassword;
     Button signUpButton;
     UserController userController;
     ProgressBar progressBar;
@@ -33,7 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
         init();
         settingUpListeners();
     }
-    void init(){
+
+    void init() {
         loginText = findViewById(R.id.loginText);
         email = findViewById(R.id.signup_email);
         username = findViewById(R.id.signup_username);
@@ -47,7 +48,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         userController = new UserController();
     }
-    void settingUpListeners (){
+
+    void settingUpListeners() {
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,48 +77,40 @@ public class SignUpActivity extends AppCompatActivity {
                     email.requestFocus();
                     progressBar.setVisibility(View.GONE);
                     signUpButton.setVisibility(View.VISIBLE);
-                }
-                else if (usernameText.isEmpty()){
+                } else if (usernameText.isEmpty()) {
                     username.setError("Nhập username");
                     username.requestFocus();
                     progressBar.setVisibility(View.GONE);
                     signUpButton.setVisibility(View.VISIBLE);
-                }
-                else if (passwordText.isEmpty()){
+                } else if (passwordText.isEmpty()) {
                     password.setError("Nhập password");
                     password.requestFocus();
                     progressBar.setVisibility(View.GONE);
                     signUpButton.setVisibility(View.VISIBLE);
-                }
-
-                else if (!emailText.matches(emailPattern)) {
+                } else if (!emailText.matches(emailPattern)) {
                     email.setError("Email không đúng định dạng");
                     email.requestFocus();
                     progressBar.setVisibility(View.GONE);
                     signUpButton.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "Email không đúng định dạng", Toast.LENGTH_SHORT).show();
-                }
-                else if (usernameText.length()<5) {
+                } else if (usernameText.length() < 5) {
                     username.setError("username chưa đủ 5 kí tự");
                     username.requestFocus();
                     progressBar.setVisibility(View.GONE);
                     signUpButton.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "Password chưa đủ 8 kí tự", Toast.LENGTH_SHORT).show();
-                }
-                else if (passwordText.length()<6) {
+                } else if (passwordText.length() < 6) {
                     password.setError("Password chưa đủ 6 kí tự");
                     password.requestFocus();
                     progressBar.setVisibility(View.GONE);
                     signUpButton.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "Password chưa đủ 8 kí tự", Toast.LENGTH_SHORT).show();
-                }
-                else if (!repasswordText.equals(passwordText)){
+                } else if (!repasswordText.equals(passwordText)) {
                     repassword.setError("Password không khớp");
                     repassword.requestFocus();
                     progressBar.setVisibility(View.GONE);
                     signUpButton.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     userController.signup(
                             emailText, usernameText, passwordText, new UserController.UserControllerCallback() {
                                 @Override
@@ -136,10 +130,16 @@ public class SignUpActivity extends AppCompatActivity {
                                                 }
                                             }).show();
                                 }
+
                                 @Override
                                 public void onError(String error) {
-                                    progressBar.setVisibility(View.GONE);
-                                    signUpButton.setVisibility(View.VISIBLE);
+                                    new AlertDialog.Builder(SignUpActivity.this)
+                                            .setTitle("Đăng nhập thất bại")
+                                            .setMessage(error)
+                                            .setPositiveButton("OK", (dialog, which) -> {
+                                                signUpButton.setVisibility(View.VISIBLE);
+                                                progressBar.setVisibility(View.GONE);
+                                            }).show();
                                 }
                             });
 
