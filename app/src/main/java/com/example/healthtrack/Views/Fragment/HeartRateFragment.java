@@ -53,6 +53,7 @@ public class HeartRateFragment extends Fragment{
         if (DataLocalManager.getHeartRateList()==null)
             DataLocalManager.setHeartRateList(heartRates);
 
+        //them du lieu vao arraylist
         heartRates.addAll(DataLocalManager.getHeartRateList());
         heartRateAdapter = new HeartRateAdapter((Activity) getActivity(), heartRates);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
