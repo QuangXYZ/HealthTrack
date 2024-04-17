@@ -11,8 +11,8 @@ buildscript {
 
 android {
     namespace = "com.example.healthtrack"
-//    compileSdk = 34
-    compileSdk = 33
+    compileSdk = 34
+//    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.example.healthtrack"
