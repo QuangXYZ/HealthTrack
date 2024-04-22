@@ -11,12 +11,14 @@ import com.example.healthtrack.Network.Request.JoinChallengeRequest;
 import com.example.healthtrack.Network.Request.LeaveChallengeRequest;
 import com.example.healthtrack.Network.Respone.BaseListResponse;
 import com.example.healthtrack.Network.Respone.BaseResponse;
+import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Utils.DataLocalManager;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -181,6 +183,28 @@ public class ChallengeController {
 
             @Override
             public void onFailure(Call<BaseResponse<Challenge>> call, Throwable t) {
+                challengeControllerCallback.onError(t.getMessage());
+            }
+        });
+    }
+
+    public void updateChallengeStep(final ChallengeControllerCallback challengeControllerCallback){
+        String idUser = DataLocalManager.getUser().get_id();
+        int currentStep = DataLocalManager.getWalkingStep(CommonUtils.STEP_NUMBER_KEY)- DataLocalManager.getTempStep();
+
+        apiService.updateChallengeStep(idUser,currentStep).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    challengeControllerCallback.onSuccess(response.message());
+                    DataLocalManager.setTempStep(DataLocalManager.getWalkingStep(CommonUtils.STEP_NUMBER_KEY));
+                } else {
+                    challengeControllerCallback.onError(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 challengeControllerCallback.onError(t.getMessage());
             }
         });
