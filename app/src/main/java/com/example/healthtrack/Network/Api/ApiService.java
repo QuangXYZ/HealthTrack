@@ -82,6 +82,9 @@ public interface ApiService {
     Call<BaseResponse<Challenge>> leaveChallenge(
             @Body LeaveChallengeRequest leaveChallengeRequest
     );
+    @PATCH("challenges/{id}/{step}")
+    Call<ResponseBody> updateChallengeStep(@Path("id") String id,
+                                           @Path("step") int step);
 
     @GET("users/friends/{idUser}")
     Call<BaseListResponse<User>> getFriend(
@@ -142,6 +145,6 @@ public interface ApiService {
     );
     @PATCH("healthActivity/update/{idUser}/{date}")
     Call<ResponseBody> updateHealthActivity(@Path("idUser") String idUser,
-                                  @Path("date") String date,
-                                  @Body RequestBody body);
+                                            @Path("date") String date,
+                                            @Body RequestBody body);
 }
