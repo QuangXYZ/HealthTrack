@@ -20,6 +20,8 @@ public class DataLocalManager {
     private static final String PREF_HEALTH = "PREF_HEALTH";
 
     private static final String TOKEN_USER = "TOKEN_USER";
+    private static final String TEMP_STEP = "TEMP_STEP";
+
     private static DataLocalManager instance;
     private MySharedPreferences mySharedPreferences;
 
@@ -58,6 +60,13 @@ public class DataLocalManager {
 
 
 
+    public static void setTempStep(int value) {
+        DataLocalManager.getInstance().mySharedPreferences.putIntValue(CommonUtils.getKeyToday()+"TENP_STEP", value);
+
+    }
+    public static int getTempStep() {
+        return DataLocalManager.getInstance().mySharedPreferences.getIntValue(CommonUtils.getKeyToday()+"TENP_STEP");
+    }
 
     public static void setUser(User user) {
         Gson gson = new Gson();
@@ -72,7 +81,7 @@ public class DataLocalManager {
         User user = gson.fromJson(strUser,User.class);
         return user;
     }
-     public static void setHealthActivity(HealthActivity healthActivity) {
+    public static void setHealthActivity(HealthActivity healthActivity) {
         Gson gson = new Gson();
         String strJsonUser = gson.toJson(healthActivity);
         DataLocalManager.getInstance().mySharedPreferences.putStringValue(CommonUtils.getKeyToday()+"HealthActivity",strJsonUser);
