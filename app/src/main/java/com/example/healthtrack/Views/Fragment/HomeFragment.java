@@ -34,6 +34,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.healthtrack.Controller.ChallengeController;
 import com.example.healthtrack.Controller.ExerciseController;
 import com.example.healthtrack.Controller.SetGoalsController;
 import com.example.healthtrack.Controller.StepController;
@@ -361,6 +362,18 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onError() {
+
+            }
+        });
+        ChallengeController challengeController = new ChallengeController();
+        challengeController.updateChallengeStep(new ChallengeController.ChallengeControllerCallback() {
+            @Override
+            public void onSuccess(String message) {
+
+            }
+
+            @Override
+            public void onError(String error) {
 
             }
         });
