@@ -1,4 +1,4 @@
-package com.example.healthtrack.Views;
+package com.example.healthtrack.Views.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,12 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.healthtrack.Controller.ChallengeController;
-import com.example.healthtrack.Controller.LoginController;
 import com.example.healthtrack.Controller.UserController;
 import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.Record;
@@ -26,9 +24,6 @@ import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.DataLocalManager;
 import com.example.healthtrack.Views.Adapters.RankingAdapter;
-import com.github.ybq.android.spinkit.SpinKitView;
-import com.github.ybq.android.spinkit.sprite.Sprite;
-import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.zxing.BarcodeFormat;

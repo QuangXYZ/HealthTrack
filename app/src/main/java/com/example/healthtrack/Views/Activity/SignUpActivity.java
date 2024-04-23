@@ -1,4 +1,4 @@
-package com.example.healthtrack.Views;
+package com.example.healthtrack.Views.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;

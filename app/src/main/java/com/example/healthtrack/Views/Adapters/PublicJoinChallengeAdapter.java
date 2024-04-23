@@ -15,8 +15,7 @@ import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.Record;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.DataLocalManager;
-import com.example.healthtrack.Views.PrivateChallengeDetail;
-import com.example.healthtrack.Views.PublicChallengeDetailActivity;
+import com.example.healthtrack.Views.Activity.PublicChallengeDetailActivity;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;

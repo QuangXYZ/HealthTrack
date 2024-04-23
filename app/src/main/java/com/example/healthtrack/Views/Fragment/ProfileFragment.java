@@ -19,10 +19,9 @@ import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
 
 import com.example.healthtrack.Utils.DataLocalManager;
-import com.example.healthtrack.Views.CreateChallengeActivity;
-import com.example.healthtrack.Views.FriendActivity;
-import com.example.healthtrack.Views.ProfileQRActivity;
-import com.example.healthtrack.Views.SplashScreen;
+import com.example.healthtrack.Views.Activity.FriendActivity;
+import com.example.healthtrack.Views.Activity.ProfileQRActivity;
+import com.example.healthtrack.Views.Activity.SplashScreen;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

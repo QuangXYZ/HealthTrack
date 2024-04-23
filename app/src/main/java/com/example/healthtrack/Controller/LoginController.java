@@ -1,8 +1,6 @@
 package com.example.healthtrack.Controller;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,7 +12,6 @@ import com.example.healthtrack.Utils.SharedPreferences.SharedPrefUser;
 import com.example.healthtrack.Utils.SharedPreferences.SharedPreferencesUtil;
 import com.example.healthtrack.Utils.Constants;
 import com.example.healthtrack.Utils.DataLocalManager;
-import com.example.healthtrack.Views.MainHomeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
