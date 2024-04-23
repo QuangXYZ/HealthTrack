@@ -15,10 +15,8 @@ import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.Record;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.DataLocalManager;
-import com.example.healthtrack.Views.PrivateChallengeDetail;
+import com.example.healthtrack.Views.Activity.PrivateChallengeDetail;
 import com.google.android.material.card.MaterialCardView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 public class PrivateChallengeAdapter extends RecyclerView.Adapter<PrivateChallengeAdapter.MyViewHolder> {

@@ -14,6 +14,7 @@ import androidx.work.WorkManager;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import com.example.healthtrack.Controller.ChallengeController;
 import com.example.healthtrack.Controller.StepController;
 
 import com.example.healthtrack.Utils.SharedPreferences.*;
@@ -64,6 +65,7 @@ public class UpdateStepWorker extends Worker {
 
             }
         });
+
     }
 
     public static void updateStepWorker(Context context) {

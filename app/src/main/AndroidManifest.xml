@@ -33,16 +33,16 @@
             android:name=".Views.Activity.ExerciseActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.ProfileQRActivity"
+            android:name=".Views.Activity.ProfileQRActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.FriendActivity"
+            android:name=".Views.Activity.FriendActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.EditProfileActivity"
+            android:name=".Views.Activity.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.SplashScreen"
+            android:name=".Views.Activity.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,16 +51,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Views.PublicChallengeDetailActivity"
+            android:name=".Views.Activity.PublicChallengeDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.SignUpActivity"
+            android:name=".Views.Activity.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.CreateChallengeActivity"
+            android:name=".Views.Activity.CreateChallengeActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.PrivateChallengeDetail"
+            android:name=".Views.Activity.PrivateChallengeDetail"
             android:exported="false" />
         <activity
             android:name=".Views.Activity.SetGoalsActivity"
@@ -69,13 +69,13 @@
             android:name=".Views.Activity.HistoryStepActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.LoginActivity"
+            android:name=".Views.Activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.MainHomeActivity"
+            android:name=".Views.Activity.MainHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Views.TestWalkingStep"
+            android:name=".Views.Activity.TestWalkingStep"
             android:exported="false" />
         <activity android:name=".Views.Fragment.PrivateChallengeFragment" />
         <activity
