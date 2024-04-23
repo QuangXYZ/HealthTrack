@@ -12,6 +12,7 @@ buildscript {
 android {
     namespace = "com.example.healthtrack"
     compileSdk = 34
+//    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.example.healthtrack"
@@ -52,28 +53,28 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.google.android.material:material:1.9.0")
-    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
-    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
-    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation ("junit:junit:4.+")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
-    implementation ("com.journeyapps:zxing-android-embedded:4.1.0")
-    implementation ("com.google.zxing:core:3.3.3")
-    implementation ("com.github.ybq:Android-SpinKit:1.4.0")
-    implementation ("com.squareup:android-times-square:1.6.5@aar")
-    implementation ("io.github.ShawnLin013:number-picker:2.4.13")
-    implementation ("com.github.cachapa:ExpandableLayout:2.9.2")
-    implementation ("com.github.prolificinteractive:material-calendarview:2.0.0")
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
-    implementation ("com.github.cjhandroid:WaveProgressBar:v1.0.0")
-    implementation ("com.jakewharton.threetenabp:threetenabp:1.2.0")
-    implementation ("androidx.work:work-runtime:2.7.0-alpha05")
-    implementation ("com.github.dmytrodanylyk:circular-progress-button:1.4")
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    testImplementation("junit:junit:4.+")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("com.journeyapps:zxing-android-embedded:4.1.0")
+    implementation("com.google.zxing:core:3.3.3")
+    implementation("com.github.ybq:Android-SpinKit:1.4.0")
+    implementation("com.squareup:android-times-square:1.6.5@aar")
+    implementation("io.github.ShawnLin013:number-picker:2.4.13")
+    implementation("com.github.cachapa:ExpandableLayout:2.9.2")
+    implementation("com.github.prolificinteractive:material-calendarview:2.0.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.github.cjhandroid:WaveProgressBar:v1.0.0")
+    implementation("com.jakewharton.threetenabp:threetenabp:1.2.0")
+    implementation("androidx.work:work-runtime:2.7.0-alpha05")
+    implementation("com.github.dmytrodanylyk:circular-progress-button:1.4")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     implementation("com.google.firebase:firebase-analytics")
@@ -83,9 +84,8 @@ dependencies {
 
 
     //Glide
-    implementation ("com.github.bumptech.glide:glide:4.15.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.0")
-
+    implementation("com.github.bumptech.glide:glide:4.15.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.15.0")
 
 
 }

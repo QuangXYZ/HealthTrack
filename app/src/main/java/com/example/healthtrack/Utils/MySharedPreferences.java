@@ -14,7 +14,7 @@ public class MySharedPreferences {
 
 
     public void putBooleanValue(String key, boolean value) {
-        SharedPreferences sharedPreferences =  context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(key, value);
         editor.apply();
@@ -24,11 +24,12 @@ public class MySharedPreferences {
 
     public int getIntValue(String key) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
-        return sharedPreferences.getInt(key,0);
+        return sharedPreferences.getInt(key, 0);
 
     }
+
     public void putIntValue(String key, int value) {
-        SharedPreferences sharedPreferences =  context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(key, value);
         editor.apply();
@@ -45,7 +46,7 @@ public class MySharedPreferences {
 
     public boolean getBooleanValue(String key) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(key,false);
+        return sharedPreferences.getBoolean(key, false);
 
     }
 
@@ -58,7 +59,7 @@ public class MySharedPreferences {
 
     public String getStringValue(String key) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(key,"");
+        return sharedPreferences.getString(key, "");
 
     }
 

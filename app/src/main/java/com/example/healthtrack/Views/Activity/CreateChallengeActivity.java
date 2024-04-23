@@ -1,4 +1,4 @@
-package com.example.healthtrack.Views;
+package com.example.healthtrack.Views.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -17,8 +17,6 @@ import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -29,20 +27,19 @@ import net.cachapa.expandablelayout.ExpandableLayout;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
 
-import java.util.Calendar;
-
 public class CreateChallengeActivity extends AppCompatActivity {
 
-    ExpandableLayout calenderExpandedLayout,stepExpandedLayout;
+    ExpandableLayout calenderExpandedLayout, stepExpandedLayout;
     MaterialCalendarView calendarView;
     NumberPicker numberPicker;
-    LinearLayout calenderLayout,stepLayout;
-    TextView calenderTextView,stepTextView;
+    LinearLayout calenderLayout, stepLayout;
+    TextView calenderTextView, stepTextView;
     MaterialToolbar toolbar;
     MaterialButton createButton;
     SpinKitView progress;
     ChallengeController challengeController;
     EditText challengeNameEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +47,8 @@ public class CreateChallengeActivity extends AppCompatActivity {
         init();
         settingUpListeners();
     }
-    void init(){
+
+    void init() {
         calenderLayout = findViewById(R.id.create_challenge_calender_layout);
         calenderExpandedLayout = findViewById(R.id.create_challenge_expandable_calendar_layout);
         calendarView = findViewById(R.id.create_challenge_calender);
@@ -65,7 +63,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
         stepTextView = findViewById(R.id.create_challenge_step);
         stepExpandedLayout.collapse();
 
-        String[] data = {"10.000", "20.000", "30.000", "40.000", "50.000", "60.000", "70.000", "80.000", "90.000","100.000","110.000","120.000","130.000","140.000","150.000"};
+        String[] data = {"10.000", "20.000", "30.000", "40.000", "50.000", "60.000", "70.000", "80.000", "90.000", "100.000", "110.000", "120.000", "130.000", "140.000", "150.000"};
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(data.length);
         numberPicker.setDisplayedValues(data);
@@ -81,7 +79,8 @@ public class CreateChallengeActivity extends AppCompatActivity {
         challengeController = new ChallengeController();
 
     }
-    void settingUpListeners(){
+
+    void settingUpListeners() {
         calenderLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +90,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                calenderTextView.setText(date.getDay()+"-"+date.getMonth()+"-"+date.getYear());
+                calenderTextView.setText(date.getDay() + "-" + date.getMonth() + "-" + date.getYear());
             }
         });
 
@@ -104,7 +103,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                stepTextView.setText(newVal+"0.000 bước");
+                stepTextView.setText(newVal + "0.000 bước");
             }
         });
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -123,11 +122,11 @@ public class CreateChallengeActivity extends AppCompatActivity {
 
                 String challengeName = challengeNameEditText.getText().toString();
 
-                String localDate = calendarView.getSelectedDate().getYear()+"-"
-                            +calendarView.getSelectedDate().getMonth()+"-"
-                            +calendarView.getSelectedDate().getDay();
+                String localDate = calendarView.getSelectedDate().getYear() + "-"
+                        + calendarView.getSelectedDate().getMonth() + "-"
+                        + calendarView.getSelectedDate().getDay();
 
-                int target = numberPicker.getValue()* 10000;
+                int target = numberPicker.getValue() * 10000;
 
                 challengeController.createChallenge(challengeName, localDate, target, new ChallengeController.ChallengeControllerCallback() {
                     @Override
@@ -137,7 +136,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
                                 .setMessage("Thử thách đã được tạo")
                                 .setPositiveButton("OK", (dialog, which) -> {
                                     finish();
-                                } ).show();
+                                }).show();
                     }
 
                     @Override
@@ -147,7 +146,7 @@ public class CreateChallengeActivity extends AppCompatActivity {
                                 .setMessage(error)
                                 .setPositiveButton("OK", (dialog, which) -> {
                                     finish();
-                                } ).show();
+                                }).show();
                     }
                 });
 

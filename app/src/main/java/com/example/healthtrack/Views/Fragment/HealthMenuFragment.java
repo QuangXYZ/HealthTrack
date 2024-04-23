@@ -22,16 +22,13 @@ import java.text.DecimalFormat;
 public class HealthMenuFragment extends Fragment {
 
     MaterialCardView amountDrinking, bodyComposition, bloodPressure, heartRate;
-    TextView water,bmi;
+    TextView water, bmi;
     ProgressBar progressBar;
     HealthActivity healthActivity = DataLocalManager.getHealthActivity();
 
 
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_health_menu, container, false);
         init(view);
@@ -39,7 +36,8 @@ public class HealthMenuFragment extends Fragment {
         return view;
 
     }
-    void init(View view){
+
+    void init(View view) {
         amountDrinking = view.findViewById(R.id.fragment_health_amount_drinking);
         bodyComposition = view.findViewById(R.id.fragment_health_body_composition);
         bloodPressure = view.findViewById(R.id.fragment_health_blood_pressure);
@@ -49,24 +47,24 @@ public class HealthMenuFragment extends Fragment {
         bmi = view.findViewById(R.id.fragment_health_menu_bmi);
 
 
-        if (healthActivity!=null) {
+        if (healthActivity != null) {
             try {
-                water.setText(healthActivity.getAmountWater().getAmountDrinking()+"/2000ml");
-                progressBar.setProgress((int) (healthActivity.getAmountWater().getAmountDrinking()*100/2000));
-                float w = (float) (healthActivity.getBodyComposition().getWeight()*1.0);
-                float h = (float) (healthActivity.getBodyComposition().getHeight()*1.0)/100;
+                water.setText(healthActivity.getAmountWater().getAmountDrinking() + "/2000ml");
+                progressBar.setProgress((int) (healthActivity.getAmountWater().getAmountDrinking() * 100 / 2000));
+                float w = (float) (healthActivity.getBodyComposition().getWeight() * 1.0);
+                float h = (float) (healthActivity.getBodyComposition().getHeight() * 1.0) / 100;
                 float bmi_float = w / (h * h);
                 DecimalFormat df = new DecimalFormat("#.##");
                 bmi.setText(df.format(bmi_float));
-            }
-            catch (Exception e){
+            } catch (Exception e) {
 
             }
 
 
         }
     }
-    void settingUpListener(){
+
+    void settingUpListener() {
         amountDrinking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

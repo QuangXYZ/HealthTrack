@@ -1,4 +1,5 @@
 package com.example.healthtrack.Views.Fragment;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +24,11 @@ public class BodyCompositionFragment extends Fragment {
     ImageView back;
     TextInputEditText height, weight;
     CircularProgressButton button;
-    TextView bmi,ideal;
+    TextView bmi, ideal;
     boolean gender = true;
     TextView bmi_1, bmi_2, bmi_3, bmi_4, bmi_5;
     HealthActivity healthActivity = DataLocalManager.getHealthActivity();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class BodyCompositionFragment extends Fragment {
         settingUpListeners();
         return view;
     }
+
     void init(View view) {
         man = view.findViewById(R.id.body_composition_man);
         woman = view.findViewById(R.id.body_composition_woman);
@@ -50,13 +53,14 @@ public class BodyCompositionFragment extends Fragment {
         bmi_5 = view.findViewById(R.id.body_composition_bmi_5);
         ideal = view.findViewById(R.id.body_composition_ideal);
 
-        if (healthActivity!=null) {
-            weight.setText(healthActivity.getBodyComposition().getWeight()+"");
-            height.setText(healthActivity.getBodyComposition().getHeight()+"");
+        if (healthActivity != null) {
+            weight.setText(healthActivity.getBodyComposition().getWeight() + "");
+            height.setText(healthActivity.getBodyComposition().getHeight() + "");
             bmi_progress();
         }
 
     }
+
     void settingUpListeners() {
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -103,20 +107,20 @@ public class BodyCompositionFragment extends Fragment {
         transaction.commit();
     }
 
-    void bmi_progress(){
-        if (weight.getText().toString().isEmpty()||height.getText().toString().isEmpty()) return;
+    void bmi_progress() {
+        if (weight.getText().toString().isEmpty() || height.getText().toString().isEmpty()) return;
         button.setIndeterminateProgressMode(true); // turn on indeterminate progress
         button.setProgress(50);
         float w = Float.parseFloat(weight.getText().toString());
-        float h = Float.parseFloat(height.getText().toString())/100;
+        float h = Float.parseFloat(height.getText().toString()) / 100;
         float bmi_float = w / (h * h);
-        float d = (h*100 - ((int) h)*100)*9/10;
+        float d = (h * 100 - ((int) h) * 100) * 9 / 10;
         DecimalFormat df = new DecimalFormat("#.##");
 
         // Sử dụng DecimalFormat để lấy 2 số thập phân
         // Hiện thông tin theo phần trăm
 
-        ideal.setText(d+" Kg");
+        ideal.setText(d + " Kg");
         bmi.setText(df.format(bmi_float));
         if (bmi_float < 18.5) {
             bmi_1.setTextColor(getResources().getColor(R.color.orange));
@@ -124,30 +128,26 @@ public class BodyCompositionFragment extends Fragment {
             bmi_3.setTextColor(getResources().getColor(R.color.text_color));
             bmi_4.setTextColor(getResources().getColor(R.color.text_color));
             bmi_5.setTextColor(getResources().getColor(R.color.text_color));
-        }
-        else if (bmi_float >= 18.5 && bmi_float <= 24.9) {
+        } else if (bmi_float >= 18.5 && bmi_float <= 24.9) {
             bmi_1.setTextColor(getResources().getColor(R.color.text_color));
             bmi_2.setTextColor(getResources().getColor(R.color.orange));
             bmi_3.setTextColor(getResources().getColor(R.color.text_color));
             bmi_4.setTextColor(getResources().getColor(R.color.text_color));
             bmi_5.setTextColor(getResources().getColor(R.color.text_color));
-        }
-        else if (bmi_float >= 25 && bmi_float <= 29.9) {
+        } else if (bmi_float >= 25 && bmi_float <= 29.9) {
             bmi_1.setTextColor(getResources().getColor(R.color.text_color));
             bmi_2.setTextColor(getResources().getColor(R.color.text_color));
             bmi_3.setTextColor(getResources().getColor(R.color.orange));
             bmi_4.setTextColor(getResources().getColor(R.color.text_color));
             bmi_5.setTextColor(getResources().getColor(R.color.text_color));
-        }
-        else if (bmi_float >= 30 && bmi_float <= 34.9) {
+        } else if (bmi_float >= 30 && bmi_float <= 34.9) {
             bmi_1.setTextColor(getResources().getColor(R.color.text_color));
             bmi_2.setTextColor(getResources().getColor(R.color.text_color));
             bmi_3.setTextColor(getResources().getColor(R.color.text_color));
             bmi_4.setTextColor(getResources().getColor(R.color.orange));
             bmi_5.setTextColor(getResources().getColor(R.color.text_color));
 
-        }
-        else if (bmi_float >= 35) {
+        } else if (bmi_float >= 35) {
             bmi_1.setTextColor(getResources().getColor(R.color.text_color));
             bmi_2.setTextColor(getResources().getColor(R.color.text_color));
             bmi_3.setTextColor(getResources().getColor(R.color.text_color));

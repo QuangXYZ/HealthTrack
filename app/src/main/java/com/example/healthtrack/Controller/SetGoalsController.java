@@ -73,7 +73,7 @@ public class SetGoalsController {
                 );
     }
 
-    public void insertSetGoals(SetGoals setGoals){
+    public void insertSetGoals(SetGoals setGoals) {
         String token = SharedPreferencesUtil.getToken(context);
         apiService = ApiUtils.getApiService(token);
         apiService.insertSetGoals(setGoals).enqueue(new retrofit2.Callback<SetGoals>() {

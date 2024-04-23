@@ -63,6 +63,7 @@ public class SmallExerciseAdapter extends RecyclerView.Adapter<SmallExerciseAdap
         private TextView title;
         private TextView time;
         private MaterialCardView smallExerciseLayout;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             time = itemView.findViewById(R.id.time_list);

@@ -1,4 +1,4 @@
-package com.example.healthtrack.Views;
+package com.example.healthtrack.Views.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,11 +27,11 @@ import java.util.List;
 public class PublicChallengeDetailActivity extends AppCompatActivity {
 
     MaterialToolbar toolbar;
-    TextView name, description, member, dateEnd, target, step, stepAchived,ranking;
+    TextView name, description, member, dateEnd, target, step, stepAchived, ranking;
     ProgressBar progressBar;
     RecyclerView recyclerView;
     Challenge challenge;
-    RankingAdapter  adapter;
+    RankingAdapter adapter;
     ChallengeController challengeController;
 
     @Override
@@ -41,7 +41,8 @@ public class PublicChallengeDetailActivity extends AppCompatActivity {
         init();
         settingUpListeners();
     }
-    void init(){
+
+    void init() {
         toolbar = findViewById(R.id.public_challenge_toolbar);
         name = findViewById(R.id.public_challenge_name);
         description = findViewById(R.id.public_challenge_description);
@@ -57,11 +58,10 @@ public class PublicChallengeDetailActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        if (intent!=null) {
+        if (intent != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 challenge = intent.getSerializableExtra("Challenge", Challenge.class);
-            }
-            else {
+            } else {
                 challenge = (Challenge) intent.getSerializableExtra("Challenge");
             }
         }
@@ -69,20 +69,20 @@ public class PublicChallengeDetailActivity extends AppCompatActivity {
         String userId = DataLocalManager.getUser().get_id();
         List<Record> records = challenge.getUserRecords();
         records.sort(new stepComparator());
-        for (Record record: records) {
+        for (Record record : records) {
             if (record.getUserId().equals(userId)) {
-                step.setText("Tiến độ thử thách: "+(int) (record.getStepTotal()/challenge.getTarget()*1.0)*100+"%");
-                progressBar.setProgress((int) (record.getStepTotal()/challenge.getTarget()*1.0)*100);
-                stepAchived.setText(""+record.getStepTotal());
-                ranking.setText((records.indexOf(record)+1)+"");
+                step.setText("Tiến độ thử thách: " + (int) (record.getStepTotal() / challenge.getTarget() * 1.0) * 100 + "%");
+                progressBar.setProgress((int) (record.getStepTotal() / challenge.getTarget() * 1.0) * 100);
+                stepAchived.setText("" + record.getStepTotal());
+                ranking.setText((records.indexOf(record) + 1) + "");
             }
         }
 
         name.setText(challenge.getName());
         description.setText(challenge.getDescription());
-        member.setText("Số người tham gia: "+challenge.getListMember().size());
-        dateEnd.setText("Ngày kết thúc: "+challenge.getDateEnd().split("T")[0]);
-        target.setText("Mục tiêu: "+challenge.getTarget()+" bước");
+        member.setText("Số người tham gia: " + challenge.getListMember().size());
+        dateEnd.setText("Ngày kết thúc: " + challenge.getDateEnd().split("T")[0]);
+        target.setText("Mục tiêu: " + challenge.getTarget() + " bước");
 
         adapter = new RankingAdapter(this, records);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -91,7 +91,8 @@ public class PublicChallengeDetailActivity extends AppCompatActivity {
 
 
     }
-    void settingUpListeners(){
+
+    void settingUpListeners() {
         toolbar.setNavigationOnClickListener(v -> {
             finish();
         });
@@ -117,7 +118,8 @@ public class PublicChallengeDetailActivity extends AppCompatActivity {
                                     }
                                 });
                             })
-                            .setPositiveButton("Không", (dialog, which) -> {} ).show();
+                            .setPositiveButton("Không", (dialog, which) -> {
+                            }).show();
                 }
                 return false;
             }

@@ -3,10 +3,10 @@
     android:height="18dp"
     android:viewportWidth="512"
     android:viewportHeight="512">
-  <path
-      android:fillColor="@color/cardview_dark_background"
-      android:pathData="M256,0c-74.44,0 -135,60.56 -135,135s60.56,135 135,135s135,-60.56 135,-135S330.44,0 256,0z"/>
-  <path
-      android:fillColor="@color/cardview_dark_background"
-      android:pathData="M423.97,358.2C387.01,320.67 338.01,300 286,300h-60c-52.01,0 -101.01,20.67 -137.97,58.19C51.26,395.54 31,444.83 31,497c0,8.28 6.72,15 15,15h420c8.28,0 15,-6.72 15,-15C481,444.83 460.74,395.54 423.97,358.2z"/>
+    <path
+        android:fillColor="@color/cardview_dark_background"
+        android:pathData="M256,0c-74.44,0 -135,60.56 -135,135s60.56,135 135,135s135,-60.56 135,-135S330.44,0 256,0z" />
+    <path
+        android:fillColor="@color/cardview_dark_background"
+        android:pathData="M423.97,358.2C387.01,320.67 338.01,300 286,300h-60c-52.01,0 -101.01,20.67 -137.97,58.19C51.26,395.54 31,444.83 31,497c0,8.28 6.72,15 15,15h420c8.28,0 15,-6.72 15,-15C481,444.83 460.74,395.54 423.97,358.2z" />
 </vector>

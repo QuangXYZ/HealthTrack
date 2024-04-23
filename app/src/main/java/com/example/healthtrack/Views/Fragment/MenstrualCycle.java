@@ -1,4 +1,5 @@
 package com.example.healthtrack.Views.Fragment;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,9 +23,11 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.example.healthtrack.R;
 
 import java.util.ArrayList;
+
 public class MenstrualCycle extends Fragment {
 
     private CalendarView calendarView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +54,6 @@ public class MenstrualCycle extends Fragment {
 
         return view;
     }
-
 
 
     public void replaceFragment() {

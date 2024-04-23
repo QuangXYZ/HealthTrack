@@ -1,7 +1,5 @@
 package com.example.healthtrack.Views.Fragment;
 
-import static androidx.core.content.PermissionChecker.checkSelfPermission;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,8 +31,7 @@ import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.CaptureArt;
 import com.example.healthtrack.Views.Adapters.PrivateChallengeAdapter;
-import com.example.healthtrack.Views.CreateChallengeActivity;
-import com.example.healthtrack.Views.PrivateChallengeDetail;
+import com.example.healthtrack.Views.Activity.CreateChallengeActivity;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -47,7 +44,7 @@ public class PrivateChallengeFragment extends Fragment {
     private static final int PERMISSION_REQUEST_CAMERA = 1;
     RecyclerView challengeRecyclerview;
     PrivateChallengeAdapter adapter;
-    Button createChallengeBtn,qrScanBtn;
+    Button createChallengeBtn, qrScanBtn;
     TextView textview;
     LinearLayout noChallenge;
     ChallengeController challengeController;
@@ -58,7 +55,7 @@ public class PrivateChallengeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_private_challenge, container, false);
+        View view = inflater.inflate(R.layout.fragment_private_challenge, container, false);
         init(view);
         settingUpListener();
         return view;
@@ -77,7 +74,6 @@ public class PrivateChallengeFragment extends Fragment {
 
         challengeController = new ChallengeController();
         challengeList = new ArrayList<>();
-
 
 
         adapter = new PrivateChallengeAdapter((Activity) getContext(), challengeList);
@@ -107,6 +103,7 @@ public class PrivateChallengeFragment extends Fragment {
 
 
     }
+
     void settingUpListener() {
         createChallengeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +129,7 @@ public class PrivateChallengeFragment extends Fragment {
             }
         });
     }
+
     private void initQRCodeScanner() {
         IntentIntegrator integrator = IntentIntegrator.forSupportFragment(PrivateChallengeFragment.this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
@@ -152,13 +150,14 @@ public class PrivateChallengeFragment extends Fragment {
             }
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (scanningResult != null) {
-            String scanContent = null,scanFormat = null;
+            String scanContent = null, scanFormat = null;
             if (scanningResult.getContents() != null) {
                 scanContent = scanningResult.getContents().toString();
                 scanFormat = scanningResult.getFormatName().toString();
@@ -170,7 +169,7 @@ public class PrivateChallengeFragment extends Fragment {
         }
     }
 
-    private void joinChallenge(String idChallenge){
+    private void joinChallenge(String idChallenge) {
         challengeController.joinChallenge(idChallenge, new ChallengeController.ChallengeControllerCallback() {
             @Override
             public void onSuccess(String message) {
@@ -179,7 +178,7 @@ public class PrivateChallengeFragment extends Fragment {
                         .setMessage("Đã tham gia thử thách")
                         .setPositiveButton("OK", (dialog, which) -> {
 
-                        } ).show();
+                        }).show();
             }
 
             @Override
@@ -189,7 +188,7 @@ public class PrivateChallengeFragment extends Fragment {
                         .setMessage(error)
                         .setPositiveButton("OK", (dialog, which) -> {
 
-                        } ).show();
+                        }).show();
             }
         });
     }

@@ -4,7 +4,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.healthtrack.Models.Exercise;
+
 import java.util.ArrayList;
+
 import com.example.healthtrack.Network.Api.*;
 import com.example.healthtrack.Network.Respone.BaseListResponse;
 import com.example.healthtrack.Utils.SharedPreferences.SharedPreferencesUtil;
@@ -23,7 +25,7 @@ public class ExerciseController {
         this.context = context;
     }
 
-    public void getExercise(Context context, final GetExercise callback){
+    public void getExercise(Context context, final GetExercise callback) {
         String token = SharedPreferencesUtil.getToken(context);
         apiService = ApiUtils.getApiService(token);
         apiService.getExercise()
@@ -45,13 +47,14 @@ public class ExerciseController {
                     @Override
                     public void onFailure(Call<BaseListResponse<Exercise>> call, Throwable t) {
                         callback.onFailure();
-                        Log.d("TAG","loi: "+ String.valueOf(t.getMessage()));
+                        Log.d("TAG", "loi: " + String.valueOf(t.getMessage()));
                     }
                 });
     }
 
-    public interface GetExercise{
+    public interface GetExercise {
         void onSuccess(ArrayList<Exercise> exercise);
+
         void onFailure();
     }
 }

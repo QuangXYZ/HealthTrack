@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/course_stored_swipe"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/course_stored_swipe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Views.Fragment.HomeFragment">
@@ -238,15 +238,15 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--            <TextView-->
-<!--                android:id="@+id/text_step2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:gravity="center_horizontal"-->
-<!--                android:text="0"-->
-<!--                android:textColor="@color/purple_700"-->
-<!--                android:textSize="50sp" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/text_step2"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center_vertical"-->
+            <!--                android:gravity="center_horizontal"-->
+            <!--                android:text="0"-->
+            <!--                android:textColor="@color/purple_700"-->
+            <!--                android:textSize="50sp" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -265,16 +265,16 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/view_all_popular"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginRight="7dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:gravity="end"-->
-<!--                    android:text="Xem thêm"-->
-<!--                    android:textColor="@color/purple_700"-->
-<!--                    android:textSize="16sp" />-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/view_all_popular"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginRight="7dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:gravity="end"-->
+                <!--                    android:text="Xem thêm"-->
+                <!--                    android:textColor="@color/purple_700"-->
+                <!--                    android:textSize="16sp" />-->
 
             </LinearLayout>
 
@@ -290,13 +290,13 @@
 
             <com.github.ybq.android.spinkit.SpinKitView
                 android:id="@+id/exercise_progress"
-                android:layout_marginTop="30dp"
                 style="@style/SpinKitView.Small"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                app:SpinKit_Color="@color/blue"
-                android:visibility="gone"/>
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/blue" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

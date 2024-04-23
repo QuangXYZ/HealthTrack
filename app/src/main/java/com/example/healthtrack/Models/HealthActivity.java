@@ -21,12 +21,13 @@ public class HealthActivity {
         this.bodyComposition = bodyComposition;
         this.amountWater = amountWater;
     }
+
     public HealthActivity() {
         this.idUser = DataLocalManager.getUser().get_id();
         this.date = String.valueOf(LocalDate.now());
-        this.bloodPressure = new BloodPressure(0,0);
+        this.bloodPressure = new BloodPressure(0, 0);
         this.hearthRate = new HeartRate(0);
-        this.bodyComposition = new BodyComposition(0,0);
+        this.bodyComposition = new BodyComposition(0, 0);
         this.amountWater = new AmountWater(0);
     }
 

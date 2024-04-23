@@ -77,7 +77,7 @@ public class StepController {
                 });
     }
 
-    public void insertStep(Context context, StepRequest stepRequest, final InsertCallback insertCallback){
+    public void insertStep(Context context, StepRequest stepRequest, final InsertCallback insertCallback) {
         String token = SharedPreferencesUtil.getToken(context);
         apiService = ApiUtils.getApiService(token);
         apiService.insertStep(stepRequest).enqueue(new retrofit2.Callback<StepRequest>() {
@@ -122,8 +122,9 @@ public class StepController {
     }
 
 
-    public interface GetHistoryCallback{
+    public interface GetHistoryCallback {
         void onSuccess(StepResponse<Step> step);
+
         void onFailure();
     }
 
@@ -139,8 +140,9 @@ public class StepController {
         void onError();
     }
 
-    public interface GetCurrentCallback{
+    public interface GetCurrentCallback {
         void onSuccess(StepResponse<Step> step);
+
         void onFailure();
     }
 }

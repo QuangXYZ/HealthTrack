@@ -1,19 +1,17 @@
-package com.example.healthtrack.Views;
+package com.example.healthtrack.Views.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 
 
@@ -24,9 +22,7 @@ import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -40,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     ProgressBar loginProgressBar;
-    TextView signupText,loginEmail, loginPass;
+    TextView signupText, loginEmail, loginPass;
     private LoginController loginController;
     CircleImageView google;
     private FirebaseAuth mAuth;
@@ -110,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .setPositiveButton("OK", (dialog, which) -> {
                                     loginBtn.setVisibility(View.VISIBLE);
                                     loginProgressBar.setVisibility(View.GONE);
-                                } ).show();
+                                }).show();
 
                     }
                 });
@@ -136,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

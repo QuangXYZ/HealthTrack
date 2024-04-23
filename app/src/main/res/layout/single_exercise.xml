@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/exercise_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     android:backgroundTint="#F4F1FA"
-    app:strokeWidth="0dp"
     android:elevation="3dp"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="20dp"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="10dp"
         android:weightSum="4">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="100dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="4"
             android:orientation="vertical"
             android:weightSum="4">
@@ -86,8 +89,9 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
             android:src="@drawable/fitness_gym" />
     </LinearLayout>
 

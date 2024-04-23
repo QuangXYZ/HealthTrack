@@ -1,9 +1,8 @@
-package com.example.healthtrack.Views;
+package com.example.healthtrack.Views.Activity;
 
 import android.Manifest;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,10 +18,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.healthtrack.Controller.FriendController;
-import com.example.healthtrack.Controller.UserController;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.CaptureArt;
@@ -98,8 +95,7 @@ public class FriendActivity extends AppCompatActivity {
                 if (users.size() == 0) {
                     friendEmpty.setVisibility(View.VISIBLE);
                     friendListRV.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     friendEmpty.setVisibility(View.GONE);
                     friendListRV.setVisibility(View.VISIBLE);
                 }
@@ -120,8 +116,7 @@ public class FriendActivity extends AppCompatActivity {
                 if (users.size() == 0) {
                     myRequestEmpty.setVisibility(View.VISIBLE);
                     friendRequestRV.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     myRequestEmpty.setVisibility(View.GONE);
                     friendRequestRV.setVisibility(View.VISIBLE);
                 }
@@ -143,8 +138,7 @@ public class FriendActivity extends AppCompatActivity {
                 if (users.size() == 0) {
                     requestEmpty.setVisibility(View.VISIBLE);
                     friendMyRequestRV.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     requestEmpty.setVisibility(View.GONE);
                     friendMyRequestRV.setVisibility(View.VISIBLE);
                 }
@@ -172,8 +166,7 @@ public class FriendActivity extends AppCompatActivity {
                         if (users.size() == 0) {
                             friendEmpty.setVisibility(View.VISIBLE);
                             friendListRV.setVisibility(View.GONE);
-                        }
-                        else {
+                        } else {
                             friendEmpty.setVisibility(View.GONE);
                             friendListRV.setVisibility(View.VISIBLE);
                         }
@@ -186,8 +179,7 @@ public class FriendActivity extends AppCompatActivity {
                                 if (users.size() == 0) {
                                     myRequestEmpty.setVisibility(View.VISIBLE);
                                     friendRequestRV.setVisibility(View.GONE);
-                                }
-                                else {
+                                } else {
                                     myRequestEmpty.setVisibility(View.GONE);
                                     friendRequestRV.setVisibility(View.VISIBLE);
                                 }
@@ -201,8 +193,7 @@ public class FriendActivity extends AppCompatActivity {
                                         if (users.size() == 0) {
                                             requestEmpty.setVisibility(View.VISIBLE);
                                             friendMyRequestRV.setVisibility(View.GONE);
-                                        }
-                                        else {
+                                        } else {
                                             requestEmpty.setVisibility(View.GONE);
                                             friendMyRequestRV.setVisibility(View.VISIBLE);
                                         }
@@ -231,9 +222,6 @@ public class FriendActivity extends AppCompatActivity {
 
                     }
                 });
-
-
-
 
 
             }

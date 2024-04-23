@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#6b5be2"
-    tools:context=".Views.EditProfileActivity">
+    tools:context=".Views.Activity.EditProfileActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -78,10 +78,10 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/edit_profile_email"
-                                android:editable="false"
-
                                 android:layout_width="match_parent"
+
                                 android:layout_height="wrap_content"
+                                android:editable="false"
                                 android:maxLines="1"
                                 android:text="Quang@gmail.com"
 
@@ -107,40 +107,42 @@
                                 />
 
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_marginTop="20dp"
+                            android:orientation="horizontal"
                             android:weightSum="2">
+
                             <TextView
                                 android:id="@+id/edit_profile_cancel"
                                 android:layout_width="0dp"
                                 android:layout_height="50dp"
-                                android:textSize="16sp"
-                                android:textAlignment="center"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_background_1"
                                 android:gravity="center"
                                 android:text="Hủy"
-                                android:layout_weight="1"
-                                android:layout_margin="5dp"
-                                android:textStyle="bold"
-                                android:layout_gravity="center"
-                                android:background="@drawable/button_background_1"
+                                android:textAlignment="center"
                                 android:textColor="@color/blue"
-                                />
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
                             <Button
                                 android:id="@+id/edit_profile_update"
                                 android:layout_width="0dp"
                                 android:layout_height="50dp"
-                                android:textSize="16sp"
-                                android:text="Cập nhật"
-                                android:layout_weight="1"
-                                android:layout_margin="5dp"
-                                android:textStyle="bold"
                                 android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
                                 android:background="@drawable/button_background"
+                                android:text="Cập nhật"
                                 android:textColor="@color/white"
-                                app:backgroundTint="@color/blue"/>
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:backgroundTint="@color/blue" />
 
 
                         </LinearLayout>
@@ -148,6 +150,7 @@
 
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <FrameLayout
                     android:layout_width="150dp"
                     android:layout_height="150dp"

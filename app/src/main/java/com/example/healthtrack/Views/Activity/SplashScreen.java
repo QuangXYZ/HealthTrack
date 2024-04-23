@@ -1,4 +1,4 @@
-package com.example.healthtrack.Views;
+package com.example.healthtrack.Views.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,8 +20,9 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 nextActivity();
             }
-        },1000);
+        }, 1000);
     }
+
     private void nextActivity() {
         startActivity(new Intent(SplashScreen.this, LoginActivity.class));
         finish();

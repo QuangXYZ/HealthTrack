@@ -1,6 +1,5 @@
 package com.example.healthtrack.Views.Fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
@@ -17,8 +15,6 @@ import com.bumptech.glide.Glide;
 import com.example.healthtrack.Controller.FriendController;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Views.CreateChallengeActivity;
-import com.example.healthtrack.Views.FriendActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.List;
@@ -28,13 +24,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserInfoBottomSheetFragment extends BottomSheetDialogFragment {
 
 
-
     String friendId;
     TextView cancel, name, lv;
     Button addFriend;
     LinearLayout addFriendLayout, noDataLayout;
     FriendController friendController;
     CircleImageView img;
+
     public void setFriendId(String friendId) {
         this.friendId = friendId;
     }
@@ -60,13 +56,14 @@ public class UserInfoBottomSheetFragment extends BottomSheetDialogFragment {
             public void onSuccess(List<User> users) {
                 User user = users.get(0);
                 name.setText(user.getName());
-                lv.setText("Level "+user.getLevel());
-                if (user.getProfilePicture()!=null)
+                lv.setText("Level " + user.getLevel());
+                if (user.getProfilePicture() != null)
                     Glide.with(getContext()).load(user.getProfilePicture()).into(img);
                 addFriendLayout.setVisibility(View.VISIBLE);
                 noDataLayout.setVisibility(View.GONE);
 
             }
+
             @Override
             public void onError(String error) {
                 addFriendLayout.setVisibility(View.GONE);
@@ -91,7 +88,7 @@ public class UserInfoBottomSheetFragment extends BottomSheetDialogFragment {
                                 .setMessage("Đã gửi lời mời")
                                 .setPositiveButton("OK", (dialog, which) -> {
                                     dismiss();
-                                } ).show();
+                                }).show();
                     }
 
                     @Override
@@ -101,7 +98,7 @@ public class UserInfoBottomSheetFragment extends BottomSheetDialogFragment {
                                 .setMessage(error.toString())
                                 .setPositiveButton("OK", (dialog, which) -> {
                                     dismiss();
-                                } ).show();
+                                }).show();
                     }
                 });
             }

@@ -1,4 +1,4 @@
-package com.example.healthtrack.Views;
+package com.example.healthtrack.Views.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,12 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.healthtrack.Controller.ChallengeController;
-import com.example.healthtrack.Controller.LoginController;
 import com.example.healthtrack.Controller.UserController;
 import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.Record;
@@ -26,9 +24,6 @@ import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.DataLocalManager;
 import com.example.healthtrack.Views.Adapters.RankingAdapter;
-import com.github.ybq.android.spinkit.SpinKitView;
-import com.github.ybq.android.spinkit.sprite.Sprite;
-import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.zxing.BarcodeFormat;
@@ -42,10 +37,10 @@ import java.util.ArrayList;
 public class PrivateChallengeDetail extends AppCompatActivity {
 
     RecyclerView rankingRecyclerview;
-    RankingAdapter  adapter;
+    RankingAdapter adapter;
     ArrayList<Integer> rankings;
     Button inviteBtn;
-    ImageView imageCode,myImg;
+    ImageView imageCode, myImg;
     MaterialToolbar toolbar;
     Challenge challenge;
     ChallengeController challengeController;
@@ -61,7 +56,8 @@ public class PrivateChallengeDetail extends AppCompatActivity {
         init();
         settingUpListener();
     }
-    void init(){
+
+    void init() {
         rankingRecyclerview = findViewById(R.id.challenge_detail_recylerview);
         inviteBtn = findViewById(R.id.fragment_challenge_create_button);
         imageCode = findViewById(R.id.Qrcode);
@@ -80,20 +76,19 @@ public class PrivateChallengeDetail extends AppCompatActivity {
         challengeController = new ChallengeController();
 
         Intent intent = getIntent();
-        if (intent!=null) {
+        if (intent != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 challenge = intent.getSerializableExtra("Challenge", Challenge.class);
-            }
-            else {
+            } else {
                 challenge = (Challenge) intent.getSerializableExtra("Challenge");
             }
         }
 
         name.setText(challenge.getName());
         description.setText(challenge.getDescription());
-        step.setText("Số bước mục tiêu: "+challenge.getTarget());
-        member.setText("Số người tham gia "+challenge.getListMember().size());
-        date.setText("Thử thách bắt đầu từ "+challenge.getDateStart().split("T")[0]);
+        step.setText("Số bước mục tiêu: " + challenge.getTarget());
+        member.setText("Số người tham gia " + challenge.getListMember().size());
+        date.setText("Thử thách bắt đầu từ " + challenge.getDateStart().split("T")[0]);
 
 
         userController = new UserController();
@@ -110,9 +105,9 @@ public class PrivateChallengeDetail extends AppCompatActivity {
 
             }
         });
-        for (Record record: challenge.getUserRecords() ){
-            if (record.getUserId().equals(idUser)){
-                myStep.setText(record.getStepTotal()+" bước");
+        for (Record record : challenge.getUserRecords()) {
+            if (record.getUserId().equals(idUser)) {
+                myStep.setText(record.getStepTotal() + " bước");
             }
         }
 
@@ -121,7 +116,8 @@ public class PrivateChallengeDetail extends AppCompatActivity {
         rankingRecyclerview.setAdapter(adapter);
         rankingRecyclerview.setNestedScrollingEnabled(true);
     }
-    void settingUpListener(){
+
+    void settingUpListener() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +146,8 @@ public class PrivateChallengeDetail extends AppCompatActivity {
                                     }
                                 });
                             })
-                            .setPositiveButton("Không", (dialog, which) -> {} ).show();
+                            .setPositiveButton("Không", (dialog, which) -> {
+                            }).show();
                 }
                 return false;
             }
@@ -164,7 +161,7 @@ public class PrivateChallengeDetail extends AppCompatActivity {
                 MultiFormatWriter mWriter = new MultiFormatWriter();
                 try {
                     //BitMatrix class to encode entered text and set Width & Height
-                    BitMatrix mMatrix = mWriter.encode(qrContent, BarcodeFormat.QR_CODE, 400,400);
+                    BitMatrix mMatrix = mWriter.encode(qrContent, BarcodeFormat.QR_CODE, 400, 400);
                     BarcodeEncoder mEncoder = new BarcodeEncoder();
                     Bitmap mBitmap = mEncoder.createBitmap(mMatrix);//creating bitmap of code
                     imageCode.setImageBitmap(mBitmap);//Setting generated QR code to imageView

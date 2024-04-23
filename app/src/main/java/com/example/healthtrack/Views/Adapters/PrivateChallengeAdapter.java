@@ -15,12 +15,11 @@ import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.Models.Record;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.DataLocalManager;
-import com.example.healthtrack.Views.PrivateChallengeDetail;
+import com.example.healthtrack.Views.Activity.PrivateChallengeDetail;
 import com.google.android.material.card.MaterialCardView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
+
 public class PrivateChallengeAdapter extends RecyclerView.Adapter<PrivateChallengeAdapter.MyViewHolder> {
     Activity context;
     List<Challenge> challenges;
@@ -34,7 +33,7 @@ public class PrivateChallengeAdapter extends RecyclerView.Adapter<PrivateChallen
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.single_private_challenge,parent,false);
+                .inflate(R.layout.single_private_challenge, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -42,13 +41,13 @@ public class PrivateChallengeAdapter extends RecyclerView.Adapter<PrivateChallen
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Challenge challenge = challenges.get(position);
         holder.name.setText(challenge.getName());
-        holder.users.setText("Số người tham gia: "+challenge.getListMember().size());
+        holder.users.setText("Số người tham gia: " + challenge.getListMember().size());
 
         String userId = DataLocalManager.getUser().get_id();
-        for (Record record: challenge.getUserRecords()) {
+        for (Record record : challenge.getUserRecords()) {
             if (record.getUserId().equals(userId)) {
-                holder.step.setText(record.getStepTotal()+"");
-                holder.progressBar.setProgress((int) (record.getStepTotal()*100/challenge.getTarget()));
+                holder.step.setText(record.getStepTotal() + "");
+                holder.progressBar.setProgress((int) (record.getStepTotal() * 100 / challenge.getTarget()));
             }
         }
 
@@ -71,8 +70,9 @@ public class PrivateChallengeAdapter extends RecyclerView.Adapter<PrivateChallen
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         MaterialCardView challengeLayout;
-        TextView name,date, target, users, step;
+        TextView name, date, target, users, step;
         ProgressBar progressBar;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             challengeLayout = itemView.findViewById(R.id.single_private_challenge_layout);

@@ -15,9 +15,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Binder;
-import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 
 import android.os.IBinder;
 import android.util.Log;
@@ -28,8 +26,7 @@ import androidx.core.app.NotificationCompat;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Utils.DataLocalManager;
-import com.example.healthtrack.Views.MainHomeActivity;
-import com.example.healthtrack.Views.TestWalkingStep;
+import com.example.healthtrack.Views.Activity.MainHomeActivity;
 
 
 /**
@@ -105,7 +102,7 @@ public class StepService extends Service implements SensorEventListener {
     private void addCountStepListener() {
         Sensor countSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 //        Sensor detectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-        if (countSensor != null){
+        if (countSensor != null) {
             mSensorManager
                     .registerListener(StepService.this, countSensor, SensorManager.SENSOR_DELAY_FASTEST);
         } else {
@@ -114,19 +111,15 @@ public class StepService extends Service implements SensorEventListener {
     }
 
 
-
     public int getStepCount() {
         return mCurrentStep;
     }
 
 
-
     public PendingIntent getDefaultIntent(int flags) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
             return PendingIntent.getActivity(this, 1, new Intent(), PendingIntent.FLAG_MUTABLE);
-        }
-        else
-        {
+        } else {
             return PendingIntent.getActivity(this, 1, new Intent(), flags);
         }
 
@@ -195,7 +188,7 @@ public class StepService extends Service implements SensorEventListener {
             chanel.setLightColor(Color.BLUE);
             chanel.setLockscreenVisibility(Notification.VISIBILITY_SECRET);
 
-            mBuilder = new NotificationCompat.Builder(this,"My Channel Id" );
+            mBuilder = new NotificationCompat.Builder(this, "My Channel Id");
             mBuilder.setContentTitle(getResources().getString(R.string.app_name))
                     .setContentText("The number of steps today: " + mCurrentStep + " step")
                     .setContentIntent(getDefaultIntent(Notification.FLAG_ONGOING_EVENT))
@@ -232,17 +225,17 @@ public class StepService extends Service implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-                int tempStep = (int) sensorEvent.values[0];
-        Log.i("STEP", "step "+ tempStep);
-                if (!mHasRecord) {
-                    mHasRecord = true;
-                    mHasStepCount = tempStep;
-                } else {
-                    int thisStepCount = tempStep - mHasStepCount;
-                    int thisStep = thisStepCount - mPreviousStepCount;
-                    mCurrentStep += thisStep;
-                    mPreviousStepCount = thisStepCount;
-                }
+        int tempStep = (int) sensorEvent.values[0];
+        Log.i("STEP", "step " + tempStep);
+        if (!mHasRecord) {
+            mHasRecord = true;
+            mHasStepCount = tempStep;
+        } else {
+            int thisStepCount = tempStep - mHasStepCount;
+            int thisStep = thisStepCount - mPreviousStepCount;
+            mCurrentStep += thisStep;
+            mPreviousStepCount = thisStepCount;
+        }
         updateNotification();
     }
 

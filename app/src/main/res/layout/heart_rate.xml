@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".Views.Fragment.HeartRateFragment">
@@ -9,29 +9,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="135dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="135dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:padding="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/btnBack"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:backgroundTint="@color/white"
+                android:src="@drawable/back_icon"
                 android:textColor="@color/black"
                 android:textSize="17dp"
-                android:src="@drawable/back_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintHorizontal_bias="0"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/heart_rate_fragment_btn"
@@ -42,21 +42,21 @@
                 android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintHorizontal_bias="1"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        <Button-->
-<!--            android:id="@+id/btnLuu2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:backgroundTint="#FFFFFF"-->
-<!--            android:textSize="17dp"-->
-<!--            android:text="Chạm để bắt đầu"-->
-<!--            android:textColor="#F3673B"/>-->
+        <!--        <Button-->
+        <!--            android:id="@+id/btnLuu2"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:backgroundTint="#FFFFFF"-->
+        <!--            android:textSize="17dp"-->
+        <!--            android:text="Chạm để bắt đầu"-->
+        <!--            android:textColor="#F3673B"/>-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -64,19 +64,19 @@
             android:layout_marginBottom="30dp"
             android:padding="16dp">
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/circularProgressIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:progress="100"
-            app:indicatorColor="#F3673B"
-            app:indicatorSize="180dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:trackColor="@color/grey"
-            app:trackCornerRadius="8dp"
-            app:trackThickness="8dp" />
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/circularProgressIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progress="100"
+                app:indicatorColor="#F3673B"
+                app:indicatorSize="180dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:trackColor="@color/grey"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="8dp" />
 
 
             <LinearLayout
@@ -94,8 +94,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="90"
                     android:inputType="number"
+                    android:text="90"
                     android:textColor="@color/blue"
                     android:textSize="38sp"
                     android:textStyle="bold" />
@@ -129,33 +129,33 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="#F4F1FA"
-            app:cardCornerRadius="20dp"
-            app:strokeWidth="0dp"
             android:elevation="3dp"
+            app:cardCornerRadius="20dp"
 
-            android:layout_marginBottom="20dp">
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lịch sử đo nhịp tim "
                     android:padding="10dp"
+                    android:text="Lịch sử đo nhịp tim "
+                    android:textColor="#F3673B"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="#F3673B"/>
+                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/heart_rate_list"
                     android:layout_width="match_parent"
-                    android:padding="10dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:padding="10dp" />
 
 
             </LinearLayout>

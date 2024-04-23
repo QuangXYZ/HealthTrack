@@ -10,18 +10,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_weight="4"
         android:background="@drawable/bg_dialog_top"
+        android:orientation="horizontal"
         android:padding="10dp">
 
         <TextView
             android:id="@+id/date_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="3"
             android:background="@drawable/bg_dialog_top"
             android:padding="10dp"
-            android:layout_weight="3"
             android:text="Ngày 11/3/2024"
             android:textColor="@color/blue"
             android:textSize="20sp" />
@@ -30,9 +30,9 @@
             android:id="@+id/cancel_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/cancel"
             android:layout_gravity="center"
-            android:layout_marginLeft="8dp"/>
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/cancel" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,8 +44,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

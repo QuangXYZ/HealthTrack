@@ -24,19 +24,13 @@ public class RetrofitClientInstance {
             @NonNull
             @Override
             public Response intercept(Chain chain) throws IOException {
-                Request newRequest = chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer " + token)
-                        .build();
+                Request newRequest = chain.request().newBuilder().addHeader("Authorization", "Bearer " + token).build();
                 return chain.proceed(newRequest);
             }
         }).build();
 
         if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .client(client)
-                    .baseUrl(Constants.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+            retrofit = new Retrofit.Builder().client(client).baseUrl(Constants.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         }
         return retrofit;
     }

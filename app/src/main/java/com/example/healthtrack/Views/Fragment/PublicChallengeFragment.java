@@ -34,7 +34,7 @@ public class PublicChallengeFragment extends Fragment {
     ArrayList<Challenge> joinChallenges;
     ArrayList<Challenge> notJoinChallenges;
 
-    LinearLayout noChallenge,noChallengeNotJoin;
+    LinearLayout noChallenge, noChallengeNotJoin;
     ProgressBar progressBar, progressBarNotJoin;
     ChallengeController challengeController;
 

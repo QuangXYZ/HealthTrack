@@ -1,4 +1,4 @@
-package com.example.healthtrack.Views;
+package com.example.healthtrack.Views.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -71,7 +71,6 @@ public class MainHomeActivity extends AppCompatActivity {
         title = findViewById(R.id.main_title);
 
 
-
         HomeFragment homeFragment = new HomeFragment();
         replaceFragment(homeFragment, 1);
     }
@@ -125,7 +124,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     homeLayout.setBackgroundResource(R.drawable.round_background);
                     title.setText("HealthTrack");
 
-                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
+                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
                     scaleAnimation.setDuration(500);
                     scaleAnimation.setFillAfter(true);
                     homeLayout.setAnimation(scaleAnimation);
@@ -161,12 +160,12 @@ public class MainHomeActivity extends AppCompatActivity {
                     challengeImg.setImageDrawable(getResources().getDrawable(R.drawable.challenge_select));
                     title.setText("Thử thách");
 
-                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
+                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
                     scaleAnimation.setDuration(500);
                     scaleAnimation.setFillAfter(true);
                     challengeLayout.setAnimation(scaleAnimation);
                     ChallengeFragment challengeFragment = new ChallengeFragment();
-                    replaceFragment(challengeFragment,2);
+                    replaceFragment(challengeFragment, 2);
                     currentFragment = FRAGMENT_CHALLENGE;
                 }
             }
@@ -196,13 +195,13 @@ public class MainHomeActivity extends AppCompatActivity {
                 healthImg.setImageDrawable(getResources().getDrawable(R.drawable.health_select));
                 title.setText("Sức khỏe");
 
-                ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
                 scaleAnimation.setDuration(500);
                 scaleAnimation.setFillAfter(true);
                 healthLayout.setAnimation(scaleAnimation);
                 if (currentFragment != FRAGMENT_HEALTH) {
                     HealthFragment healthFragment = new HealthFragment();
-                    replaceFragment(healthFragment,3);
+                    replaceFragment(healthFragment, 3);
                     currentFragment = FRAGMENT_HEALTH;
                 }
             }
@@ -231,13 +230,13 @@ public class MainHomeActivity extends AppCompatActivity {
                 title.setText("Trang của bạn");
 
 
-                ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,0.0f);
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.6f, 1.0f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
                 scaleAnimation.setDuration(500);
                 scaleAnimation.setFillAfter(true);
                 profileLayout.setAnimation(scaleAnimation);
-                if (currentFragment!= FRAGMENT_PROFILE) {
+                if (currentFragment != FRAGMENT_PROFILE) {
                     ProfileFragment profileFragment = new ProfileFragment();
-                    replaceFragment(profileFragment,4);
+                    replaceFragment(profileFragment, 4);
                     currentFragment = FRAGMENT_PROFILE;
                 }
             }
@@ -251,12 +250,12 @@ public class MainHomeActivity extends AppCompatActivity {
             }
         });
 
-}
+    }
 
     private void replaceFragment(Fragment fragment, int index) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-        if (index> currentFragment)
+        if (index > currentFragment)
             fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left);
         else
             fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_righ);

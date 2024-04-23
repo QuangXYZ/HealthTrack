@@ -27,6 +27,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TextView titleAppbar;
     private ImageView imgGoBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,16 +37,15 @@ public class ExerciseActivity extends AppCompatActivity {
         settingUpListeners();
     }
 
-    void init(){
+    void init() {
         smallExercisesList = new ArrayList<>();
         titleAppbar = findViewById(R.id.title_appBar);
         Intent intent = getIntent();
-        if (intent!=null) {
+        if (intent != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 exercise = intent.getSerializableExtra("exercise", Exercise.class);
                 smallExercisesList.addAll(exercise.getSmallExercises());
-            }
-            else {
+            } else {
                 exercise = (Exercise) intent.getSerializableExtra("exercise");
                 smallExercisesList.addAll(exercise.getSmallExercises());
                 titleAppbar.setText(exercise.getTitle());

@@ -19,10 +19,9 @@ import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
 
 import com.example.healthtrack.Utils.DataLocalManager;
-import com.example.healthtrack.Views.CreateChallengeActivity;
-import com.example.healthtrack.Views.FriendActivity;
-import com.example.healthtrack.Views.ProfileQRActivity;
-import com.example.healthtrack.Views.SplashScreen;
+import com.example.healthtrack.Views.Activity.FriendActivity;
+import com.example.healthtrack.Views.Activity.ProfileQRActivity;
+import com.example.healthtrack.Views.Activity.SplashScreen;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -57,8 +56,8 @@ public class ProfileFragment extends Fragment {
 
         name.setText(user.getName());
         email.setText(user.getEmail());
-        gender.setText(user.getGender()!=null ? user.getGender(): "unknown");
-        if (user.getProfilePicture()!=null)
+        gender.setText(user.getGender() != null ? user.getGender() : "unknown");
+        if (user.getProfilePicture() != null)
 
             Glide.with(this).load(user.getProfilePicture()).into(imageView);
         dateOfBirth.setText(user.getDateOfBirth());

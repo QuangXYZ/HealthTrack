@@ -17,7 +17,8 @@ public class User {
     private List<String> idChallenges;
     private int level;
     private int exp;
-    public User(String email,String name, String password) {
+
+    public User(String email, String name, String password) {
         this.name = name;
         this.password = password;
         this.email = email;
@@ -43,6 +44,7 @@ public class User {
     public String getProfilePicture() {
         return profilePicture;
     }
+
     public void addChallengeId(String challengeId) {
         this.idChallenges.add(challengeId);
     }
