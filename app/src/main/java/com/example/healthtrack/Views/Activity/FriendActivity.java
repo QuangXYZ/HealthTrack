@@ -95,8 +95,7 @@ public class FriendActivity extends AppCompatActivity {
                 if (users.size() == 0) {
                     friendEmpty.setVisibility(View.VISIBLE);
                     friendListRV.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     friendEmpty.setVisibility(View.GONE);
                     friendListRV.setVisibility(View.VISIBLE);
                 }
@@ -117,8 +116,7 @@ public class FriendActivity extends AppCompatActivity {
                 if (users.size() == 0) {
                     myRequestEmpty.setVisibility(View.VISIBLE);
                     friendRequestRV.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     myRequestEmpty.setVisibility(View.GONE);
                     friendRequestRV.setVisibility(View.VISIBLE);
                 }
@@ -140,8 +138,7 @@ public class FriendActivity extends AppCompatActivity {
                 if (users.size() == 0) {
                     requestEmpty.setVisibility(View.VISIBLE);
                     friendMyRequestRV.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     requestEmpty.setVisibility(View.GONE);
                     friendMyRequestRV.setVisibility(View.VISIBLE);
                 }
@@ -169,8 +166,7 @@ public class FriendActivity extends AppCompatActivity {
                         if (users.size() == 0) {
                             friendEmpty.setVisibility(View.VISIBLE);
                             friendListRV.setVisibility(View.GONE);
-                        }
-                        else {
+                        } else {
                             friendEmpty.setVisibility(View.GONE);
                             friendListRV.setVisibility(View.VISIBLE);
                         }
@@ -183,8 +179,7 @@ public class FriendActivity extends AppCompatActivity {
                                 if (users.size() == 0) {
                                     myRequestEmpty.setVisibility(View.VISIBLE);
                                     friendRequestRV.setVisibility(View.GONE);
-                                }
-                                else {
+                                } else {
                                     myRequestEmpty.setVisibility(View.GONE);
                                     friendRequestRV.setVisibility(View.VISIBLE);
                                 }
@@ -198,8 +193,7 @@ public class FriendActivity extends AppCompatActivity {
                                         if (users.size() == 0) {
                                             requestEmpty.setVisibility(View.VISIBLE);
                                             friendMyRequestRV.setVisibility(View.GONE);
-                                        }
-                                        else {
+                                        } else {
                                             requestEmpty.setVisibility(View.GONE);
                                             friendMyRequestRV.setVisibility(View.VISIBLE);
                                         }
@@ -228,9 +222,6 @@ public class FriendActivity extends AppCompatActivity {
 
                     }
                 });
-
-
-
 
 
             }

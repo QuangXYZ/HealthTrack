@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".Views.Activity.PreviewExerciseActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -31,16 +31,16 @@
                     android:id="@+id/toolbar_preview_exercise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/back_icon"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/back_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Xem Trước Bài Tập"
-                    android:textStyle="bold"
                     android:textColor="@color/blue"
-                    android:textSize="24sp"/>
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -58,22 +58,22 @@
             android:layout_width="wrap_content"
             android:layout_height="350dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/exercise"/>
+            android:src="@drawable/exercise" />
 
         <TextView
             android:id="@+id/Title_Preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
             android:layout_margin="10dp"
-            android:text="Ngồi Giãn Cổ"/>
+            android:text="Ngồi Giãn Cổ"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/single_item"/>
+            tools:listitem="@layout/single_item" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

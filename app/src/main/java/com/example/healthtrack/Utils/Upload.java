@@ -55,6 +55,7 @@ public class Upload {
 
 
     }
+
     public interface UploadCallback {
         void onSuccess(String downloadUrl);
 

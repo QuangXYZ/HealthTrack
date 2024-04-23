@@ -14,13 +14,13 @@
         android:gravity="center"
         android:orientation="vertical"
         android:paddingTop="60dp">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/icon_splash"
             android:layout_marginBottom="20dp"
-            />
+            android:src="@drawable/icon_splash" />
 
 
         <androidx.cardview.widget.CardView
@@ -64,10 +64,10 @@
                         android:drawableStart="@drawable/email"
                         android:drawablePadding="8dp"
                         android:hint="Email"
-                        android:text="nhuy4@gmail.com"
                         android:inputType="text"
                         android:maxLines="1"
                         android:padding="8dp"
+                        android:text="nhuy4@gmail.com"
                         android:textColor="@color/black"
                         android:textColorHighlight="@color/cardview_dark_background" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -89,23 +89,23 @@
                         android:drawableStart="@drawable/password"
                         android:drawablePadding="8dp"
                         android:hint="Password"
-                        android:text="123456"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="8dp"
+                        android:text="123456"
                         android:textColor="@color/black"
                         android:textColorHighlight="@color/cardview_dark_background" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.github.ybq.android.spinkit.SpinKitView
                     android:id="@+id/loginProgressBar"
-                    android:layout_marginTop="30dp"
                     style="@style/SpinKitView.Small"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center"
-                    app:SpinKit_Color="@color/blue"
-                    android:visibility="gone"/>
+                    android:layout_marginTop="30dp"
+                    android:visibility="gone"
+                    app:SpinKit_Color="@color/blue" />
 
                 <Button
                     android:id="@+id/loginButton"
@@ -114,8 +114,8 @@
                     android:layout_marginTop="30dp"
                     android:backgroundTint="@color/blue"
                     android:text="Login"
-                    android:visibility="visible"
                     android:textSize="18sp"
+                    android:visibility="visible"
                     app:cornerRadius="20dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

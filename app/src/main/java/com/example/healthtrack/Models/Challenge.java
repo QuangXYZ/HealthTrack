@@ -3,7 +3,6 @@ package com.example.healthtrack.Models;
 import com.example.healthtrack.Utils.DataLocalManager;
 
 
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class Challenge implements Serializable {
         this.listMember = new ArrayList<>();
         this.userRecords = new ArrayList<>();
         User user = DataLocalManager.getUser();
-        this.listMember.add(new ChallengeMember(user.get_id(), user.getName(),true));
+        this.listMember.add(new ChallengeMember(user.get_id(), user.getName(), true));
         this.userRecords.add(new Record(user.get_id(), user.getName()));
         access = "Private";
     }

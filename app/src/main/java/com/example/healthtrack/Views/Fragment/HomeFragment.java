@@ -174,8 +174,6 @@ public class HomeFragment extends Fragment {
         mListSetGoals = new ArrayList<>();
 
 
-
-
         UpdateStepWorker.updateStepWorker(getContext());
 
 //        CreateStepWorker.createStepWorker(getContext());

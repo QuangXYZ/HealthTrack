@@ -35,7 +35,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendVi
     @Override
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
         holder.name.setText(users.get(position).getName());
-        if (users.get(position).getProfilePicture()!=null)
+        if (users.get(position).getProfilePicture() != null)
             Glide.with(context).load(users.get(position).getProfilePicture()).into(holder.friendAva);
 
     }

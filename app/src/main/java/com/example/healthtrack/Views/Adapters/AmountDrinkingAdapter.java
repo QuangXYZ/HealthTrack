@@ -32,7 +32,7 @@ public class AmountDrinkingAdapter extends RecyclerView.Adapter<AmountDrinkingAd
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.single_water,parent,false);
+                .inflate(R.layout.single_water, parent, false);
         return new MyViewHolder(itemView);
     }
 

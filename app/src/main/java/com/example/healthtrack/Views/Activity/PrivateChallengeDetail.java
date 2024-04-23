@@ -37,10 +37,10 @@ import java.util.ArrayList;
 public class PrivateChallengeDetail extends AppCompatActivity {
 
     RecyclerView rankingRecyclerview;
-    RankingAdapter  adapter;
+    RankingAdapter adapter;
     ArrayList<Integer> rankings;
     Button inviteBtn;
-    ImageView imageCode,myImg;
+    ImageView imageCode, myImg;
     MaterialToolbar toolbar;
     Challenge challenge;
     ChallengeController challengeController;
@@ -56,7 +56,8 @@ public class PrivateChallengeDetail extends AppCompatActivity {
         init();
         settingUpListener();
     }
-    void init(){
+
+    void init() {
         rankingRecyclerview = findViewById(R.id.challenge_detail_recylerview);
         inviteBtn = findViewById(R.id.fragment_challenge_create_button);
         imageCode = findViewById(R.id.Qrcode);
@@ -75,20 +76,19 @@ public class PrivateChallengeDetail extends AppCompatActivity {
         challengeController = new ChallengeController();
 
         Intent intent = getIntent();
-        if (intent!=null) {
+        if (intent != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 challenge = intent.getSerializableExtra("Challenge", Challenge.class);
-            }
-            else {
+            } else {
                 challenge = (Challenge) intent.getSerializableExtra("Challenge");
             }
         }
 
         name.setText(challenge.getName());
         description.setText(challenge.getDescription());
-        step.setText("Số bước mục tiêu: "+challenge.getTarget());
-        member.setText("Số người tham gia "+challenge.getListMember().size());
-        date.setText("Thử thách bắt đầu từ "+challenge.getDateStart().split("T")[0]);
+        step.setText("Số bước mục tiêu: " + challenge.getTarget());
+        member.setText("Số người tham gia " + challenge.getListMember().size());
+        date.setText("Thử thách bắt đầu từ " + challenge.getDateStart().split("T")[0]);
 
 
         userController = new UserController();
@@ -105,9 +105,9 @@ public class PrivateChallengeDetail extends AppCompatActivity {
 
             }
         });
-        for (Record record: challenge.getUserRecords() ){
-            if (record.getUserId().equals(idUser)){
-                myStep.setText(record.getStepTotal()+" bước");
+        for (Record record : challenge.getUserRecords()) {
+            if (record.getUserId().equals(idUser)) {
+                myStep.setText(record.getStepTotal() + " bước");
             }
         }
 
@@ -116,7 +116,8 @@ public class PrivateChallengeDetail extends AppCompatActivity {
         rankingRecyclerview.setAdapter(adapter);
         rankingRecyclerview.setNestedScrollingEnabled(true);
     }
-    void settingUpListener(){
+
+    void settingUpListener() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +146,8 @@ public class PrivateChallengeDetail extends AppCompatActivity {
                                     }
                                 });
                             })
-                            .setPositiveButton("Không", (dialog, which) -> {} ).show();
+                            .setPositiveButton("Không", (dialog, which) -> {
+                            }).show();
                 }
                 return false;
             }
@@ -159,7 +161,7 @@ public class PrivateChallengeDetail extends AppCompatActivity {
                 MultiFormatWriter mWriter = new MultiFormatWriter();
                 try {
                     //BitMatrix class to encode entered text and set Width & Height
-                    BitMatrix mMatrix = mWriter.encode(qrContent, BarcodeFormat.QR_CODE, 400,400);
+                    BitMatrix mMatrix = mWriter.encode(qrContent, BarcodeFormat.QR_CODE, 400, 400);
                     BarcodeEncoder mEncoder = new BarcodeEncoder();
                     Bitmap mBitmap = mEncoder.createBitmap(mMatrix);//creating bitmap of code
                     imageCode.setImageBitmap(mBitmap);//Setting generated QR code to imageView

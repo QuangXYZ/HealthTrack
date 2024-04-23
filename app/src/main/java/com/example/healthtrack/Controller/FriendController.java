@@ -69,7 +69,7 @@ public class FriendController {
     }
 
 
-    public void addFriend(String friendId,final AddCallback friendCallback){
+    public void addFriend(String friendId, final AddCallback friendCallback) {
 
         String userId = DataLocalManager.getUser().get_id();
         FriendRequest friendRequest = new FriendRequest(userId, friendId);

@@ -1,4 +1,5 @@
 package com.example.healthtrack.Views.Fragment;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,17 +25,18 @@ import com.example.healthtrack.Views.Adapters.HeartRateAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeartRateFragment extends Fragment{
+public class HeartRateFragment extends Fragment {
 
 
     ImageView back;
     Button btn;
     RecyclerView recyclerView;
     HeartRateAdapter heartRateAdapter;
-    List<HeartRate> heartRates ;
+    List<HeartRate> heartRates;
     EditText editText;
 
     HealthActivity healthActivity = DataLocalManager.getHealthActivity();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,14 +45,15 @@ public class HeartRateFragment extends Fragment{
         settingUpListeners();
         return view;
     }
-    void init(View view){
-         back = view.findViewById(R.id.btnBack);
-         btn = view.findViewById(R.id.heart_rate_fragment_btn);
-         recyclerView = view.findViewById(R.id.heart_rate_list);
-         editText = view.findViewById(R.id.heart_rate_fragment_rate);
-         heartRates = new ArrayList<>();
 
-        if (DataLocalManager.getHeartRateList()==null)
+    void init(View view) {
+        back = view.findViewById(R.id.btnBack);
+        btn = view.findViewById(R.id.heart_rate_fragment_btn);
+        recyclerView = view.findViewById(R.id.heart_rate_list);
+        editText = view.findViewById(R.id.heart_rate_fragment_rate);
+        heartRates = new ArrayList<>();
+
+        if (DataLocalManager.getHeartRateList() == null)
             DataLocalManager.setHeartRateList(heartRates);
 
         //them du lieu vao arraylist
@@ -64,18 +67,18 @@ public class HeartRateFragment extends Fragment{
         recyclerView.setNestedScrollingEnabled(true);
 
 
-        if (healthActivity!=null) {
+        if (healthActivity != null) {
             try {
-                editText.setText(healthActivity.getHearthRate().getRate()+"");
-            }
-            catch (Exception e) {
+                editText.setText(healthActivity.getHearthRate().getRate() + "");
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
 
     }
-    void settingUpListeners(){
+
+    void settingUpListeners() {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

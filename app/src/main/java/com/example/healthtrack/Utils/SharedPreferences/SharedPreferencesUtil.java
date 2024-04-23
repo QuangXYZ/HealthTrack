@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 public class SharedPreferencesUtil {
     private static final String PREF_NAME = "YourAppPrefs";
     private static final String TOKEN_KEY = "token";
-
     private static final String PREF_Weight = "WeightAppPrefs";
     private static final String WEIGHT_KEY = "weight";
 

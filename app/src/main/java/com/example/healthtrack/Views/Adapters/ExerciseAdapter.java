@@ -30,7 +30,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.single_exercise,parent,false);
+                .inflate(R.layout.single_exercise, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -59,6 +59,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView title, time, calo;
         private MaterialCardView exerciseLayout;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             time = itemView.findViewById(R.id.time);

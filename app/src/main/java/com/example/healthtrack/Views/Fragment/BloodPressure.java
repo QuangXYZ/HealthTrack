@@ -66,7 +66,8 @@ public class BloodPressure extends Fragment {
         text = view.findViewById(R.id.blood_pressure_text);
         advise = view.findViewById(R.id.blood_pressure_advise);
     }
-    void settingUpListeners(){
+
+    void settingUpListeners() {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,32 +84,29 @@ public class BloodPressure extends Fragment {
                 btn.setProgress(50);
                 int sys_int = Integer.parseInt(sys.getText().toString());
                 int dia_int = Integer.parseInt(dia.getText().toString());
-                if (sys_int<120 && dia_int<80){
+                if (sys_int < 120 && dia_int < 80) {
                     showArrow(0);
                     text.setText("Huyết áp bình thường");
                     textSys.setText("Huyết áp tâm thu dưới 120 mmHg và huyết áp tâm trương dưới 80 mmHg");
                     advise.setText("Huyết áp của bạn đang ở mức bình thường");
-                } else if (sys_int<129 && dia_int<80) {
+                } else if (sys_int < 129 && dia_int < 80) {
                     showArrow(1);
                     text.setText("Huyết áp cao hơn mức bình thường");
                     textSys.setText("Huyết áp tâm thu từ 120 - 129 mmHg và huyết áp tâm trương dưới 80 mmHg ");
                     advise.setText("Huyết áp của bạn đang ở mức bình thường");
-                    
-                }
-                else if ((sys_int<139 && !(dia_int>=80&&dia_int<90)) || !(sys_int<139) && (dia_int>=80&&dia_int<90)) {
+
+                } else if ((sys_int < 139 && !(dia_int >= 80 && dia_int < 90)) || !(sys_int < 139) && (dia_int >= 80 && dia_int < 90)) {
                     showArrow(2);
                     text.setText("Tăng huyết áp mức độ 1");
                     textSys.setText("Huyết áp tâm thu từ 130 - 139 mmHg hoặc huyết áp tâm trương từ 80-89 mmHg ");
                     advise.setText("Bạn nên theo dõi huyết áp thường xuyên");
-                }
-                else if ((sys_int>=140 && !(dia_int>=90)) || (!(sys_int>=140) && (dia_int>=90))){
+                } else if ((sys_int >= 140 && !(dia_int >= 90)) || (!(sys_int >= 140) && (dia_int >= 90))) {
                     showArrow(3);
                     text.setText("Tăng huyết áp mức độ 2");
                     textSys.setText("Huyết áp tâm thu từ 140 mmHg hoặc huyết áp tâm trương từ 90 mmHg ");
                     advise.setText("Nếu bạn có 3 kết quả trở lên với tình trạng này, đã đến lúc hỏi bác sĩ về đơn thuốc liên quan đên việc cải thiện lối sống");
 
-                }
-                else if(sys_int>=180 || dia_int>=120){
+                } else if (sys_int >= 180 || dia_int >= 120) {
                     showArrow(4);
                     text.setText("Huyết áp cao nghiêm trọng");
                     textSys.setText("Huyết áp tâm thu từ 180 mmHg và/hoặc huyết áp tâm trương từ 120 mmHg ");
@@ -120,9 +118,10 @@ public class BloodPressure extends Fragment {
             }
         });
     }
-    void showArrow(int i){
-        for (int j = 0; j <5;j++){
-            if (j==i) img.get(j).setVisibility(View.VISIBLE);
+
+    void showArrow(int i) {
+        for (int j = 0; j < 5; j++) {
+            if (j == i) img.get(j).setVisibility(View.VISIBLE);
             else img.get(j).setVisibility(View.INVISIBLE);
         }
     }

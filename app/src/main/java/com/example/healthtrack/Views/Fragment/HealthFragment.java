@@ -31,36 +31,38 @@ public class HealthFragment extends Fragment {
         return view;
     }
 
-    void init(View view){
+    void init(View view) {
 
         healthController = new HealthController();
-        if (DataLocalManager.getHealthActivity()==null){healthController.getHealthActivity(new HealthController.GetCallback() {
-            @Override
-            public void onSuccess(List<HealthActivity> healthActivity) {
+        if (DataLocalManager.getHealthActivity() == null) {
+            healthController.getHealthActivity(new HealthController.GetCallback() {
+                @Override
+                public void onSuccess(List<HealthActivity> healthActivity) {
 
-                if (healthActivity.size() == 0) {
-                    HealthActivity activity = new HealthActivity();
-                    healthController.insertHealthActivity(activity, new HealthController.InsertCallback() {
-                        @Override
-                        public void onSuccess(HealthActivity healthActivity) {
-                            DataLocalManager.setHealthActivity(healthActivity);
-                        }
+                    if (healthActivity.size() == 0) {
+                        HealthActivity activity = new HealthActivity();
+                        healthController.insertHealthActivity(activity, new HealthController.InsertCallback() {
+                            @Override
+                            public void onSuccess(HealthActivity healthActivity) {
+                                DataLocalManager.setHealthActivity(healthActivity);
+                            }
 
-                        @Override
-                        public void onError(String error) {
+                            @Override
+                            public void onError(String error) {
 
-                        }
-                    });
+                            }
+                        });
+                    } else {
+                        DataLocalManager.setHealthActivity(healthActivity.get(0));
+                    }
                 }
-                else {
-                    DataLocalManager.setHealthActivity(healthActivity.get(0));
-                }
-            }
-            @Override
-            public void onError(String error) {
 
-            }
-        });}
+                @Override
+                public void onError(String error) {
+
+                }
+            });
+        }
 
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -73,9 +75,6 @@ public class HealthFragment extends Fragment {
     void settingUpListeners() {
 
     }
-
-
-
 
 
 }

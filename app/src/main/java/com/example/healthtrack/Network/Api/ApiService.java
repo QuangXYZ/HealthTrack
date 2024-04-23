@@ -67,6 +67,7 @@ public interface ApiService {
     Call<BaseResponse<User>> updateUser(
             @Body User User
     );
+
     @GET("users/{idUser}")
     Call<BaseResponse<User>> getDetailUser(
             @Path("idUser") String idUser
@@ -87,33 +88,40 @@ public interface ApiService {
     Call<BaseListResponse<User>> getFriend(
             @Path("idUser") String idUser
     );
+
     @POST("users/friends/add")
     Call<BaseResponse<User>> addFriend(
             @Body FriendRequest addFriendRequest
     );
+
     @GET("users/friends/request/{idUser}")
     Call<BaseListResponse<User>> getFriendRequest(
             @Path("idUser") String idUser
     );
+
     @GET("users/friends/myRequest/{idUser}")
     Call<BaseListResponse<User>> getMyFriendRequest(
             @Path("idUser") String idUser
     );
+
     @GET("users/{idUser}")
     Call<BaseResponse<User>> getDetailFriend(
             @Path("idUser") String idUser
     );
+
     @POST("users/friends/accept")
     Call<BaseResponse<User>> acceptFriendRequest(
             @Body FriendRequest friendRequest
     );
+
     @POST("users/friends/decline")
     Call<BaseResponse<User>> declineFriendRequest(
             @Body FriendRequest friendRequest
     );
+
     @PATCH("challenges/{id}/{step}")
     Call<ResponseBody> updateChallengeStep(@Path("id") String id,
-                                  @Path("step") int step);
+                                           @Path("step") int step);
 
     @PATCH("challenges/")
     Call<Challenge> updateChallenge(@Body Challenge challenge);
@@ -138,11 +146,13 @@ public interface ApiService {
     Call<BaseResponse<HealthActivity>> insertHealthActivity(
             @Body HealthActivity healthActivity
     );
+
     @GET("healthActivity/{idUser}/{date}")
     Call<BaseListResponse<HealthActivity>> getHealthActivity(
             @Path("idUser") String idUser,
             @Path("date") String date
     );
+
     @PATCH("healthActivity/update/{idUser}/{date}")
     Call<ResponseBody> updateHealthActivity(@Path("idUser") String idUser,
                                             @Path("date") String date,

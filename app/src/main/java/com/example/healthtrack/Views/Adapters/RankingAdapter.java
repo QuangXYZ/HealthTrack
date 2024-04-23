@@ -34,7 +34,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.single_user_ranking,parent,false);
+                .inflate(R.layout.single_user_ranking, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -45,7 +45,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
         userController.getDetailUser(record.getUserId(), new UserController.GetUserCallback() {
             @Override
             public void onSuccess(User user) {
-                if (user.getProfilePicture()!=null)
+                if (user.getProfilePicture() != null)
                     Glide.with(context).load(user.getProfilePicture()).into(holder.img);
             }
 
@@ -54,7 +54,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
 
             }
         });
-        if (position<=2) {
+        if (position <= 2) {
             holder.rankingNumber.setVisibility(View.GONE);
             if (position == 0) {
                 holder.rankingBadge.setImageResource(R.drawable.ranking1);
@@ -68,10 +68,9 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
                 holder.rankingBadge.setImageResource(R.drawable.ranking3);
 
             }
-        }
-        else {
+        } else {
             holder.rankingNumber.setVisibility(View.VISIBLE);
-            holder.rankingNumber.setText(String.valueOf(position+1));
+            holder.rankingNumber.setText(String.valueOf(position + 1));
             holder.rankingBadge.setVisibility(View.GONE);
         }
         holder.name.setText(record.getUserName());
@@ -88,6 +87,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.MyViewHo
         TextView rankingNumber;
         ImageView rankingBadge, img;
         TextView name, step;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             rankingNumber = itemView.findViewById(R.id.single_ranking_number);

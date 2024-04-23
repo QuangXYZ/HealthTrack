@@ -28,8 +28,7 @@ public class TestWalkingStep extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {
             StepService stepService = ((StepService.StepBinder) service).getService();
-            showStepCount(CommonUtils.getStepNumber(),
-                    stepService.getStepCount());
+            showStepCount(CommonUtils.getStepNumber(), stepService.getStepCount());
             stepService.registerCallback(new UpdateUiCallBack() {
                 @Override
                 public void updateUi(int stepCount) {

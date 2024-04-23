@@ -5,6 +5,4 @@
         android:id="@+id/exit_challenge"
         android:title="Dừng thử thách"
         app:showAsAction="never" />
-
-
 </menu>

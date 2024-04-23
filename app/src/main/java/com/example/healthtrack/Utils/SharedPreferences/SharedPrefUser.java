@@ -8,7 +8,6 @@ public class SharedPrefUser {
     private static final String NAME = "NamePrefs";
     private static final String EMAIL = "EmailPrefs";
     private static final String PHONE = "PhonePrefs";
-
     private static final String idUser_KEY = "idUser";
     private static final String NAME_KEY = "name";
     private static final String EMAIL_KEY = "email";
@@ -20,6 +19,7 @@ public class SharedPrefUser {
         editor.putString(idUser_KEY, origin);
         editor.apply();
     }
+
     public static void SaveName(Context context, String origin) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -45,6 +45,7 @@ public class SharedPrefUser {
         SharedPreferences sharedPreferences = context.getSharedPreferences(idUser, Context.MODE_PRIVATE);
         return sharedPreferences.getString(idUser_KEY, null);
     }
+
     public static String getName(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(NAME_KEY, null);
@@ -66,6 +67,7 @@ public class SharedPrefUser {
         editor.remove(idUser_KEY);
         editor.apply();
     }
+
     public static void clearName(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

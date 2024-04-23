@@ -13,6 +13,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         scheduleJob(context);
     }
+
     private void scheduleJob(Context context) {
         ComponentName componentName = new ComponentName(context, CreateStep.class);
         JobInfo.Builder builder = new JobInfo.Builder(0, componentName);

@@ -30,12 +30,13 @@ import retrofit2.Response;
 
 public class HealthController {
     private ApiService apiService;
+
     public HealthController() {
         String token = DataLocalManager.getToken();
         apiService = ApiUtils.getApiService(token);
     }
 
-    public void insertHealthActivity(HealthActivity healthActivity,final InsertCallback insertCallback){
+    public void insertHealthActivity(HealthActivity healthActivity, final InsertCallback insertCallback) {
         apiService.insertHealthActivity(healthActivity).enqueue(new Callback<BaseResponse<HealthActivity>>() {
             @Override
             public void onResponse(Call<BaseResponse<HealthActivity>> call, Response<BaseResponse<HealthActivity>> response) {
@@ -52,6 +53,7 @@ public class HealthController {
             }
         });
     }
+
     public void updateHealthActivity(JsonObject requestBody, final UpdateCallback updateCallback) {
         String idUser = DataLocalManager.getUser().get_id();
         LocalDate today = LocalDate.now();
@@ -75,6 +77,7 @@ public class HealthController {
                     }
                 });
     }
+
     public void getHealthActivity(final GetCallback callback) {
         String idUser = DataLocalManager.getUser().get_id();
         LocalDate today = LocalDate.now();
@@ -101,11 +104,13 @@ public class HealthController {
 
         void onError();
     }
+
     public interface GetCallback {
         void onSuccess(List<HealthActivity> healthActivity);
 
         void onError(String error);
     }
+
     public interface InsertCallback {
         void onSuccess(HealthActivity healthActivity);
 

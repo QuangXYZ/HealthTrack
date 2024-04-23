@@ -26,28 +26,27 @@ public class UserController {
     ApiService apiService = retrofit.create(ApiService.class);
 
 
+    public void login(String email, String password) {
 
-    public void login(String email, String password){
+    }
+
+    public void logout() {
 
     }
 
-    public void logout(){
-
-    }
-    public void signup(String email, String username, String password, final UserControllerCallback userControllerCallback){
-        User user = new User(email,username, password);
+    public void signup(String email, String username, String password, final UserControllerCallback userControllerCallback) {
+        User user = new User(email, username, password);
         Call<BaseResponse<User>> call = apiService.signup(user);
         call.enqueue(new Callback<BaseResponse<User>>() {
             @Override
             public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                 try {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         String idUser = response.body().getData().get_id();
-                        Log.e("User",idUser);
+                        Log.e("User", idUser);
                         registerFirebase(email, username, password);
                         userControllerCallback.onSuccess(response.body().getMessage());
-                    }
-                    else {
+                    } else {
                         userControllerCallback.onError(response.body().getMessage());
                     }
                 } catch (Exception e) {
@@ -61,7 +60,8 @@ public class UserController {
             }
         });
     }
-    void registerFirebase(String email,String username, String password) {
+
+    void registerFirebase(String email, String username, String password) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
@@ -78,18 +78,18 @@ public class UserController {
                     }
                 });
     }
-    public void getDetailUser(String idUser, final GetUserCallback callback){
+
+    public void getDetailUser(String idUser, final GetUserCallback callback) {
         String token = DataLocalManager.getToken();
         ApiService apiService = ApiUtils.getApiService(token);
         apiService.getDetailUser(idUser)
-               .enqueue(new Callback<BaseResponse<User>>() {
+                .enqueue(new Callback<BaseResponse<User>>() {
                     @Override
                     public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                         try {
-                            if (response.isSuccessful()){
+                            if (response.isSuccessful()) {
                                 callback.onSuccess(response.body().getData());
-                            }
-                            else {
+                            } else {
                                 callback.onError(response.body().getMessage());
                             }
                         } catch (Exception e) {
@@ -114,10 +114,9 @@ public class UserController {
             @Override
             public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
                 try {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         userControllerCallback.onSuccess(response.body().getMessage());
-                    }
-                    else {
+                    } else {
                         userControllerCallback.onError("Can not update user");
                     }
                 } catch (Exception e) {
@@ -138,13 +137,12 @@ public class UserController {
 
         void onError(String error);
     }
+
     public interface GetUserCallback {
         void onSuccess(User user);
 
         void onError(String error);
     }
-
-
 
 
 }

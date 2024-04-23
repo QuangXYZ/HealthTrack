@@ -31,6 +31,7 @@ public class UpdateStepWorker extends Worker {
 
     private Context context;
     private StepController stepController;
+
     public UpdateStepWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
         this.context = context;
@@ -42,7 +43,7 @@ public class UpdateStepWorker extends Worker {
     public Result doWork() {
         String step = String.valueOf(CommonUtils.getStepNumber());
         int weight = SharedPreferencesUtil.getWeight(context);
-        Log.d(TAG, "số bước chân hiện tại: " +step);
+        Log.d(TAG, "số bước chân hiện tại: " + step);
         JsonObject newData = new JsonObject();
         newData.addProperty("numberStep", step);
         newData.addProperty("weight", weight);

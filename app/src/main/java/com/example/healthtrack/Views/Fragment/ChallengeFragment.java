@@ -34,11 +34,11 @@ public class ChallengeFragment extends Fragment {
     TextView tab1, tab2;
     private static final int FRAGMENT_PRIVATE = 1;
     private static final int FRAGMENT_PUBLIC = 2;
-    private static int currentFragment ;
+    private static int currentFragment;
 
     CircleImageView img;
-    TextView name,lv;
-    SwipeRefreshLayout swipeRefreshLayout ;
+    TextView name, lv;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -51,7 +51,8 @@ public class ChallengeFragment extends Fragment {
 
         return view;
     }
-    void init(View view){
+
+    void init(View view) {
         tab1 = view.findViewById(R.id.fragment_challenge_tab1);
         tab2 = view.findViewById(R.id.fragment_challenge_tab2);
         swipeRefreshLayout = view.findViewById(R.id.fragment_challenge_refresh);
@@ -61,10 +62,9 @@ public class ChallengeFragment extends Fragment {
 
         User user = DataLocalManager.getUser();
         name.setText(user.getName());
-        lv.setText("Level: "+user.getLevel());
-        if (user.getProfilePicture()!=null)
+        lv.setText("Level: " + user.getLevel());
+        if (user.getProfilePicture() != null)
             Glide.with(this).load(user.getProfilePicture()).into(img);
-
 
 
         currentFragment = FRAGMENT_PRIVATE;
@@ -75,8 +75,9 @@ public class ChallengeFragment extends Fragment {
 
 
     }
+
     @SuppressLint("ClickableViewAccessibility")
-    void settingUpListeners(){
+    void settingUpListeners() {
 //            createBtn.setOnTouchListener(new View.OnTouchListener() {
 //                @Override
 //                public boolean onTouch(View v, MotionEvent event) {
@@ -95,7 +96,6 @@ public class ChallengeFragment extends Fragment {
 //                    return false;
 //                }
 //            });
-
 
 
         tab1.setOnClickListener(new View.OnClickListener() {
@@ -148,10 +148,7 @@ public class ChallengeFragment extends Fragment {
             replaceFragment(challengeFragment);
 
 
-
-
-        }
-        else {
+        } else {
             selectedTab = tab2;
             noneSelectedTab = tab1;
 
@@ -162,7 +159,7 @@ public class ChallengeFragment extends Fragment {
         }
 
         float slideTo = (tabNumber - currentFragment) * selectedTab.getWidth();
-        TranslateAnimation translateAnimation = new TranslateAnimation(-slideTo, 0,0,0);
+        TranslateAnimation translateAnimation = new TranslateAnimation(-slideTo, 0, 0, 0);
 
         translateAnimation.setDuration(400);
 
@@ -200,9 +197,10 @@ public class ChallengeFragment extends Fragment {
                 }
         );
 
-        currentFragment =  tabNumber;
+        currentFragment = tabNumber;
 
     }
+
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction().setReorderingAllowed(true);
         fragmentTransaction.replace(R.id.fragment_challenge_frame, fragment);

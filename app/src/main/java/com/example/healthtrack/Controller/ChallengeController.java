@@ -188,11 +188,11 @@ public class ChallengeController {
         });
     }
 
-    public void updateChallengeStep(final ChallengeControllerCallback challengeControllerCallback){
+    public void updateChallengeStep(final ChallengeControllerCallback challengeControllerCallback) {
         String idUser = DataLocalManager.getUser().get_id();
-        int currentStep = DataLocalManager.getWalkingStep(CommonUtils.STEP_NUMBER_KEY)- DataLocalManager.getTempStep();
+        int currentStep = DataLocalManager.getWalkingStep(CommonUtils.STEP_NUMBER_KEY) - DataLocalManager.getTempStep();
 
-        apiService.updateChallengeStep(idUser,currentStep).enqueue(new Callback<ResponseBody>() {
+        apiService.updateChallengeStep(idUser, currentStep).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {

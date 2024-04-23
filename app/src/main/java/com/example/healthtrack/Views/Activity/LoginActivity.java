@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 
 
@@ -35,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     ProgressBar loginProgressBar;
-    TextView signupText,loginEmail, loginPass;
+    TextView signupText, loginEmail, loginPass;
     private LoginController loginController;
     CircleImageView google;
     private FirebaseAuth mAuth;
@@ -105,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .setPositiveButton("OK", (dialog, which) -> {
                                     loginBtn.setVisibility(View.VISIBLE);
                                     loginProgressBar.setVisibility(View.GONE);
-                                } ).show();
+                                }).show();
 
                     }
                 });
@@ -131,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

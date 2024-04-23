@@ -36,6 +36,7 @@ public class PublicNotJoinChallengeAdapter extends RecyclerView.Adapter<PublicNo
                 .inflate(R.layout.single_public_not_join_challenge, parent, false);
         return new MyViewHolder(itemView);
     }
+
     public void removeItem(int position) {
         challenges.remove(position);
         notifyItemRemoved(position);

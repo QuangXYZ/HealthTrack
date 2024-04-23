@@ -19,7 +19,7 @@ public class BadgesAdapter extends RecyclerView.Adapter<BadgesAdapter.BadgeViewH
     Context context;
     List<Badges> badges;
 
-    public BadgesAdapter(Context context, List<Badges> badges){
+    public BadgesAdapter(Context context, List<Badges> badges) {
         this.context = context;
         this.badges = badges;
     }
@@ -41,10 +41,11 @@ public class BadgesAdapter extends RecyclerView.Adapter<BadgesAdapter.BadgeViewH
         return badges.size();
     }
 
-    public class BadgeViewHolder extends RecyclerView.ViewHolder{
+    public class BadgeViewHolder extends RecyclerView.ViewHolder {
         ImageView badgeAva;
         TextView badgeName;
-        public BadgeViewHolder(@NonNull View itemView){
+
+        public BadgeViewHolder(@NonNull View itemView) {
             super(itemView);
             badgeAva = itemView.findViewById(R.id.badgeAva);
             badgeName = itemView.findViewById(R.id.badgeName);

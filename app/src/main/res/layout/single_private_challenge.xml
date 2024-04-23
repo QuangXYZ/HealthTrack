@@ -1,82 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/single_private_challenge_layout"
+    style="?attr/materialCardViewElevatedStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     android:backgroundTint="#F4F1FA"
+    android:elevation="3dp"
     app:cardCornerRadius="20dp"
-    style="?attr/materialCardViewElevatedStyle"
-    app:strokeWidth="0dp"
-    android:elevation="3dp">
+    app:strokeWidth="0dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
+
         <TextView
             android:id="@+id/single_private_challenge_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Thử thách tháng 3"
             android:textColor="@color/blue"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:text="Thử thách tháng 3" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:weightSum="10">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="6">
+                android:layout_weight="6"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/single_private_challenge_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Số người tham gia: "/>
+                    android:text="Số người tham gia: " />
+
                 <TextView
                     android:id="@+id/single_private_challenge_target"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tổng số bước chân"/>
+                    android:text="Tổng số bước chân" />
+
                 <TextView
                     android:id="@+id/single_private_challenge_step"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="1.236"
                     android:textColor="@color/pink"
-                    android:textStyle="bold"
                     android:textSize="24sp"
-                    android:text="1.236"/>
+                    android:textStyle="bold" />
+
                 <ProgressBar
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/textView"
                     android:id="@+id/single_private_challenge_progress"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:indeterminate="false"
+                    android:layout_below="@+id/textView"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
+                    android:background="@drawable/progress_bar_background"
+                    android:indeterminate="false"
                     android:max="100"
                     android:padding="5dp"
                     android:progress="50"
-                    android:background="@drawable/progress_bar_background"
-                    android:progressDrawable="@drawable/curved_progress_bar"
-                    />
+                    android:progressDrawable="@drawable/curved_progress_bar" />
 
-                
+
             </LinearLayout>
+
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:src="@drawable/flower"
-                android:layout_weight="4"/>
+                android:layout_weight="4"
+                android:src="@drawable/flower" />
         </LinearLayout>
 
     </LinearLayout>

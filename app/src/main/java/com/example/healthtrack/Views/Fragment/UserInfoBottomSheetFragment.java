@@ -24,13 +24,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserInfoBottomSheetFragment extends BottomSheetDialogFragment {
 
 
-
     String friendId;
     TextView cancel, name, lv;
     Button addFriend;
     LinearLayout addFriendLayout, noDataLayout;
     FriendController friendController;
     CircleImageView img;
+
     public void setFriendId(String friendId) {
         this.friendId = friendId;
     }
@@ -56,13 +56,14 @@ public class UserInfoBottomSheetFragment extends BottomSheetDialogFragment {
             public void onSuccess(List<User> users) {
                 User user = users.get(0);
                 name.setText(user.getName());
-                lv.setText("Level "+user.getLevel());
-                if (user.getProfilePicture()!=null)
+                lv.setText("Level " + user.getLevel());
+                if (user.getProfilePicture() != null)
                     Glide.with(getContext()).load(user.getProfilePicture()).into(img);
                 addFriendLayout.setVisibility(View.VISIBLE);
                 noDataLayout.setVisibility(View.GONE);
 
             }
+
             @Override
             public void onError(String error) {
                 addFriendLayout.setVisibility(View.GONE);
@@ -87,7 +88,7 @@ public class UserInfoBottomSheetFragment extends BottomSheetDialogFragment {
                                 .setMessage("Đã gửi lời mời")
                                 .setPositiveButton("OK", (dialog, which) -> {
                                     dismiss();
-                                } ).show();
+                                }).show();
                     }
 
                     @Override
@@ -97,7 +98,7 @@ public class UserInfoBottomSheetFragment extends BottomSheetDialogFragment {
                                 .setMessage(error.toString())
                                 .setPositiveButton("OK", (dialog, which) -> {
                                     dismiss();
-                                } ).show();
+                                }).show();
                     }
                 });
             }

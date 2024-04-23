@@ -45,12 +45,11 @@ public class PreviewExerciseActivity extends AppCompatActivity {
         imgGoBack = findViewById(R.id.toolbar_preview_exercise);
         recyclerView = findViewById(R.id.recyclerview_item);
         Intent intent = getIntent();
-        if (intent!=null) {
+        if (intent != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 smallExercises = intent.getSerializableExtra("SmallExercise", SmallExercises.class);
                 listItem.addAll(smallExercises.getListContent());
-            }
-            else {
+            } else {
                 smallExercises = (SmallExercises) intent.getSerializableExtra("SmallExercise");
                 listItem.addAll(smallExercises.getListContent());
                 title.setText(smallExercises.getTitleSmall());

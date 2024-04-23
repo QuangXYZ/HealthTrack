@@ -28,7 +28,7 @@ public class HeartRateAdapter extends RecyclerView.Adapter<HeartRateAdapter.MyVi
     @Override
     public HeartRateAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.single_heart_rate,parent,false);
+                .inflate(R.layout.single_heart_rate, parent, false);
         return new HeartRateAdapter.MyViewHolder(itemView);
     }
 
