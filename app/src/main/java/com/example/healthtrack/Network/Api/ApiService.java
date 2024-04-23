@@ -82,9 +82,6 @@ public interface ApiService {
     Call<BaseResponse<Challenge>> leaveChallenge(
             @Body LeaveChallengeRequest leaveChallengeRequest
     );
-    @PATCH("challenges/{id}/{step}")
-    Call<ResponseBody> updateChallengeStep(@Path("id") String id,
-                                           @Path("step") int step);
 
     @GET("users/friends/{idUser}")
     Call<BaseListResponse<User>> getFriend(
@@ -114,6 +111,9 @@ public interface ApiService {
     Call<BaseResponse<User>> declineFriendRequest(
             @Body FriendRequest friendRequest
     );
+    @PATCH("challenges/{id}/{step}")
+    Call<ResponseBody> updateChallengeStep(@Path("id") String id,
+                                  @Path("step") int step);
 
     @PATCH("challenges/")
     Call<Challenge> updateChallenge(@Body Challenge challenge);

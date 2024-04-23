@@ -1,6 +1,5 @@
 package com.example.healthtrack.Views.Fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
@@ -17,8 +15,6 @@ import com.bumptech.glide.Glide;
 import com.example.healthtrack.Controller.FriendController;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Views.CreateChallengeActivity;
-import com.example.healthtrack.Views.FriendActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.List;

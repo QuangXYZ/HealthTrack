@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +15,6 @@ import com.dd.CircularProgressButton;
 import com.example.healthtrack.Controller.ChallengeController;
 import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Views.SignUpActivity;
 
 import java.util.List;
 

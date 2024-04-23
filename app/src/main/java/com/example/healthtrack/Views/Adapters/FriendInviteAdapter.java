@@ -1,13 +1,9 @@
 package com.example.healthtrack.Views.Adapters;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,13 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dd.CircularProgressButton;
 import com.example.healthtrack.Controller.FriendController;
-import com.example.healthtrack.Models.Challenge;
-import com.example.healthtrack.Models.Record;
 import com.example.healthtrack.Models.User;
 import com.example.healthtrack.R;
-import com.example.healthtrack.Utils.DataLocalManager;
-import com.example.healthtrack.Views.PrivateChallengeDetail;
-import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 

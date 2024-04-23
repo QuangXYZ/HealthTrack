@@ -15,9 +15,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Binder;
-import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 
 import android.os.IBinder;
 import android.util.Log;
@@ -28,8 +26,7 @@ import androidx.core.app.NotificationCompat;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.CommonUtils;
 import com.example.healthtrack.Utils.DataLocalManager;
-import com.example.healthtrack.Views.MainHomeActivity;
-import com.example.healthtrack.Views.TestWalkingStep;
+import com.example.healthtrack.Views.Activity.MainHomeActivity;
 
 
 /**

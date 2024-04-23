@@ -1,7 +1,5 @@
 package com.example.healthtrack.Views.Fragment;
 
-import static androidx.core.content.PermissionChecker.checkSelfPermission;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,8 +31,7 @@ import com.example.healthtrack.Models.Challenge;
 import com.example.healthtrack.R;
 import com.example.healthtrack.Utils.CaptureArt;
 import com.example.healthtrack.Views.Adapters.PrivateChallengeAdapter;
-import com.example.healthtrack.Views.CreateChallengeActivity;
-import com.example.healthtrack.Views.PrivateChallengeDetail;
+import com.example.healthtrack.Views.Activity.CreateChallengeActivity;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.zxing.integration.android.IntentIntegrator;
