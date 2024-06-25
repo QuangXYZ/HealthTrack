@@ -37,12 +37,6 @@ HealthTrack
   <img src="Screenshots/5.jpg" width="250" alt="Challenge">
   <img src="Screenshots/12.jpg" width="250" alt="New Challenge">
   <img src="Screenshots/14.jpg" width="250" alt="Detail Challenge">
-  <img src="Screenshots/14.jpg" width="250" alt="Detail Challenge">
-  <img src="Screenshots/14.jpg" width="250" alt="Detail Challenge">
 </p>
 
-<p align="center">
-  <img src="Screenshots/14.jpg" width="250" alt="Detail Challenge">
-  <img src="Screenshots/14.jpg" width="250" alt="Detail Challenge">
-</p>
 
